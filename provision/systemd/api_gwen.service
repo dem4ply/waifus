@@ -1,0 +1,19 @@
+[Unit]
+Description=Gunicorn for api of gwen
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/vagrant/src/gwen
+ExecStart=/bin/gunicorn gwen.wsgi:application \
+	--name Gwen \
+	--workers 3 \
+	--worker-class gevent \
+	--access-logfile /var/log/gwen/access.log \
+	--error-logfile /var/log/gwen/error.log \
+	--log-level=info \
+	--bind=127.0.0.1:8000
+
+
+[Install]
+WantedBy=multi-user.target
