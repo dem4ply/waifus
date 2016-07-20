@@ -1,0 +1,9 @@
+127.0.0.1			localhost
+::1					localhost
+#nombre de cluster de elasticsearch
+192.168.15.50		waifus
+# servidores de elasticsearch
+192.168.15.60		sakura
+192.168.15.61		pitou, kibana
+192.168.15.62		ren
+192.168.15.63		misuzu

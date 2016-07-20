@@ -1,7 +1,9 @@
 #!/bin/bash
+
 FILE_CHECK="install_elasticsearch"
 if [ ! -f ~/$FILE_CHECK ]
 then
+	echo "instalasion elasticsearch" | ponysay
 
 	FOLDER_PROVISION="/home/vagrant/provision"
 	sudo yum update -y
@@ -30,6 +32,9 @@ enabled=1
 	sudo yum -y install elasticsearch
 
 	sudo systemctl enable elasticsearch.service
+	sudo /usr/share/elasticsearch/bin/plugin install royrusso/elasticsearch-HQ
 
 	touch ~/$FILE_CHECK
+
+	echo "fin de instalasion elasticsearch" | ponysay
 fi

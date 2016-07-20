@@ -3,9 +3,8 @@ FILE_CHECK="install_nginx"
 if [ ! -f ~/$FILE_CHECK ]
 then
 
-	echo "================"
-	echo "Instalando Nginx"
-	echo "================"
+	echo "Instalando Nginx" | ponysay
+
 	FOLDER_PROVISION="/home/vagrant/provision"
 	sudo yum update -y
 	sudo yum install -y epel-release
@@ -15,7 +14,6 @@ then
 	sudo systemctl start nginx
 
 	touch ~/$FILE_CHECK
-	echo "============================"
-	echo "Finalizado instalasion Nginx"
-	echo "============================"
+
+	echo "Finalizado instalasion Nginx" | ponysay
 fi
