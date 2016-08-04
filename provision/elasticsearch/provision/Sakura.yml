@@ -3,8 +3,8 @@ discovery.zen.ping.multicast.enabled: false
 discovery.zen.ping.unicast.hosts: [Pitou, Sakura]
 network.bind_host: Sakura
 network.host: Sakura
-node.data: true
-node.master: false
+node.data: false
+node.master: true
 node.name: Sakura
 path.data: /var/data/waifus
 path.logs: /var/log/waifus

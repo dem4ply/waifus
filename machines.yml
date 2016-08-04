@@ -1,0 +1,87 @@
+nginx:
+    machines:
+        - Astraea
+        - Caos
+        - Ikaros
+        - Nymph
+    extra_hosts:
+        - "kibana"
+        - "spider-verse"
+    config:
+        ram: 512
+        cpus: 1
+        provisions:
+            - path: "provision/install_cool.sh"
+            - path: "provision/install_htop.sh"
+            - path: "provision/copy_hosts.sh"
+            - path: "provision/nginx/install_nginx.sh"
+            - path: "provision/nginx/start_nginx.sh"
+
+            - path: "provision/logstash/install_filebeat.sh"
+            - path: "provision/logstash/install_packetbeat.sh"
+            - path: "provision/logstash/install_topbeat.sh"
+
+            - path: "provision/logstash/start_filebeat.sh"
+              args: "filebeat_nginx.yml"
+            - path: "provision/logstash/start_packetbeat.sh"
+              args: "packetbeat_nginx.yml"
+            - path: "provision/logstash/start_topbeat.sh"
+              args: "topbeat_generic.yml"
+
+elasticsearch:
+    machines:
+        - Misizu
+        - Pitou
+        - Ren
+        - Sakura
+        - Sonico
+    config:
+        ram: 1024
+        cpus: 1
+        provisions:
+            - path: "provision/install_python.sh"
+            - path: "provision/install_htop.sh"
+            - path: "provision/install_cool.sh"
+            - path: "provision/copy_hosts.sh"
+            - path: "provision/stuff/install_java.sh"
+            - path: "provision/elasticsearch/install_elasticsearch.sh"
+            - path: "provision/elasticsearch/install_kibana.sh"
+            - path: "provision/elasticsearch/start_elasticsearch.sh"
+              args: "{name}"
+
+            - path: "provision/elasticsearch/start_kibana.sh"
+            - path: "provision/elasticsearch/install_dashboards.sh"
+
+            - path: "provision/logstash/install_packetbeat.sh"
+            - path: "provision/logstash/install_topbeat.sh"
+
+            - path: "provision/logstash/start_packetbeat.sh"
+              args: "packetbeat_generic.yml"
+            - path: "provision/logstash/start_topbeat.sh"
+              args: "topbeat_generic.yml"
+
+logstash:
+    machines:
+        - Ai
+        - Nanami
+        - Touko
+        - Yuu
+    config:
+        ram: 512
+        cpus: 1
+        provisions:
+            - path: "provision/install_python.sh"
+            - path: "provision/install_htop.sh"
+            - path: "provision/install_cool.sh"
+            - path: "provision/copy_hosts.sh"
+            - path: "provision/stuff/install_java.sh"
+            - path: "provision/logstash/install_logstash.sh"
+            - path: "provision/logstash/start_logstash.sh"
+
+            - path: "provision/logstash/install_packetbeat.sh"
+            - path: "provision/logstash/install_topbeat.sh"
+
+            - path: "provision/logstash/start_packetbeat.sh"
+              args: "packetbeat_generic.yml"
+            - path: "provision/logstash/start_topbeat.sh"
+              args: "topbeat_generic.yml"

@@ -1,0 +1,27 @@
+interfaces:
+    device: any
+
+protocols:
+    dns:
+        ports: [53]
+        include_authorities: true
+        include_additionals: true
+    http:
+        ports: [ 80 ]
+    memcache:
+        ports: [11211]
+    mysql:
+        #ports: [3306]
+    redis:
+        #ports: [6379]
+
+output:
+    logstash:
+       hosts: [ "venom:5044" ]
+       bulk_max_size: 1024
+
+shipper: null
+
+logging:
+    files:
+        rotateeverybytes: 10485760 # = 10MB

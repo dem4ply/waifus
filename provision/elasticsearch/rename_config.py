@@ -24,7 +24,7 @@ config_node = {
         'master': True,
         'data': True,
     },
-    'sakura': {
+    'Sakura': {
         'master': True,
         'data': False,
     }

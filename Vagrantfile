@@ -1,98 +1,74 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
-
+#
 require 'yaml'
 
-HOST_SHARE_FOLDER = "src"
+REL_DIR = File.dirname(__FILE__)
+HOST_SHARE_FOLDER = REL_DIR + "/" + "src"
+HOST_BACKUPS_SHARE_FOLDER = REL_DIR + "/" + "backups"
 GUEST_SHARE_FOLDER = "/home/vagrant/src"
 GUEST_SHARE_FOLDER_PROVISION = "/home/vagrant/provision"
 
-Angeloids = [ 'Ikaros', 'Nymph', 'Astraea', 'Caos' ]
-Waifus = [ 'Sakura', 'Pitou', 'Misuzu', 'Ren', 'Sonico' ]
-OS_tan = [ 'Yuu', 'Ai', 'Touko', 'Nanami' ]
+BACKUPS_SHARE_FOLDER = "/home/vagrant/backups"
 
-Angeloids_config = YAML.load_file( 'angeloids.yml' )
-Waifus_config = YAML.load_file( 'waifus.yml' )
-Ostan_config = YAML.load_file( 'os_tan.yml' )
-
-START_IP = "192.168.1.150"
-
-natural_host = File.open("provision/natural_hosts", "r")
-hosts = natural_host.read
 
 Vagrant.configure(2) do |config|
 
 	#config.vm.box = "box-cutter/centos70"
+	#config.vm.box = "insaneworks/centos"
 	config.vm.box = "geerlingguy/centos7"
 
+	start_ip = "192.168.2.150"
+
+	natural_host = File.open( REL_DIR + "/" + "provision/natural_hosts", "r")
+	hosts = natural_host.read
+
+	machines = YAML.load_file( REL_DIR + "/" +  'machines.yml' )
+
+
+	config.vm.synced_folder HOST_BACKUPS_SHARE_FOLDER, BACKUPS_SHARE_FOLDER, owner: "vagrant", group: "vagrant", create: true
 	config.vm.synced_folder HOST_SHARE_FOLDER, GUEST_SHARE_FOLDER, owner: "vagrant", group: "vagrant", create: true
 	config.vm.synced_folder 'provision', GUEST_SHARE_FOLDER_PROVISION, owner: "vagrant", group: "vagrant", create: true
 
-	ip = START_IP.split( '.' )
+	# nginx and django
+	split_ip = start_ip.split( '.' )
 
-	hosts << "#Angeloids\n"
-	Angeloids.each{ |name|
-		ip_machine = ip.join( '.' )
-		config.vm.define name, primary: true do |m|
-			m.vm.host_name = name
-			m.vm.network "public_network", bridge: "wlp2s0", ip: ip_machine
-			m.vm.provider "virtualbox" do |vb|
-				vb.name = name
-				vb.memory = Angeloids_config[ 'ram' ]
-				vb.cpus = Angeloids_config[ 'cpus' ]
+	aux_machines = {}
+	for k, v in machines
+		machines_names = v[ 'machines' ]
+		machines_config = v[ 'config' ]
+
+		hosts << "\# machines #{ k }\n"
+
+		machines_names.each { |name|
+			aux_machines[ name ] = machines_config
+			current_ip = split_ip.join( '.' )
+			config.vm.define name, primary: true do |m|
+				machines_config = aux_machines[ name ]
+				m.vm.host_name = name
+				m.vm.network "public_network", bridge: "wlp2s0", ip: current_ip
+				m.vm.provider "virtualbox" do |vb|
+					vb.name = name
+					vb.memory = machines_config[ 'ram' ]
+					vb.cpus = machines_config[ 'cpus' ]
+				end
+				machines_config[ 'provisions' ].each { |provision|
+					args = provision.fetch( 'args', '' ).sub '{name}', name
+					path = REL_DIR + "/" + provision[ 'path' ]
+					if ( args )
+						m.vm.provision :shell, path: path, args: args
+					else
+						m.vm.provision :shell, path: path
+					end
+				}
 			end
-		Angeloids_config[ 'provision' ].each { |provision|
-			m.vm.provision :shell, path: provision[ 'path' ]
+			extra_host = v.fetch( 'extra_hosts', [] )
+			hosts << "#{ current_ip }\t\t#{ name } #{ extra_host.join( ' ' ) }\n"
+			split_ip[3] = split_ip[3].to_i + 1
 		}
 	end
-		hosts << ip_machine + "\t\t" + name + "\n"
-		ip[3] = ip[3].to_i + 1
-	}
 
-	hosts << "#waifus\n"
-	Waifus.each{ |name|
-		ip_machine = ip.join( '.' )
-		config.vm.define name, primary: true do |m|
-			m.vm.host_name = name
-			m.vm.network "public_network", bridge: "wlp2s0", ip: ip_machine
-			m.vm.provider "virtualbox" do |vb|
-				vb.name = name
-				vb.memory = Waifus_config[ 'ram' ]
-				vb.cpus = Waifus_config[ 'cpus' ]
-			end
-		Waifus_config[ 'provision' ].each { |provision|
-			if provision.key?( 'args' )
-				args = provision[ 'args' ].sub '{name}', name
-				m.vm.provision :shell, path: provision[ 'path' ], args: args
-			else
-				m.vm.provision :shell, path: provision[ 'path' ]
-			end
-		}
-	end
-		hosts << ip_machine + "\t\t" + name + "\n"
-		ip[3] = ip[3].to_i + 1
-	}
-
-	hosts << "#os_tan\n"
-	OS_tan.each{ |name|
-		ip_machine = ip.join( '.' )
-		config.vm.define name, primary: true do |m|
-			m.vm.host_name = name
-			m.vm.network "public_network", bridge: "wlp2s0", ip: ip_machine
-			m.vm.provider "virtualbox" do |vb|
-				vb.name = name
-				vb.memory = Ostan_config[ 'ram' ]
-				vb.cpus = Ostan_config[ 'cpus' ]
-			end
-		Ostan_config[ 'provision' ].each { |provision|
-			m.vm.provision :shell, path: provision[ 'path' ]
-		}
-	end
-		hosts << ip_machine + "\t\t" + name + "\n"
-		ip[3] = ip[3].to_i + 1
-	}
-
-	hosts_end = File.open("provision/hosts", "w")
+	hosts_end = File.open( REL_DIR + "/" + "provision/hosts", "w")
 	hosts_end.write( hosts )
 	hosts_end.close()
 
