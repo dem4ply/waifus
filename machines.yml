@@ -1,8 +1,8 @@
 nginx:
     machines:
+        - Ikaros
         - Astraea
         - Caos
-        - Ikaros
         - Nymph
     extra_hosts:
         - "kibana"
