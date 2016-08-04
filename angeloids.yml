@@ -1,0 +1,9 @@
+ram: 512
+cpus: 1
+
+provision:
+   - path: "provision/install_python.sh"
+   - path: "provision/install_cool.sh"
+   - path: "provision/copy_hosts.sh"
+   - path: "provision/nginx/install_nginx.sh"
+   - path: "provision/nginx/start_nginx.sh"

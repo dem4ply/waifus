@@ -1,0 +1,10 @@
+cluster.name: waifus
+discovery.zen.ping.multicast.enabled: false
+discovery.zen.ping.unicast.hosts: [Pitou, Sakura]
+network.bind_host: Misuzu
+network.host: Misuzu
+node.data: true
+node.master: false
+node.name: Misuzu
+path.data: /var/data/waifus
+path.logs: /var/log/waifus

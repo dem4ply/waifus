@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "iniciando elasticsearch" | ponysay
+echo "iniciando elasticsearch for $1" | ponysay
 CONFIG_NAME=$1
 FOLDER_PROVISION="/home/vagrant/provision/elasticsearch/provision"
 

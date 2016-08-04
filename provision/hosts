@@ -1,9 +1,18 @@
-127.0.0.1			localhost
-::1					localhost
-#nombre de cluster de elasticsearch
-192.168.1.150		waifus, kibana
-# servidores de elasticsearch
-192.168.1.160		sakura
-192.168.1.161		pitou
-192.168.1.162		ren
-192.168.1.163		misuzu
+127.0.0.1		localhost
+::1			localhost
+#Angeloids
+192.168.1.150		Ikaros
+192.168.1.151		Nymph
+192.168.1.152		Astraea
+192.168.1.153		Caos
+#waifus
+192.168.1.154		Sakura
+192.168.1.155		Pitou
+192.168.1.156		Misuzu
+192.168.1.157		Ren
+192.168.1.158		Sonico
+#os_tan
+192.168.1.159		Yuu
+192.168.1.160		Ai
+192.168.1.161		Touko
+192.168.1.162		Nanami
