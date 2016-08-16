@@ -1,0 +1,6 @@
+[submodule "src/magi"]
+	path = src/magi
+	url = git@github.com:dem4ply/magi.git
+[submodule "src/potato"]
+	path = src/potato
+	url = git@github.com:dem4ply/potato.git
