@@ -1,18 +1,25 @@
 127.0.0.1		localhost
 ::1			localhost
+# machines base
+192.168.2.100		base-centos-7 
+# machines magi
+192.168.2.101		Melchor 
+192.168.2.102		Gaspar 
+192.168.2.103		Baltasar 
 # machines nginx
-192.168.2.150		Astraea kibana spider-verse
-192.168.2.151		Caos kibana spider-verse
-192.168.2.152		Ikaros kibana spider-verse
-192.168.2.153		Nymph kibana spider-verse
-# machines elasticsearch
-192.168.2.154		Misizu 
-192.168.2.155		Pitou 
-192.168.2.156		Ren 
-192.168.2.157		Sakura 
-192.168.2.158		Sonico 
+192.168.2.104		Ikaros kibana waifu
+192.168.2.105		Astraea kibana waifu
+192.168.2.106		Caos kibana waifu
+192.168.2.107		Nymph kibana waifu
+# machines elasticsearch_master
+192.168.2.108		Misuzu 
+192.168.2.109		Pitou 
+192.168.2.110		Sakura 
+# machines elasticsearch_data
+192.168.2.111		Ren 
+192.168.2.112		Sonico 
 # machines logstash
-192.168.2.159		Ai 
-192.168.2.160		Nanami 
-192.168.2.161		Touko 
-192.168.2.162		Yuu 
+192.168.2.113		Ai 
+192.168.2.114		Nanami 
+192.168.2.115		Touko 
+192.168.2.116		Yuu 
