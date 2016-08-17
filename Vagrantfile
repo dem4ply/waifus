@@ -4,10 +4,13 @@
 require 'yaml'
 
 REL_DIR = File.dirname(__FILE__)
+HOST_CACHE_SHARE_FOLDER = REL_DIR + "/" + "cache"
 HOST_SHARE_FOLDER = REL_DIR + "/" + "src"
 HOST_BACKUPS_SHARE_FOLDER = REL_DIR + "/" + "backups"
 GUEST_SHARE_FOLDER = "/home/vagrant/src"
 GUEST_SHARE_FOLDER_PROVISION = "/home/vagrant/provision"
+GUEST_SHARE_FOLDER_CACHE = "/home/vagrant/.cache"
+ROOT_GUEST_SHARE_FOLDER_CACHE = "/root/.cache"
 
 BACKUPS_SHARE_FOLDER = "/home/vagrant/backups"
 
@@ -16,9 +19,10 @@ Vagrant.configure(2) do |config|
 
 	#config.vm.box = "box-cutter/centos70"
 	#config.vm.box = "insaneworks/centos"
-	config.vm.box = "geerlingguy/centos7"
+	#config.vm.box = "geerlingguy/centos7"
+	config.vm.box = "centos_base_7"
 
-	start_ip = "192.168.2.150"
+	start_ip = "192.168.2.100"
 
 	natural_host = File.open( REL_DIR + "/" + "provision/natural_hosts", "r")
 	hosts = natural_host.read
@@ -29,9 +33,20 @@ Vagrant.configure(2) do |config|
 	config.vm.synced_folder HOST_BACKUPS_SHARE_FOLDER, BACKUPS_SHARE_FOLDER, owner: "vagrant", group: "vagrant", create: true
 	config.vm.synced_folder HOST_SHARE_FOLDER, GUEST_SHARE_FOLDER, owner: "vagrant", group: "vagrant", create: true
 	config.vm.synced_folder 'provision', GUEST_SHARE_FOLDER_PROVISION, owner: "vagrant", group: "vagrant", create: true
+	config.vm.synced_folder HOST_CACHE_SHARE_FOLDER, GUEST_SHARE_FOLDER_CACHE, owner: "vagrant", group: "vagrant", create: true
+	config.vm.synced_folder HOST_CACHE_SHARE_FOLDER, ROOT_GUEST_SHARE_FOLDER_CACHE, owner: "vagrant", group: "vagrant", create: true
+
 
 	# nginx and django
 	split_ip = start_ip.split( '.' )
+
+	if Vagrant.has_plugin?("vagrant-cachier")
+		config.cache.scope = :box
+		config.cache.synced_folder_opts = {
+			#type: :nfs,
+			mount_options: [ 'rw' ]
+		}
+	end
 
 	aux_machines = {}
 	for k, v in machines

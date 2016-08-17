@@ -4,7 +4,7 @@ FILE_CHECK="install_elasticsearch"
 if [ ! -f ~/$FILE_CHECK ]
 then
 	echo "instalasion elasticsearch" | ponysay
-	FOLDER_PROVISION_REPO="/home/vagrant/provision/repo"
+	FOLDER_PROVISION_REPO="/home/vagrant/provision/repos"
 
 	sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
 
