@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Iniciando Nginx" | ponysay
+cowsay "Iniciando Nginx"
 
 FOLDER_PROVISION="/home/vagrant/provision/nginx/provision"
 
@@ -21,4 +21,4 @@ sudo ln -v -s \
 
 sudo systemctl restart nginx
 
-echo "Finalizado iniscio de Nginx" | ponysay
+cowsay "Finalizado iniscio de Nginx"

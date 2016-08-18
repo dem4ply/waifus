@@ -1,9 +1,9 @@
 #!/bin/bash
-FILE_CHECK="install_nginx"
+FILE_CHECK=".install_nginx"
 if [ ! -f ~/$FILE_CHECK ]
 then
 
-	echo "Instalando Nginx" | ponysay
+	cowsay "Instalando Nginx"
 
 	FOLDER_PROVISION="/home/vagrant/provision"
 	sudo yum update -y
@@ -15,5 +15,5 @@ then
 
 	touch ~/$FILE_CHECK
 
-	echo "Finalizado instalasion Nginx" | ponysay
+	cowsay "Finalizado instalasion Nginx"
 fi

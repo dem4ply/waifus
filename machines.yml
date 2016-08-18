@@ -5,6 +5,8 @@ base:
         ram: 512
         cpus: 1
         provisions:
+            - path: "provision/stuff/install_cowsay.sh"
+            - path: "provision/repos/cp_all.sh"
             - path: "provision/install_python.sh"
             - path: "provision/install_cool.sh"
             - path: "provision/install_htop.sh"
@@ -18,7 +20,8 @@ magi:
         ram: 512
         cpus: 1
         provisions:
-            - path: "provision/install_python.sh"
+            - path: "provision/repos/cp_all.sh"
+            - path: "provision/copy_hosts.sh"
 
 nginx:
     machines:
@@ -33,9 +36,7 @@ nginx:
         ram: 512
         cpus: 1
         provisions:
-            - path: "provision/install_python.sh"
-            - path: "provision/install_cool.sh"
-            - path: "provision/install_htop.sh"
+            - path: "provision/repos/cp_all.sh"
             - path: "provision/copy_hosts.sh"
             - path: "provision/nginx/install_nginx.sh"
             - path: "provision/nginx/start_nginx.sh"

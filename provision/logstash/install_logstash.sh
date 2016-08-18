@@ -3,7 +3,7 @@
 FILE_CHECK="install_logstash"
 if [ ! -f ~/$FILE_CHECK ]
 then
-	echo "instalasion logstash" | ponysay
+	cowsay "instalasion logstash"
 	FOLDER_PROVISION_REPO="/home/vagrant/provision/repos"
 
 	sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
@@ -14,5 +14,5 @@ then
 	sudo systemctl enable logstash.service
 
 	touch ~/$FILE_CHECK
-	echo "fin de instalasion de logstash" | ponysay
+	cowsay "fin de instalasion de logstash"
 fi

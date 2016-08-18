@@ -2,10 +2,10 @@
 
 config_file=$1
 
-echo "iniciar packetbeat $config_file" | ponysay
+cowsay "iniciar packetbeat $config_file"
 
 FOLDER_PROVISION_REPO="/home/vagrant/provision/logstash/provision"
 sudo cp -v $FOLDER_PROVISION_REPO/$config_file /etc/packetbeat/packetbeat.yml
 sudo systemctl restart packetbeat.service
 
-echo "terminar de iniciar packetbeat" | ponysay
+cowsay "terminar de iniciar packetbeat"

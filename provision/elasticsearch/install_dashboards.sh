@@ -3,7 +3,7 @@
 FILE_CHECK=".install_kibana_dashboards"
 if [ ! -f ~/$FILE_CHECK ]
 then
-	echo "instalasion daskboards de kibana" | ponysay
+	cowsay "instalasion daskboards de kibana"
 	FOLDER_PROVISION_REPO="/home/vagrant/provision/repo"
 
 	sudo apt-get -y install unzip
@@ -19,5 +19,5 @@ then
 
 	touch ~/$FILE_CHECK
 
-	echo "fin de instalasion de los dashboards de kibana" | ponysay
+	cowsay "fin de instalasion de los dashboards de kibana"
 fi

@@ -3,7 +3,7 @@
 FILE_CHECK="install_elasticsearch"
 if [ ! -f ~/$FILE_CHECK ]
 then
-	echo "instalasion elasticsearch" | ponysay
+	cowsay "instalasion elasticsearch"
 	FOLDER_PROVISION_REPO="/home/vagrant/provision/repos"
 
 	sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
@@ -18,5 +18,5 @@ then
 
 	touch ~/$FILE_CHECK
 
-	echo "fin de instalasion elasticsearch" | ponysay
+	cowsay "fin de instalasion elasticsearch"
 fi

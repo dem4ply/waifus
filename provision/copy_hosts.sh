@@ -1,7 +1,7 @@
 #!/bin/bash
-echo "Copiando hosts" | ponysay
+cowsay "Copiando hosts"
 
 FOLDER_PROVISION="/home/vagrant/provision"
 sudo cp $FOLDER_PROVISION/hosts /etc/hosts
 
-echo "Terminando de copiar host" | ponysay
+cowsay "Terminando de copiar host"

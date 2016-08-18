@@ -4,9 +4,7 @@ FILE_CHECK="install_python"
 if [ ! -f ~/$FILE_CHECK ]
 then
 
-	echo "================="
-	echo "Instalando python"
-	echo "================="
+	cowsay "Instalando python"
 
 	FOLDER_PROVISION="/home/vagrant/provision"
 
@@ -23,8 +21,6 @@ then
 
 	touch ~/$FILE_CHECK
 
-	echo "=============================="
-	echo "Termianadno de instalar python"
-	echo "=============================="
+	cowsay "Termianadno de instalar python"
 fi
 

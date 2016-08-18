@@ -3,7 +3,7 @@
 FILE_CHECK="install_topbeat"
 if [ ! -f ~/$FILE_CHECK ]
 then
-	echo "instalasion topbeat" | ponysay
+	cowsay "instalasion topbeat"
 	FOLDER_PROVISION_REPO="/home/vagrant/provision/repos"
 
 	sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
@@ -13,5 +13,5 @@ then
 	sudo systemctl enable topbeat.service
 
 	touch ~/$FILE_CHECK
-	echo "fin de instalasion de topbeat" | ponysay
+	cowsay "fin de instalasion de topbeat"
 fi

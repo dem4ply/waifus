@@ -3,7 +3,7 @@
 FILE_CHECK="install_packetbeat"
 if [ ! -f ~/$FILE_CHECK ]
 then
-	echo "instalasion packetbeat" | ponysay
+	cowsay "instalasion packetbeat"
 	FOLDER_PROVISION_REPO="/home/vagrant/provision/repos"
 
 	sudo rpm --import http://packages.elastic.co/GPG-KEY-elasticsearch
@@ -13,5 +13,5 @@ then
 	sudo systemctl enable packetbeat.service
 
 	touch ~/$FILE_CHECK
-	topecho "fin de instalasion de packetbeat" | ponysay
+	cowsay "fin de instalasion de packetbeat"
 fi

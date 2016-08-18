@@ -20,7 +20,8 @@ Vagrant.configure(2) do |config|
 	#config.vm.box = "box-cutter/centos70"
 	#config.vm.box = "insaneworks/centos"
 	#config.vm.box = "geerlingguy/centos7"
-	config.vm.box = "centos_base_7"
+	#config.vm.box = "centos_base_7"
+	config.vm.box = "base_centos_7"
 
 	start_ip = "192.168.2.100"
 

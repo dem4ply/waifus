@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "iniciando elasticsearch for $1" | ponysay
+cowsay "iniciando elasticsearch for $1"
 CONFIG_NAME=$1
 FOLDER_PROVISION="/home/vagrant/provision/elasticsearch/provision"
 
@@ -17,4 +17,4 @@ fi
 
 sudo systemctl restart elasticsearch.service
 
-echo "termino de inicar elasticsearch" | ponysay
+cowsay "termino de inicar elasticsearch"

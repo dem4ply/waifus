@@ -1,18 +1,16 @@
 #!/bin/bash
 
-FILE_CHECK="install_cool"
+FILE_CHECK=".install_cool"
 
 if [ ! -f ~/$FILE_CHECK ]
 then
-	echo "======================"
-	echo "Instalando cool things"
-	echo "======================"
+	cowsay "Instalando cool things"
 
 	sudo yum install epel-release -y
 	sudo yum install fortune-mod git vim ruby -y
 	sudo yum install texinfo -y
 
-	cd /home/vagrant/.cache
+	cd ~/.cache
 
 	if [ ! -d ponysay ]
 	then
@@ -23,5 +21,5 @@ then
 
 	cd ~
 	touch ~/$FILE_CHECK
-	echo "fin de Instalando cool things" | ponysay
+	cowsay "fin de Instalando cool things"
 fi
