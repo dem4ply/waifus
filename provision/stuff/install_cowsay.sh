@@ -6,7 +6,7 @@ then
 	echo "Instalando cowsay"
 	echo "================="
 
-	if [ ! -f ~/.cache/cowsay.rpm ]
+	if [ -f ~/.cache/cowsay.rpm ]
 	then
 		echo "using cache for install cowsay"
 	else

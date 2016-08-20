@@ -1,25 +1,31 @@
 127.0.0.1		localhost
 ::1			localhost
 # machines base
-192.168.2.100		base-centos-7 
+192.168.2.100		base #reserver for virtual_ip
+192.168.2.101		base-centos-7
 # machines magi
-192.168.2.101		Melchor 
-192.168.2.102		Gaspar 
-192.168.2.103		Baltasar 
+192.168.2.102		magi #reserver for virtual_ip
+192.168.2.103		Melchor
+192.168.2.104		Gaspar
+192.168.2.105		Baltasar
 # machines nginx
-192.168.2.104		Ikaros kibana waifu
-192.168.2.105		Astraea kibana waifu
-192.168.2.106		Caos kibana waifu
-192.168.2.107		Nymph kibana waifu
+192.168.2.106		nginx #reserver for virtual_ip
+192.168.2.107		Ikaros
+192.168.2.108		Astraea
+192.168.2.109		Caos
+192.168.2.110		Nymph
 # machines elasticsearch_master
-192.168.2.108		Misuzu 
-192.168.2.109		Pitou 
-192.168.2.110		Sakura 
+192.168.2.111		elasticsearch_master #reserver for virtual_ip
+192.168.2.112		Misuzu
+192.168.2.113		Pitou
+192.168.2.114		Sakura
 # machines elasticsearch_data
-192.168.2.111		Ren 
-192.168.2.112		Sonico 
+192.168.2.115		elasticsearch_data #reserver for virtual_ip
+192.168.2.116		Ren
+192.168.2.117		Sonico
 # machines logstash
-192.168.2.113		Ai 
-192.168.2.114		Nanami 
-192.168.2.115		Touko 
-192.168.2.116		Yuu 
+192.168.2.118		logstash #reserver for virtual_ip
+192.168.2.119		Ai
+192.168.2.120		Nanami
+192.168.2.121		Touko
+192.168.2.122		Yuu

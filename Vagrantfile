@@ -50,14 +50,19 @@ Vagrant.configure(2) do |config|
 	end
 
 	aux_machines = {}
+	unique_config = {}
 	for k, v in machines
 		machines_names = v[ 'machines' ]
 		machines_config = v[ 'config' ]
 
 		hosts << "\# machines #{ k }\n"
+		current_ip = split_ip.join( '.' )
+		hosts << "#{ current_ip }\t\t#{ k } \#reserver for virtual_ip\n"
+		split_ip[3] = split_ip[3].to_i + 1
 
 		machines_names.each { |name|
 			aux_machines[ name ] = machines_config
+			unique_config[ name ] = machines_config.fetch( 'unique', {} ).fetch( name, {} )
 			current_ip = split_ip.join( '.' )
 			config.vm.define name, primary: true do |m|
 				machines_config = aux_machines[ name ]
@@ -65,8 +70,8 @@ Vagrant.configure(2) do |config|
 				m.vm.network "public_network", bridge: "wlp2s0", ip: current_ip
 				m.vm.provider "virtualbox" do |vb|
 					vb.name = name
-					vb.memory = machines_config[ 'ram' ]
-					vb.cpus = machines_config[ 'cpus' ]
+					vb.memory = unique_config[ name ].fetch( 'ram', machines_config[ 'ram' ] )
+					vb.cpus = unique_config[ name ].fetch( 'cpus', machines_config[ 'cpus' ] )
 				end
 				machines_config[ 'provisions' ].each { |provision|
 					args = provision.fetch( 'args', '' ).sub '{name}', name
@@ -78,8 +83,8 @@ Vagrant.configure(2) do |config|
 					end
 				}
 			end
-			extra_host = v.fetch( 'extra_hosts', [] )
-			hosts << "#{ current_ip }\t\t#{ name } #{ extra_host.join( ' ' ) }\n"
+			#extra_host = v.fetch( 'extra_hosts', [] )
+			hosts << "#{ current_ip }\t\t#{ name }\n"
 			split_ip[3] = split_ip[3].to_i + 1
 		}
 	end
