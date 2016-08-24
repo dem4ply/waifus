@@ -56,17 +56,19 @@ Vagrant.configure(2) do |config|
 		machines_config = v[ 'config' ]
 
 		hosts << "\# machines #{ k }\n"
-		current_ip = split_ip.join( '.' )
-		hosts << "#{ current_ip }\t\t#{ k } \#reserver for virtual_ip\n"
+		current_ip_2 = split_ip.join( '.' )
+		hosts << "#{ current_ip_2 }\t\t#{ k } \#reserver for virtual_ip\n"
 		split_ip[3] = split_ip[3].to_i + 1
 
 		machines_names.each { |name|
 			aux_machines[ name ] = machines_config
+			aux_machines[ name ][ 'owner' ] = k
 			unique_config[ name ] = machines_config.fetch( 'unique', {} ).fetch( name, {} )
 			current_ip = split_ip.join( '.' )
 			config.vm.define name, primary: true do |m|
 				machines_config = aux_machines[ name ]
 				m.vm.host_name = name
+				puts "#{name} #{current_ip}"
 				m.vm.network "public_network", bridge: "wlp2s0", ip: current_ip
 				m.vm.provider "virtualbox" do |vb|
 					vb.name = name
@@ -74,7 +76,8 @@ Vagrant.configure(2) do |config|
 					vb.cpus = unique_config[ name ].fetch( 'cpus', machines_config[ 'cpus' ] )
 				end
 				machines_config[ 'provisions' ].each { |provision|
-					args = provision.fetch( 'args', '' ).sub '{name}', name
+					args = provision.fetch( 'args', '' ).sub '{name_owner}', machines_config[ 'owner' ]
+					args = args.sub '{name}', name
 					path = REL_DIR + "/" + provision[ 'path' ]
 					if ( args )
 						m.vm.provision :shell, path: path, args: args

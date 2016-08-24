@@ -22,6 +22,10 @@ magi:
         provisions:
             - path: "provision/repos/cp_all.sh"
             - path: "provision/copy_hosts.sh"
+            - path: "provision/stuff/install_erlang.sh"
+            - path: "provision/stuff/install_elixir.sh"
+            - path: "provision/pacemaker/install_pacemaker.sh"
+              args: "{name_owner}"
 
 nginx:
     machines:
