@@ -26,6 +26,7 @@ magi:
             - path: "provision/stuff/install_elixir.sh"
             - path: "provision/pacemaker/install_pacemaker.sh"
               args: "{name_owner}"
+            - path: "provision/rabbitmq/install_rabbitmq.sh"
 
 nginx:
     machines:

@@ -18,9 +18,10 @@ then
 		mv /tmp/erlang.rpm ~/.cache/
 	fi
 
-	yum -y localinstall ~/.cache/erlang.rpm
+	rpm -Uvh ~/.cache/erlang.rpm
+	yum install -y erlang
 
 	touch ~/$FILE_CHECK
 
-	cowsay "fin de la instalacion de java"
+	cowsay "fin de la instalacion de erlang"
 fi

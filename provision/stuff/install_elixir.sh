@@ -1,6 +1,6 @@
 #!/bin/bash
 FILE_CHECK=".install_elixir"
-rm ~/$FILE_CHECK
+
 if [ ! -f ~/$FILE_CHECK ]
 then
 	FOLDER_PROVISION="/home/vagrant/provision"
@@ -16,11 +16,13 @@ then
 
 	cd elixir
 	make clean test
+	cd ..
+	cp -r elixir /root/elixir
 	export PATH="$PATH:/root/elixir/bin"
 
-	cp -v $FOLDER_PROVISION/stuff/export_elixir.sh /etc/profile.d/elixir_expor.sh
+	cp -v $FOLDER_PROVISION/stuff/elixir_export.sh /etc/profile.d/elixir_export.sh
 
 	touch ~/$FILE_CHECK
 
-	cowsay "fin de la instalacion de java"
+	cowsay "fin de la instalacion de elixir"
 fi
