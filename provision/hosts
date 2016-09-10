@@ -21,11 +21,30 @@
 192.168.2.114		Sakura
 # machines elasticsearch_data
 192.168.2.115		elasticsearch_data #reserver for virtual_ip
-192.168.2.116		Ren
-192.168.2.117		Sonico
-# machines logstash
-192.168.2.118		logstash #reserver for virtual_ip
-192.168.2.119		Ai
-192.168.2.120		Nanami
-192.168.2.121		Touko
-192.168.2.122		Yuu
+192.168.2.116		Rem
+192.168.2.117		Rei
+# machines elasticsearch_query
+192.168.2.118		elasticsearch_query #reserver for virtual_ip
+192.168.2.119		Ren
+192.168.2.120		Sonico
+192.168.2.121		Tifa
+# machines logstash-layer-in
+192.168.2.122		logstash-layer-in #reserver for virtual_ip
+192.168.2.123		Ai
+192.168.2.124		Nanami
+# machines logstash-layer-out
+192.168.2.125		logstash-layer-out #reserver for virtual_ip
+192.168.2.126		Touko
+192.168.2.127		Yuu
+# machines django
+192.168.2.128		django #reserver for virtual_ip
+192.168.2.129		Shiro
+192.168.2.130		Victorique
+192.168.2.131		Shionji
+# machines scrapy
+192.168.2.132		scrapy #reserver for virtual_ip
+192.168.2.133		Potato
+# machines rabbitmq
+192.168.2.134		rabbitmq #reserver for virtual_ip
+192.168.2.135		Fumika
+192.168.2.136		chiaki

@@ -22,11 +22,9 @@ magi:
         provisions:
             - path: "provision/repos/cp_all.sh"
             - path: "provision/copy_hosts.sh"
-            - path: "provision/stuff/install_erlang.sh"
-            - path: "provision/stuff/install_elixir.sh"
+
             - path: "provision/pacemaker/install_pacemaker.sh"
-              args: "{name_owner}"
-            - path: "provision/rabbitmq/install_rabbitmq.sh"
+              args: "{name_owner} {ip_owner}"
 
 nginx:
     machines:
@@ -68,13 +66,12 @@ elasticsearch_master:
             - path: "provision/elasticsearch/start_kibana.sh"
             - path: "provision/elasticsearch/install_dashboards.sh"
 
-
 elasticsearch_data:
     machines:
-        - Ren
-        - Sonico
+        - Rem
+        - Rei
     config:
-        ram: 1024
+        ram: 512
         cpus: 1
         provisions:
             - path: "provision/install_python.sh"
@@ -90,20 +87,88 @@ elasticsearch_data:
             - path: "provision/elasticsearch/start_kibana.sh"
             - path: "provision/elasticsearch/install_dashboards.sh"
 
-logstash:
+elasticsearch_query:
+    machines:
+        - Ren
+        - Sonico
+        - Tifa
+    config:
+        ram: 1024
+        cpus: 1
+        provisions:
+            - path: "provision/repos/cp_all.sh"
+            - path: "provision/copy_hosts.sh"
+            - path: "provision/stuff/install_java.sh"
+            - path: "provision/elasticsearch/install_elasticsearch.sh"
+            - path: "provision/elasticsearch/install_kibana.sh"
+            - path: "provision/elasticsearch/start_elasticsearch.sh"
+              args: "{name}"
+
+            - path: "provision/elasticsearch/start_kibana.sh"
+            - path: "provision/elasticsearch/install_dashboards.sh"
+
+logstash-layer-in:
     machines:
         - Ai
         - Nanami
+    config:
+        ram: 512
+        cpus: 1
+        provisions:
+            - path: "provision/repos/cp_all.sh"
+            - path: "provision/copy_hosts.sh"
+            - path: "provision/stuff/install_java.sh"
+            - path: "provision/logstash/install_logstash.sh"
+            - path: "provision/logstash/start_logstash.sh"
+
+logstash-layer-out:
+    machines:
         - Touko
         - Yuu
     config:
         ram: 512
         cpus: 1
         provisions:
-            - path: "provision/install_python.sh"
-            - path: "provision/install_htop.sh"
-            - path: "provision/install_cool.sh"
+            - path: "provision/repos/cp_all.sh"
             - path: "provision/copy_hosts.sh"
             - path: "provision/stuff/install_java.sh"
             - path: "provision/logstash/install_logstash.sh"
             - path: "provision/logstash/start_logstash.sh"
+
+django:
+    machines:
+        - Shiro
+        - Victorique
+        - Shionji
+    config:
+        ram: 512
+        cpus: 1
+        provisions:
+            - path: "provision/repos/cp_all.sh"
+            - path: "provision/copy_hosts.sh"
+
+scrapy:
+    machines:
+        - Potato
+    config:
+        ram: 512
+        cpus: 1
+        provisions:
+            - path: "provision/repos/cp_all.sh"
+            - path: "provision/copy_hosts.sh"
+
+rabbitmq:
+    machines:
+        - Fumika
+        - chiaki
+    config:
+        ram: 512
+        cpus: 1
+        provisions:
+            - path: "provision/repos/cp_all.sh"
+            - path: "provision/copy_hosts.sh"
+            - path: "provision/stuff/install_erlang.sh"
+            - path: "provision/stuff/install_elixir.sh"
+            - path: "provision/pacemaker/install_pacemaker.sh"
+              args: "{name_owner}"
+            - path: "provision/rabbitmq/install_rabbitmq.sh"

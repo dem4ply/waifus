@@ -1,0 +1,83 @@
+@startuml
+
+node "Magi" as magi {
+	component [Melchor] as melchor
+	component [Gaspar] as gaspar
+	component [Baltasar] as baltasar
+}
+
+node "logstash layer in" as log_in {
+	component [Ai] as ai
+	component [Nanami] as nanami
+}
+
+node "Redis" as redis {
+	component [asdf]
+	component [qwe]
+}
+
+node "logstash layer out" as log_out{
+	component [Touko] as touko
+	component [Yuu] as yuu
+}
+
+database "elasticsearch" as es {
+	database "Master" as es_master {
+		component [Misuzu] as misuzu
+		component [Pitou] as pitou
+		component [Sakura] as sakura
+	}
+	database "data" as es_data {
+		component [Rem] as rem
+		component [Rei] as rei
+	}
+	database "query" as es_query {
+		component [Ren] as ren
+		component [Sonico] as sonico
+		component [Tifa] as tifa
+	}
+}
+
+node "Nginx" as nginx {
+	component [Ikaros] as ikaros
+	component [Astraea] as astraea
+	component [Caos] as caos
+	component [Nymph] as nymph
+}
+
+node "RabbitMQ" as rabbit {
+	component [Fumika] as fumika
+	component [chiaki] as chiaki
+}
+
+node "Django" as django {
+	component [Shiro] as shiro
+	component [Victorique] as victorique
+	component [Shionji] as shionji
+}
+
+node "Scrapy" as scrapy {
+	component [Potato] as potato
+}
+
+log_in <-down-> redis
+redis -down-> log_out
+log_out -down-> es
+log_out -up-> log_in
+
+nginx <-right-> magi
+nginx <-right-> django
+nginx <-down-> es
+
+django -down-> es
+
+rabbit <-up-> magi
+rabbit <-up-> django
+rabbit <-up-> scrapy
+
+rabbit -down-> log_in
+nginx -down-> log_in
+django -down-> log_in
+es -up-> log_in
+
+@enduml
