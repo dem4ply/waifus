@@ -12,8 +12,15 @@ then
 		/etc/corosync/corosync.conf
 
 	cowsay "Si soy un servidor de verdad eres un imbecil"
-	sudo cp -v $FOLDER_PROVISION/pacemaker/provision/authkey_$1 \
-		/etc/corosync/authkey
+	if [ -f $FOLDER_PROVISION/pacemaker/provision/authkey_$1 ]
+	then
+		sudo cp -v $FOLDER_PROVISION/pacemaker/provision/authkey_$1 \
+			/etc/corosync/authkey
+	else
+		corosync-keygen
+		cp -v /etc/corosync/authkey \
+			$FOLDER_PROVISION/pacemaker/provision/authkey_$1
+	fi
 
 	echo "asdf" | sudo passwd hacluster --stdin
 
@@ -31,7 +38,12 @@ then
 	pcs property set stonith-enabled=false
 	pcs property set no-quorum-policy=ignore
 
-	pcs resource create virtual_ip ocf:heartbeat:IPaddr2 ip=$2 cidr_netmask=32 op monitor interval=30s
+	if [[ $(pcs resource) != *"virtual_ip"* ]];
+	then
+		cowsay "creando recurso de virtual_ip $2";
+		pcs resource create virtual_ip ocf:heartbeat:IPaddr2 ip=$2 \
+			cidr_netmask=32 op monitor interval=30s
+	fi
 
 	touch ~/$FILE_CHECK
 	cowsay "fin de instalacion de pacemaker"

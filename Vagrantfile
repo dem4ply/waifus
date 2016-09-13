@@ -63,6 +63,7 @@ Vagrant.configure(2) do |config|
 		machines_names.each { |name|
 			aux_machines[ name ] = machines_config
 			aux_machines[ name ][ 'owner' ] = k
+			aux_machines[ name ][ 'ip_owner' ] = current_ip_2
 			unique_config[ name ] = machines_config.fetch( 'unique', {} ).fetch( name, {} )
 			current_ip = split_ip.join( '.' )
 			config.vm.define name, primary: true do |m|
@@ -78,6 +79,7 @@ Vagrant.configure(2) do |config|
 				machines_config[ 'provisions' ].each { |provision|
 					args = provision.fetch( 'args', '' ).sub '{name_owner}', machines_config[ 'owner' ]
 					args = args.sub '{name}', name
+					args = args.sub '{ip_owner}', machines_config[ 'ip_owner' ]
 					path = REL_DIR + "/" + provision[ 'path' ]
 					if ( args )
 						m.vm.provision :shell, path: path, args: args
