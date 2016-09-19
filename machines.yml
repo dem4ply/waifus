@@ -23,9 +23,6 @@ magi:
             - path: "provision/repos/cp_all.sh"
             - path: "provision/copy_hosts.sh"
 
-            - path: "provision/pacemaker/install_pacemaker.sh"
-              args: "{name_owner} {ip_owner}"
-
 nginx:
     machines:
         - Ikaros
@@ -44,62 +41,25 @@ nginx:
             - path: "provision/nginx/install_nginx.sh"
             - path: "provision/nginx/start_nginx.sh"
 
-            - path: "provision/pacemaker/install_pacemaker.sh"
-              args: "{name_owner} {ip_owner}"
-
-elasticsearch_master:
+elasticsearch:
     machines:
         - Misuzu
         - Pitou
         - Sakura
-    config:
-        ram: 512
-        cpus: 1
-        provisions:
-            - path: "provision/install_python.sh"
-            - path: "provision/install_htop.sh"
-            - path: "provision/install_cool.sh"
-            - path: "provision/copy_hosts.sh"
-            - path: "provision/stuff/install_java.sh"
-            - path: "provision/elasticsearch/install_elasticsearch.sh"
-            - path: "provision/elasticsearch/install_kibana.sh"
-            - path: "provision/elasticsearch/start_elasticsearch.sh"
-              args: "{name}"
 
-            - path: "provision/elasticsearch/start_kibana.sh"
-            - path: "provision/elasticsearch/install_dashboards.sh"
-
-elasticsearch_data:
-    machines:
         - Rem
         - Rei
-    config:
-        ram: 512
-        cpus: 1
-        provisions:
-            - path: "provision/install_python.sh"
-            - path: "provision/install_htop.sh"
-            - path: "provision/install_cool.sh"
-            - path: "provision/copy_hosts.sh"
-            - path: "provision/stuff/install_java.sh"
-            - path: "provision/elasticsearch/install_elasticsearch.sh"
-            - path: "provision/elasticsearch/install_kibana.sh"
-            - path: "provision/elasticsearch/start_elasticsearch.sh"
-              args: "{name}"
 
-            - path: "provision/elasticsearch/start_kibana.sh"
-            - path: "provision/elasticsearch/install_dashboards.sh"
-
-elasticsearch_query:
-    machines:
         - Ren
         - Sonico
         - Tifa
     config:
-        ram: 1024
+        ram: 512
         cpus: 1
         provisions:
-            - path: "provision/repos/cp_all.sh"
+            - path: "provision/install_python.sh"
+            - path: "provision/install_htop.sh"
+            - path: "provision/install_cool.sh"
             - path: "provision/copy_hosts.sh"
             - path: "provision/stuff/install_java.sh"
             - path: "provision/elasticsearch/install_elasticsearch.sh"
@@ -109,6 +69,7 @@ elasticsearch_query:
 
             - path: "provision/elasticsearch/start_kibana.sh"
             - path: "provision/elasticsearch/install_dashboards.sh"
+
 
 logstash-layer-in:
     machines:
@@ -172,6 +133,6 @@ rabbitmq:
             - path: "provision/copy_hosts.sh"
             - path: "provision/stuff/install_erlang.sh"
             - path: "provision/stuff/install_elixir.sh"
-            - path: "provision/pacemaker/install_pacemaker.sh"
-              args: "{name_owner}"
             - path: "provision/rabbitmq/install_rabbitmq.sh"
+            - path: "provision/rabbitmq/add_user.sh"
+            - path: "provision/rabbitmq/users/goblins.sh"

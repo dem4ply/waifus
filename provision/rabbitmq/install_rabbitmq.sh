@@ -20,6 +20,9 @@ then
 
 	yum localinstall -y ~/.cache/rabbitmq.rpm
 
+	systemctl enable firewalld.service
+	systemctl start firewalld.service
+
 	firewall-cmd --permanent --add-port=4369/tcp
 	firewall-cmd --permanent --add-port=25672/tcp
 	firewall-cmd --permanent --add-port=5671-5672/tcp

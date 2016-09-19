@@ -4,7 +4,7 @@ import yaml
 cluster_name = 'waifus'
 master = False
 data = True
-nodes = [ 'Sakura', 'Pitou', 'Misuzu', 'Ren', 'Sonico' ]
+nodes = [ 'Sakura', 'Pitou', 'Misuzu', 'Ren', 'Sonico', 'Tifa', 'Rei', 'Rem' ]
 
 path_data = '/var/data/waifus'
 path_logs = '/var/log/waifus'
@@ -14,7 +14,7 @@ config = {
     'node.master': False,
     'node.data': True,
     'discovery.zen.ping.multicast.enabled': False,
-    'discovery.zen.ping.unicast.hosts': [ "Pitou", "Sakura" ],
+    'discovery.zen.ping.unicast.hosts': [ "Pitou", "Sakura", "Misuzu" ],
     'path.data': '/var/data/waifus',
     'path.logs': '/var/log/waifus',
 }
@@ -26,7 +26,11 @@ config_node = {
     },
     'Sakura': {
         'master': True,
-        'data': False,
+        'data': True,
+    },
+    'Misuzu': {
+        'master': True,
+        'data': True,
     }
 }
 
