@@ -136,3 +136,4 @@ rabbitmq:
             - path: "provision/rabbitmq/install_rabbitmq.sh"
             - path: "provision/rabbitmq/add_user.sh"
             - path: "provision/rabbitmq/users/goblins.sh"
+            - path: "provision/rabbitmq/users/pf_api.sh"
