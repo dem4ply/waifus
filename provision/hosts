@@ -1,46 +1,46 @@
 127.0.0.1		localhost
 ::1			localhost
 # machines base
-192.168.2.100		base #reserver for virtual_ip
-192.168.2.101		base-centos-7
+192.168.0.100		base #reserver for virtual_ip
+192.168.0.101		base-centos-7
 # machines magi
-192.168.2.102		magi #reserver for virtual_ip
-192.168.2.103		Melchor
-192.168.2.104		Gaspar
-192.168.2.105		Baltasar
+192.168.0.102		magi #reserver for virtual_ip
+192.168.0.103		Melchor
+192.168.0.104		Gaspar
+192.168.0.105		Baltasar
 # machines nginx
-192.168.2.106		nginx #reserver for virtual_ip
-192.168.2.107		Ikaros
-192.168.2.108		Astraea
-192.168.2.109		Caos
-192.168.2.110		Nymph
+192.168.0.106		nginx #reserver for virtual_ip
+192.168.0.107		Ikaros
+192.168.0.108		Astraea
+192.168.0.109		Caos
+192.168.0.110		Nymph
 # machines elasticsearch
-192.168.2.111		elasticsearch #reserver for virtual_ip
-192.168.2.112		Misuzu
-192.168.2.113		Pitou
-192.168.2.114		Sakura
-192.168.2.115		Rem
-192.168.2.116		Rei
-192.168.2.117		Ren
-192.168.2.118		Sonico
-192.168.2.119		Tifa
+192.168.0.111		elasticsearch #reserver for virtual_ip
+192.168.0.112		Misuzu
+192.168.0.113		Pitou
+192.168.0.114		Sakura
+192.168.0.115		Rem
+192.168.0.116		Rei
+192.168.0.117		Ren
+192.168.0.118		Sonico
+192.168.0.119		Tifa
 # machines logstash-layer-in
-192.168.2.120		logstash-layer-in #reserver for virtual_ip
-192.168.2.121		Ai
-192.168.2.122		Nanami
+192.168.0.120		logstash-layer-in #reserver for virtual_ip
+192.168.0.121		Ai
+192.168.0.122		Nanami
 # machines logstash-layer-out
-192.168.2.123		logstash-layer-out #reserver for virtual_ip
-192.168.2.124		Touko
-192.168.2.125		Yuu
+192.168.0.123		logstash-layer-out #reserver for virtual_ip
+192.168.0.124		Touko
+192.168.0.125		Yuu
 # machines django
-192.168.2.126		django #reserver for virtual_ip
-192.168.2.127		Shiro
-192.168.2.128		Victorique
-192.168.2.129		Shionji
+192.168.0.126		django #reserver for virtual_ip
+192.168.0.127		Shiro
+192.168.0.128		Victorique
+192.168.0.129		Shionji
 # machines scrapy
-192.168.2.130		scrapy #reserver for virtual_ip
-192.168.2.131		Potato
+192.168.0.130		scrapy #reserver for virtual_ip
+192.168.0.131		Potato
 # machines rabbitmq
-192.168.2.132		rabbitmq #reserver for virtual_ip
-192.168.2.133		Fumika
-192.168.2.134		chiaki
+192.168.0.132		rabbitmq #reserver for virtual_ip
+192.168.0.133		Fumika
+192.168.0.134		chiaki
