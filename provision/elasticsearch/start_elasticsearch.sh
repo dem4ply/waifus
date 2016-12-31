@@ -15,6 +15,13 @@ then
 	sudo ln -s -v /mnt/backups/waifus /home/vagrant/backups/waifus
 fi
 
+if [ ! -d '/etc/elasticsearch/synonyms' ]
+then
+	mkdir -p /etc/elasticsearch/synonyms
+fi
+cp -v $FOLDER_PROVISION/synonyms/*.txt /etc/elasticsearch/synonyms/
+chown -R -v :elasticsearch /etc/elasticsearch/synonyms
+
 sudo systemctl restart elasticsearch.service
 
 cowsay "termino de inicar elasticsearch"
