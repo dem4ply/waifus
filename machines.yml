@@ -123,8 +123,9 @@ scrapy:
 
 rabbitmq:
     machines:
-        - Fumika
-        - chiaki
+        - Cocoa
+        - Chino
+        - Rize
     config:
         ram: 512
         cpus: 1
@@ -137,3 +138,4 @@ rabbitmq:
             - path: "provision/rabbitmq/add_user.sh"
             - path: "provision/rabbitmq/users/goblins.sh"
             - path: "provision/rabbitmq/users/pf_api.sh"
+            - path: "provision/rabbitmq/users/mad_hookshot.sh"
