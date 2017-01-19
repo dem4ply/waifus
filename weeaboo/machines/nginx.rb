@@ -10,6 +10,9 @@ class Nginx < Base_centos
 			Script.new( "provision/repos/cp_all.sh" ),
 			Script.new( "provision/nginx/install_nginx.sh" ),
 			Script.new( "provision/nginx/start_nginx.sh" ),
+			Script.new( "provision/logstash/install_filebeat.sh" ),
+			Script.new( "provision/logstash/start_filebeat.sh",
+							args: [ 'filebeat_nginx.yml' ] ),
 		]
 	end
 end

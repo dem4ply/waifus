@@ -16,6 +16,7 @@ class Machine
 
 	def make_build( machine )
 		machine.vm.host_name = @name
+		self.make_network( machine )
 		machine.vm.provider "virtualbox" do |vb|
 			self.make_provider( vb )
 		end
@@ -23,7 +24,7 @@ class Machine
 	end
 
 	def make_network( machine )
-		m.vm.network "public_network", bridge: "wlp2s0", ip: @ip
+		machine.vm.network "public_network", bridge: "wlp2s0", ip: @ip
 	end
 
 	def make_provider( provider )

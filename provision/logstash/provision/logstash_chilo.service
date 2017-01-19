@@ -1,0 +1,16 @@
+[Unit]
+
+Description=Logstash chingon
+
+After=network.target
+
+[Service]
+User=root
+Group=root
+
+ExecStart=/opt/logstash/bin/logstash agent -f /etc/logstash/conf.d/*
+
+ExecStop=PID=`ps ux | grep logstash | grep java | grep agent | awk '{ print $2 }'`; kill $PID
+
+[Install]
+WantedBy=multi-user.target

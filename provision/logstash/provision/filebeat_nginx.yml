@@ -4,13 +4,32 @@ filebeat:
         - input_type: log
           document_type: nginx-access
           exclude_files: [".gz$"]
-          fields: { tags: 'nginx' }
+          fields: { tags: 'nginx, kibana, access' }
           paths:
-            - /var/log/nginx/*.log
+            - /var/log/nginx/kibana_access*.log
+        - input_type: log
+          document_type: nginx-error
+          exclude_files: [".gz$"]
+          fields: { tags: 'nginx, kibana, error' }
+          paths:
+            - /var/log/nginx/kibana_error*.log
+
+        - input_type: log
+          document_type: nginx-access
+          exclude_files: [".gz$"]
+          fields: { tags: 'nginx, waifus, access' }
+          paths:
+            - /var/log/nginx/waifus_access*.log
+        - input_type: log
+          document_type: nginx-error
+          exclude_files: [".gz$"]
+          fields: { tags: 'nginx, waifus, error' }
+          paths:
+            - /var/log/nginx/waifus_error*.log
 
 output:
     logstash:
-       hosts: [ "venom:5044" ]
+       hosts: [ "Ai:5044" ]
        bulk_max_size: 1024
 
 shipper: null

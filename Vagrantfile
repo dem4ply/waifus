@@ -20,11 +20,11 @@ BACKUPS_SHARE_FOLDER = "/home/vagrant/backups"
 
 Vagrant.configure(2) do |config|
 
-	config.vm.box = "box-cutter/centos70"
+	#config.vm.box = "box-cutter/centos70"
 	#config.vm.box = "insaneworks/centos"
 	#config.vm.box = "geerlingguy/centos7"
 	#config.vm.box = "centos_base_7"
-	#config.vm.box = "base_centos_7"
+	config.vm.box = "base_centos_7"
 
 
 	#natural_host = File.open( REL_DIR + "/" + "provision/natural_hosts", "r")
@@ -64,6 +64,11 @@ Vagrant.configure(2) do |config|
 			mount_options: [ 'rw' ]
 		}
 	end
+	config.vm.provision "shell",
+		run: "always",
+		inline: "
+		sudo nmcli connection reload;
+		sudo systemctl restart network.service;"
 	provision = Provision.new( config, ip_table )
 
 	provision.create_machines()

@@ -1,9 +1,9 @@
 Dir[ File.dirname(__FILE__) + "/base.rb" ].each { |file| require file }
 
 class Elasticsearch < Base_centos
-	def initialize()
-		super
-		@name = 'Elasticsearch'
+	def initialize( name='Elasticsearch' )
+		super()
+		@name = name
 		@abstract = true
 		@scripts = [
 			Script.new( "provision/copy_hosts.sh" ),
@@ -20,65 +20,57 @@ class Elasticsearch < Base_centos
 end
 
 class Misuzu < Elasticsearch
-	def initialize()
-		super
-		@name = 'Misuzu'
+	def initialize( name='Misuzu' )
+		super( 'Misuzu' )
 		@abstract = false
 	end
 end
 
 class Pitou < Elasticsearch
 	def initialize()
-		super
-		@name = 'Pitou'
+		super( 'Pitou' )
 		@abstract = false
 	end
 end
 
 class Sakura < Elasticsearch
 	def initialize()
-		super
-		@name = 'Sakura'
+		super( 'Sakura' )
 		@abstract = false
 	end
 end
 
 class Rem < Elasticsearch
 	def initialize()
-		super
-		@name = 'Rem'
+		super( 'Rem' )
 		@abstract = false
 	end
 end
 
 class Rei < Elasticsearch
 	def initialize()
-		super
-		@name = 'Rei'
+		super( 'Rei' )
 		@abstract = false
 	end
 end
 
 class Ren < Elasticsearch
 	def initialize()
-		super
-		@name = 'Ren'
+		super( 'Ren' )
 		@abstract = false
 	end
 end
 
 class Sonico < Elasticsearch
 	def initialize()
-		super
-		@name = 'Sonico'
+		super( 'Sonico' )
 		@abstract = false
 	end
 end
 
 class Tifa < Elasticsearch
 	def initialize()
-		super
-		@name = 'Tifa'
+		super( 'Tifa' )
 		@abstract = false
 	end
 end
