@@ -15,6 +15,7 @@ class Provision
 			django: [ Shiro, Shionji, Victorique, ],
 			scrapy: [ Potato ],
 			rabbit: [ Cocoa, Chino, Rize ],
+			maria: [ Chii, Sumomo, Freya ],
 		}
 	end
 

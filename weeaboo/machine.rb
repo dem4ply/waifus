@@ -24,7 +24,8 @@ class Machine
 	end
 
 	def make_network( machine )
-		machine.vm.network "public_network", bridge: "wlp2s0", ip: @ip
+		machine.vm.network "public_network", ip: @ip
+		#machine.vm.network "public_network", bridge: "wlp2s0", ip: @ip
 	end
 
 	def make_provider( provider )
