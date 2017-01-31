@@ -9,6 +9,7 @@ class Maria < Base_centos
 			Script.new( "provision/copy_hosts.sh" ),
 			Script.new( "provision/repos/cp_all.sh" ),
 			Script.new( "provision/mariadb/install.sh" ),
+			Script.new( "provision/mariadb/add_databases.sh" ),
 		]
 	end
 end

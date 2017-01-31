@@ -6,26 +6,26 @@ filebeat:
           exclude_files: [".gz$"]
           fields: { tags: 'nginx, kibana, access' }
           paths:
-            - /var/log/nginx/kibana_access*.log
+            - /var/log/nginx/kibana_access.log*
         - input_type: log
           document_type: nginx-error
           exclude_files: [".gz$"]
           fields: { tags: 'nginx, kibana, error' }
           paths:
-            - /var/log/nginx/kibana_error*.log
+            - /var/log/nginx/kibana_error.log*
 
         - input_type: log
           document_type: nginx-access
           exclude_files: [".gz$"]
           fields: { tags: 'nginx, waifus, access' }
           paths:
-            - /var/log/nginx/waifus_access*.log
+            - /var/log/nginx/waifus_access.log*
         - input_type: log
           document_type: nginx-error
           exclude_files: [".gz$"]
           fields: { tags: 'nginx, waifus, error' }
           paths:
-            - /var/log/nginx/waifus_error*.log
+            - /var/log/nginx/waifus_error.log*
 
 output:
     logstash:

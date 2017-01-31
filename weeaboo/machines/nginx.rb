@@ -11,8 +11,13 @@ class Nginx < Base_centos
 			Script.new( "provision/nginx/install_nginx.sh" ),
 			Script.new( "provision/nginx/start_nginx.sh" ),
 			Script.new( "provision/logstash/install_filebeat.sh" ),
+			Script.new( "provision/logstash/install_topbeat.sh" ),
 			Script.new( "provision/logstash/start_filebeat.sh",
 							args: [ 'filebeat_nginx.yml' ] ),
+			Script.new( "provision/logstash/start_topbeat.sh",
+							args: [ 'topbeat_nginx.yml' ] ),
+			Script.new( "provision/logstash/start_packetbeat.sh",
+							args: [ 'packetbeat_nginx.yml' ] ),
 		]
 	end
 end
