@@ -8,5 +8,5 @@ do
 	index=${index%.*}
 	index=${index##*/}
 	echo $index
-	curl -XPUT http://waifus/_template/$index -d@$f
+	curl -XPUT http://spiderman:9200/_template/$index -d@$f
 done
