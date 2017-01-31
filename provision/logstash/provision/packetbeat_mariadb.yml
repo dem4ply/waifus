@@ -2,16 +2,8 @@ interfaces:
     device: any
 
 protocols:
-    http:
-        ports: [ 80 ]
-        hide_keywords: [ "pass", "password", "passwd" ]
-
-procs:
-    enabled: true
-    monitored:
-        - process: nginx
-          cmdline_grep: nginx
-
+    mysql:
+        ports: [3306]
 
 output:
     logstash:

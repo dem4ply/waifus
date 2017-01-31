@@ -10,6 +10,13 @@ class Maria < Base_centos
 			Script.new( "provision/repos/cp_all.sh" ),
 			Script.new( "provision/mariadb/install.sh" ),
 			Script.new( "provision/mariadb/add_databases.sh" ),
+
+			Script.new( "provision/logstash/install_topbeat.sh" ),
+			Script.new( "provision/logstash/install_packetbeat.sh" ),
+			Script.new( "provision/logstash/start_topbeat.sh",
+							args: [ 'topbeat_mariadb.yml' ] ),
+			Script.new( "provision/logstash/start_packetbeat.sh",
+							args: [ 'packetbeat_mariadb.yml' ] ),
 		]
 	end
 end

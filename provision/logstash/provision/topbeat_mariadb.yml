@@ -4,9 +4,10 @@ input:
   # Regular expression to match the processes that are monitored
   # By default, all the processes are monitored
   procs: [
-    "nginx.*",
-    ".*filebeat.*",
+    ".*mysql.*",
+    ".*mariadb.*",
     ".*topbeat.*",
+    ".*packetbeat.*",
   ]
   # Statistics to collect (all enabled by default)
   stats:
@@ -15,7 +16,7 @@ input:
     # per process statistics, by default is true
     process: true
     # file system information, by default is true
-    filesystem: false
+    filesystem: true
     # cpu usage per core, by default is false
     cpu_per_core: true
 

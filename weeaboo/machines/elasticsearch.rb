@@ -15,6 +15,9 @@ class Elasticsearch < Base_centos
 							args: [ @name ] ),
 			Script.new( "provision/elasticsearch/start_kibana.sh" ),
 			Script.new( "provision/elasticsearch/install_dashboards.sh" ),
+			Script.new( "provision/logstash/install_topbeat.sh" ),
+			Script.new( "provision/logstash/start_topbeat.sh",
+							args: [ 'topbeat_elasticsearch.yml' ] ),
 		]
 	end
 end

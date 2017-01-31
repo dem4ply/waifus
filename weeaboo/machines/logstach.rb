@@ -11,6 +11,10 @@ class Logstash < Base_centos
 			Script.new( "provision/stuff/install_java.sh" ),
 			Script.new( "provision/logstash/install_logstash.sh" ),
 			Script.new( "provision/logstash/start_logstash.sh" ),
+
+			Script.new( "provision/logstash/install_topbeat.sh" ),
+			Script.new( "provision/logstash/start_topbeat.sh",
+							args: [ 'topbeat_logstash.yml' ] ),
 		]
 	end
 end
