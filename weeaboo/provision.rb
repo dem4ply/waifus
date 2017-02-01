@@ -21,11 +21,14 @@ class Provision
 
 	def create_machines()
 		@machines.each { | owner, waifus |
+			puts( owner )
 			waifus.each{ | waifu |
 				instance = waifu.new()
 				ip = @ip_table.add( instance.name )
 				instance.assing_ip( ip )
 				instance.make_config( @config )
+				name_waifu = "#{waifu}"
+				puts( "\t#{name_waifu.ljust(10)} : #{ip}" )
 			}
 		}
 	end
