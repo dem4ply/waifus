@@ -16,6 +16,7 @@ class Rabbitmq < Base_centos
 			Script.new( "provision/rabbitmq/users/goblins.sh" ),
 			Script.new( "provision/rabbitmq/users/pf_api.sh" ),
 			Script.new( "provision/rabbitmq/users/mad_hookshot.sh" ),
+			Script.new( "provision/rabbitmq/users/product_feed.sh" ),
 		]
 	end
 end
