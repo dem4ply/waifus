@@ -9,7 +9,6 @@ class Rabbitmq < Base_centos
 			Script.new( "provision/copy_hosts.sh" ),
 			Script.new( "provision/repos/cp_all.sh" ),
 			Script.new( "provision/stuff/install_erlang.sh" ),
-			Script.new( "provision/stuff/install_erlang.sh" ),
 			Script.new( "provision/stuff/install_elixir.sh" ),
 			Script.new( "provision/rabbitmq/install_rabbitmq.sh" ),
 			Script.new( "provision/rabbitmq/add_user.sh" ),
