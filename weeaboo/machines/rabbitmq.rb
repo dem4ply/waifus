@@ -17,6 +17,7 @@ class Rabbitmq < Base_centos
 			Script.new( "provision/rabbitmq/users/mad_hookshot.sh" ),
 			Script.new( "provision/rabbitmq/users/product_feed.sh" ),
 			Script.new( "provision/rabbitmq/users/madshopify.sh" ),
+			Script.new( "provision/rabbitmq/users/mad_message.sh" ),
 		]
 	end
 end
