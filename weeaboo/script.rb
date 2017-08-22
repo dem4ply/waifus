@@ -5,3 +5,7 @@ class Script
 		@args = args
 	end
 end
+
+
+class Python < Script
+end

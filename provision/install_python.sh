@@ -1,26 +1,37 @@
 #!/bin/bash
 
-FILE_CHECK="install_python"
-if [ ! -f ~/$FILE_CHECK ]
+FILE_CHECK=~/provision_installed
+touch $FILE_CHECK
+if ! grep -q -m 1 'python 3.6' $FILE_CHECK;
 then
+	echo "================="
+	echo "Instalando python"
+	echo "================="
 
-	cowsay "Instalando python"
+	yum update -y
+	yum groupinstall development -y
+	yum groupinstall "Development Tools" -y
+	yum install zlib-devel -y
+	yum install -y install https://centos7.iuscommunity.org/ius-release.rpm
+	yum -y install python36u python36u-pip python36u-devel git
 
-	FOLDER_PROVISION="/home/vagrant/provision"
-
-	sudo yum update -y
-	sudo yum install epel-release -y
-	sudo yum install python34 python34-devel python-pip -y
-	if [ ! -f /home/vagrant/.cache/get-pip.py ]
+	if [ ! -d ~/python_lib ]
 	then
-		curl https://bootstrap.pypa.io/get-pip.py 2>/dev/null > ~/.cache/get-pip.py
+		mkdir ~/python_lib
 	fi
-	python3.4 ~/.cache/get-pip.py
-	sudo yum groupinstall "Development Tools" -y
-	sudo yum install python34-devel -y
+	cd ~/python_lib
+	git clone https://github.com/dem4ply/chibi_command.git
+	git clone https://github.com/dem4ply/chibi_dict.git
+	git clone https://github.com/dem4ply/chibi_file.git
+	git clone https://github.com/dem4ply/chibi_net.git
+	pip3.6 install ./chibi_command
+	pip3.6 install ./chibi_dict
+	pip3.6 install ./chibi_file
+	pip3.6 install ./chibi_net
 
-	touch ~/$FILE_CHECK
+	echo "python 3.6" >> $FILE_CHECK
 
-	cowsay "Termianadno de instalar python"
+	echo "===================================="
+	echo "Terminanado la instalacion de python"
+	echo "===================================="
 fi
-

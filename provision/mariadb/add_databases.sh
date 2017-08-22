@@ -1,10 +1,26 @@
 #!/bin/bash
-cowsay "Creando bases de datos"
+FILE_CHECK=".install_mariadb"
+if [ ! -f ~/$FILE_CHECK ]
+then
 
-FOLDER_PROVISION="/home/vagrant/provision"
+	cowsay "Creando bases de datos"
 
-mysql -u root -ppassword <<-EOF
-CREATE DATABASE IF NOT EXISTS mad_scientist
+	FOLDER_PROVISION="/home/vagrant/provision"
+
+	mysql -u root -ppassword <<-EOF
+CREATE DATABASE IF NOT EXISTS mad_scientist;
+CREATE DATABASE IF NOT EXISTS notarius;
 EOF
 
-cowsay "Finalizado creacion de bases de datos"
+	systemctl enable firewalld.service
+	systemctl start firewalld.service
+
+	firewall-cmd --add-port=3306/tcp 
+	firewall-cmd --permanent --add-port=3306/tcp
+
+	systemctl restart mariadb
+
+	touch ~/$FILE_CHECK
+
+	cowsay "Finalizado instalasion mariadb"
+fi
