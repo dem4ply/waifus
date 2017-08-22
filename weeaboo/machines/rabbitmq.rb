@@ -9,13 +9,15 @@ class Rabbitmq < Base_centos
 			Script.new( "provision/copy_hosts.sh" ),
 			Script.new( "provision/repos/cp_all.sh" ),
 			Script.new( "provision/stuff/install_erlang.sh" ),
-			Script.new( "provision/stuff/install_erlang.sh" ),
 			Script.new( "provision/stuff/install_elixir.sh" ),
 			Script.new( "provision/rabbitmq/install_rabbitmq.sh" ),
 			Script.new( "provision/rabbitmq/add_user.sh" ),
 			Script.new( "provision/rabbitmq/users/goblins.sh" ),
 			Script.new( "provision/rabbitmq/users/pf_api.sh" ),
 			Script.new( "provision/rabbitmq/users/mad_hookshot.sh" ),
+			Script.new( "provision/rabbitmq/users/product_feed.sh" ),
+			Script.new( "provision/rabbitmq/users/madshopify.sh" ),
+			Script.new( "provision/rabbitmq/users/mad_message.sh" ),
 		]
 	end
 end

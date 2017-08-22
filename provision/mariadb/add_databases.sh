@@ -12,15 +12,4 @@ CREATE DATABASE IF NOT EXISTS mad_scientist;
 CREATE DATABASE IF NOT EXISTS notarius;
 EOF
 
-	systemctl enable firewalld.service
-	systemctl start firewalld.service
-
-	firewall-cmd --add-port=3306/tcp 
-	firewall-cmd --permanent --add-port=3306/tcp
-
-	systemctl restart mariadb
-
-	touch ~/$FILE_CHECK
-
-	cowsay "Finalizado instalasion mariadb"
-fi
+cowsay "Finalizado creacion de bases de datos"
