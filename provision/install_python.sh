@@ -20,14 +20,8 @@ then
 		mkdir ~/python_lib
 	fi
 	cd ~/python_lib
-	git clone https://github.com/dem4ply/chibi_command.git
-	git clone https://github.com/dem4ply/chibi_dict.git
-	git clone https://github.com/dem4ply/chibi_file.git
-	git clone https://github.com/dem4ply/chibi_net.git
-	pip3.6 install ./chibi_command
-	pip3.6 install ./chibi_dict
-	pip3.6 install ./chibi_file
-	pip3.6 install ./chibi_net
+	git clone https://github.com/dem4ply/chibi.git
+	pip3.6 install ./chibi
 
 	echo "python 3.6" >> $FILE_CHECK
 
