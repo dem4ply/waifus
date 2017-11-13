@@ -1,19 +1,15 @@
-import os
-from chibi_command import yum
+from chibi.command import yum
+from chibi.file import inflate_dir, Chibi_file
 
 
-file_check = os.path.expanduser( '~/provision_installed' )
+file_check_path = inflate_dir( '~/provision_installed' )
+file_check = Chibi_file( file_check_path )
 
 
-if __name__ == "__main__":
-    with open( file_check ) as f:
-        file_cont = f.read()
-        not_need_install = __file__ in file_cont
+version_to_check = "{file}\n".format( file=__file__ )
 
-    if not_need_install:
-        pass
-    else:
-        yum.update()
-        yum.install( 'epel-release' )
-        with open( file_check, 'a' ) as f:
-            f.write( __file__ + '\n' )
+
+if __name__ == "__main__" and not version_to_check in file_check:
+    yum.update()
+    yum.install( 'epel-release' )
+    file_check.append( version_to_check )
