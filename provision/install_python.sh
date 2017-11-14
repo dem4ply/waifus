@@ -15,6 +15,8 @@ then
 	yum install -y install https://centos7.iuscommunity.org/ius-release.rpm
 	yum -y install python36u python36u-pip python36u-devel git
 
+	ln -s /usr/bin/python3.6 /usr/bin/python3
+
 	if [ ! -d ~/python_lib ]
 	then
 		mkdir ~/python_lib

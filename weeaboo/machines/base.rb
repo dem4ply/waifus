@@ -17,10 +17,11 @@ class Base_centos < Machine
 			Python.new( "provision/update_python_lib.py" ),
 			Python.new( "provision/update_centos.py" ),
 			Python.new( "provision/stuff/install_cowsay.py" ),
-			#Script.new( "provision/copy_hosts.sh" ),
-			#Script.new( "provision/repos/cp_all.sh" ),
-			#Script.new( "provision/install_cool.sh" ),
-			#Script.new( "provision/install_htop.sh" ),
+			Python.new( "provision/copy_host.py" ),
+			Python.new( "provision/stuff/install_essential.py" ),
+			Python.new( "provision/stuff/install_ponysay.py" ),
+			Python.new( "provision/stuff/install_htop.py" ),
+			Python.new( "provision/repos/cp_all_repos.py" ),
 		]
 	end
 end
