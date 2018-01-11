@@ -22,6 +22,7 @@ class Base_centos < Machine
 			Python.new( "provision/stuff/install_ponysay.py" ),
 			Python.new( "provision/stuff/install_htop.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
+			Python.new( "provision/update_vbox_guest.py" ),
 		]
 	end
 end

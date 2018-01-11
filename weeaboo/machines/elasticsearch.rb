@@ -5,19 +5,18 @@ class Elasticsearch < Base_centos
 		super()
 		@name = name
 		@abstract = true
+		@box = "base_centos_7"
 		@scripts = [
-			Script.new( "provision/copy_hosts.sh" ),
-			Script.new( "provision/repos/cp_all.sh" ),
-			Script.new( "provision/stuff/install_java.sh" ),
-			Script.new( "provision/elasticsearch/install_elasticsearch.sh" ),
-			Script.new( "provision/elasticsearch/install_kibana.sh" ),
-			Script.new( "provision/elasticsearch/start_elasticsearch.sh",
-							args: [ @name ] ),
-			Script.new( "provision/elasticsearch/start_kibana.sh" ),
-			Script.new( "provision/elasticsearch/install_dashboards.sh" ),
-			Script.new( "provision/logstash/install_topbeat.sh" ),
-			Script.new( "provision/logstash/start_topbeat.sh",
-							args: [ 'topbeat_elasticsearch.yml' ] ),
+			Python.new( "provision/copy_host.py" ),
+			Python.new( "provision/repos/cp_all_repos.py" ),
+			Python.new( "provision/stuff/install_java.py" ),
+			Python.new( "provision/elasticsearch/install_elasticsearch.py" ),
+			#Script.new( "provision/elasticsearch/install_kibana.sh" ),
+			#Script.new( "provision/elasticsearch/start_elasticsearch.sh", args: [ @name ] ),
+			#Script.new( "provision/elasticsearch/start_kibana.sh" ),
+			#Script.new( "provision/elasticsearch/install_dashboards.sh" ),
+			#Script.new( "provision/logstash/install_topbeat.sh" ),
+			#Script.new( "provision/logstash/start_topbeat.sh", args: [ 'topbeat_elasticsearch.yml' ] ),
 		]
 	end
 end

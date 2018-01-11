@@ -10,13 +10,15 @@ class Machine
 	end
 
 	def make_config( config )
-		config.vm.box = @box
+		#config.vm.box = "base_centos_7"
+		#config.vm.box = @box
 		config.vm.define @name, primary: true do | m |
 			self.make_build( m )
 		end
 	end
 
 	def make_build( machine )
+		machine.vm.box = @box
 		machine.vm.host_name = @name
 		self.make_network( machine )
 		machine.vm.provider "virtualbox" do |vb|
