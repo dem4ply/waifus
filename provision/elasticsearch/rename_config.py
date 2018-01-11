@@ -49,5 +49,3 @@ for node in nodes:
     str_config = yaml.dump( config )
     with open ( 'provision/' + node + '.yml' , 'w' ) as file:
         file.write( str_config )
-
-

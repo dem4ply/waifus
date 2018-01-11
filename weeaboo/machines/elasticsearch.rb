@@ -11,7 +11,7 @@ class Elasticsearch < Base_centos
 			Python.new( "provision/repos/cp_all_repos.py" ),
 			Python.new( "provision/stuff/install_java.py" ),
 			Python.new( "provision/elasticsearch/install_elasticsearch.py" ),
-			#Script.new( "provision/elasticsearch/install_kibana.sh" ),
+			Python.new( "provision/elasticsearch/install_kibana.py" ),
 			#Script.new( "provision/elasticsearch/start_elasticsearch.sh", args: [ @name ] ),
 			#Script.new( "provision/elasticsearch/start_kibana.sh" ),
 			#Script.new( "provision/elasticsearch/install_dashboards.sh" ),
