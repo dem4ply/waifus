@@ -5,20 +5,23 @@ class Nginx < Base_centos
 		super
 		@abstract = true
 		@name = 'Nginx'
+		@box = "base_centos_7"
 		@scripts = [
-			Script.new( "provision/copy_hosts.sh" ),
-			Script.new( "provision/repos/cp_all.sh" ),
-			Script.new( "provision/nginx/install_nginx.sh" ),
-			Script.new( "provision/nginx/start_nginx.sh" ),
-			Script.new( "provision/logstash/install_filebeat.sh" ),
-			Script.new( "provision/logstash/install_topbeat.sh" ),
-			Script.new( "provision/logstash/install_packetbeat.sh" ),
-			Script.new( "provision/logstash/start_filebeat.sh",
-							args: [ 'filebeat_nginx.yml' ] ),
-			Script.new( "provision/logstash/start_topbeat.sh",
-							args: [ 'topbeat_nginx.yml' ] ),
-			Script.new( "provision/logstash/start_packetbeat.sh",
-							args: [ 'packetbeat_nginx.yml' ] ),
+			Python.new( "provision/update_python_lib.py" ),
+			Python.new( "provision/copy_host.py" ),
+			Python.new( "provision/repos/cp_all_repos.py" ),
+
+			Python.new( "provision/nginx/install_nginx.py" ),
+			Python.new( "provision/nginx/start_nginx.py" ),
+			#Script.new( "provision/logstash/install_filebeat.sh" ),
+			#Script.new( "provision/logstash/install_topbeat.sh" ),
+			#Script.new( "provision/logstash/install_packetbeat.sh" ),
+			#Script.new( "provision/logstash/start_filebeat.sh",
+			#				args: [ 'filebeat_nginx.yml' ] ),
+			#Script.new( "provision/logstash/start_topbeat.sh",
+			#				args: [ 'topbeat_nginx.yml' ] ),
+			#Script.new( "provision/logstash/start_packetbeat.sh",
+			#				args: [ 'packetbeat_nginx.yml' ] ),
 		]
 	end
 end

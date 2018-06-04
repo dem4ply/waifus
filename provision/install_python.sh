@@ -24,6 +24,7 @@ then
 	cd ~/python_lib
 	git clone https://github.com/dem4ply/chibi.git
 	pip3.6 install ./chibi
+	pip3.6 install pyyaml
 
 	echo "python 3.6" >> $FILE_CHECK
 

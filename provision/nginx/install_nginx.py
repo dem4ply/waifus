@@ -1,4 +1,4 @@
-from chibi.command import yum
+from chibi.command import yum, systemctl
 from chibi.command.echo import cowsay
 from chibi.file import inflate_dir, Chibi_file
 
@@ -11,9 +11,9 @@ version_to_check = "{file}\n".format( file=__file__, )
 
 
 if __name__ == "__main__" and not version_to_check in file_check:
-    cowsay( "Starting install for kibana" )
-
-    yum.install( 'kibana' )
-
+    cowsay( "iniciando instalacion de nginx" )
+    yum.install( "nginx" )
+    systemctl.enable( "nginx" )
+    systemctl.start( "nginx" )
     file_check.append( version_to_check )
-    cowsay( "Ending install for kibana" )
+    cowsay( "terminando instalacion de nginx" )

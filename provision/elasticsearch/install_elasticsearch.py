@@ -1,9 +1,7 @@
-from chibi.command import echo, yum
-from chibi.file import inflate_dir, Chibi_file, join, exists, current_dir, cd
-from chibi.net import download
+from chibi.command import yum, command, systemctl
 from chibi.command.echo import cowsay
-from chibi.command import git, pip
-from chibi.command import command
+from chibi.file import inflate_dir, Chibi_file
+from chibi.command import rpm
 
 
 file_check_path = inflate_dir( '~/provision_installed' )
@@ -15,12 +13,12 @@ version_to_check = "{file}\n".format( file=__file__, )
 
 if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "Starting install for elasticsearch" )
-    command(
-        'rpm', '--import',
-        'https://artifacts.elastic.co/GPG-KEY-elasticsearch' )
 
+    rpm.rpm_import( 'https://artifacts.elastic.co/GPG-KEY-elasticsearch' )
     yum.install( 'elasticsearch' )
-    command( 'systemctl', 'enable', 'elasticsearch.service' )
+
+    systemctl.enable( 'elasticsearch.service' )
+    systemctl.start( 'elasticsearch.service' )
 
     #command(
     #    '/usr/share/elasticsearch/bin/plugin', 'install',
