@@ -15,7 +15,6 @@ if __name__ == "__main__":
         echo.echo( 'updating: {}'.format( lib ) )
         lib_dir = join( root_dir, lib )
         git.pull( lib_dir )
-        pip.install( lib_dir )
         pip.uninstall( lib_dir )
         pip.install( lib_dir )
 

@@ -16,6 +16,7 @@ class Provision
 			scrapy: [ Potato ],
 			rabbit: [ Cocoa, Chino, Rize ],
 			maria: [ Chii, Sumomo, Freya ],
+			postgresql: [ Cyborg_009, Cyborg_003 ],
 		}
 	end
 

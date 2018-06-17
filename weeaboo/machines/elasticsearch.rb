@@ -19,7 +19,7 @@ class Elasticsearch < Base_centos
 			Python.new( "provision/elasticsearch/create_config.py",
 				args: [ @name, @is_master, @is_data ] ),
 			#Script.new( "provision/elasticsearch/start_elasticsearch.sh", args: [ @name ] ),
-			#Script.new( "provision/elasticsearch/start_kibana.sh" ),
+			Python.new( "provision/elasticsearch/start_kibana.py" ),
 			#Script.new( "provision/elasticsearch/install_dashboards.sh" ),
 			#Script.new( "provision/logstash/install_topbeat.sh" ),
 			#Script.new( "provision/logstash/start_topbeat.sh", args: [ 'topbeat_elasticsearch.yml' ] ),
