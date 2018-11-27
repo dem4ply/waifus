@@ -24,24 +24,33 @@ Vagrant.configure(2) do |config|
 	#config.vm.box = "geerlingguy/centos7"
 	#config.vm.box = "centos_base_7"
 	#config.vm.box = "base_centos_7"
+	#
+	#
+
+	config.vm.synced_folder ".", "/vagrant", type: "rsync",
+    rsync__exclude: [
+		".git/", "base_centos_7.box", ".ropeproject/", "backups/",
+		"src/", "weeaboo/", "cache/", "diagrams/", ".gitignore",
+		".gitmodules" ],
+	rsync__verbose: true
 
 
-	config.vm.synced_folder(
-		HOST_BACKUPS_SHARE_FOLDER, BACKUPS_SHARE_FOLDER, owner: "vagrant",
-		group: "vagrant", create: true )
-
-	config.vm.synced_folder(
-		HOST_SHARE_FOLDER, GUEST_SHARE_FOLDER, owner: "vagrant",
-		group: "vagrant", create: true )
-
-	config.vm.synced_folder(
-		'provision', GUEST_SHARE_FOLDER_PROVISION, owner: "vagrant",
-		group: "vagrant", create: true )
-
-	config.vm.synced_folder(
-		HOST_CACHE_SHARE_FOLDER, GUEST_SHARE_FOLDER_CACHE, owner: "vagrant",
-		group: "vagrant", create: true )
-
+#	config.vm.synced_folder(
+#		HOST_BACKUPS_SHARE_FOLDER, BACKUPS_SHARE_FOLDER, owner: "vagrant",
+#		group: "vagrant", create: true )
+#
+#	config.vm.synced_folder(
+#		HOST_SHARE_FOLDER, GUEST_SHARE_FOLDER, owner: "vagrant",
+#		group: "vagrant", create: true )
+#
+#	config.vm.synced_folder(
+#		'provision', GUEST_SHARE_FOLDER_PROVISION, owner: "vagrant",
+#		group: "vagrant", create: true )
+#
+#	config.vm.synced_folder(
+#		HOST_CACHE_SHARE_FOLDER, GUEST_SHARE_FOLDER_CACHE, owner: "vagrant",
+#		group: "vagrant", create: true )
+#
 	start_ip = "192.168.56.100"
 	ip_table = Ip_table.new( start_ip )
 
