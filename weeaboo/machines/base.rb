@@ -8,21 +8,20 @@ Dir[ File.dirname(__FILE__) + "/../script.rb" ].each { |file|
 class Base_centos < Machine
 	def initialize()
 		@name = 'base-centos-7'
-		@ram = 512
+		@ram = 400
 		@cpus = 1
 		@abstract = false
-		@box = "box-cutter/centos73"
+		@box = "centos/7"
+		#@box = "base_centos_7"
 		@scripts = [
 			Script.new( "provision/install_python.sh" ),
-			Python.new( "provision/update_python_lib.py" ),
-			Python.new( "provision/update_centos.py" ),
 			Python.new( "provision/stuff/install_cowsay.py" ),
+			Script.new( "provision/update_python_lib.sh" ),
+			Python.new( "provision/update_centos.py" ),
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/stuff/install_essential.py" ),
 			Python.new( "provision/stuff/install_ponysay.py" ),
-			Python.new( "provision/stuff/install_htop.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
-			Python.new( "provision/update_vbox_guest.py" ),
 		]
 	end
 end

@@ -8,18 +8,18 @@ class Elasticsearch < Base_centos
 		@is_data = is_data
 		@abstract = true
 		@box = "base_centos_7"
-		@ram = 1024
+		@ram = 1512
 		@scripts = [
-			Python.new( "provision/update_python_lib.py" ),
+			Script.new( "provision/update_python_lib.sh" ),
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
 			Python.new( "provision/stuff/install_java.py" ),
-			Python.new( "provision/elasticsearch/install_elasticsearch.py" ),
-			Python.new( "provision/elasticsearch/install_kibana.py" ),
+			Python.new( "provision/elasticsearch/install.py" ),
+			Python.new( "provision/kibana/install.py" ),
 			Python.new( "provision/elasticsearch/create_config.py",
 				args: [ @name, @is_master, @is_data ] ),
 			#Script.new( "provision/elasticsearch/start_elasticsearch.sh", args: [ @name ] ),
-			Python.new( "provision/elasticsearch/start_kibana.py" ),
+			Python.new( "provision/kibana/start.py" ),
 			#Script.new( "provision/elasticsearch/install_dashboards.sh" ),
 			#Script.new( "provision/logstash/install_topbeat.sh" ),
 			#Script.new( "provision/logstash/start_topbeat.sh", args: [ 'topbeat_elasticsearch.yml' ] ),

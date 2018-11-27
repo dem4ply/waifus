@@ -53,8 +53,8 @@ class Machine
 
 			if script.instance_of? Python
 				machine.vm.provision(
-					:shell,
-					inline: "sudo python3.6 #{script.path} #{script.args.join( ' ' )}",
+					:shell, path: script.path,
+						args: script.args.join( ' ' ),
 						keep_color: true )
 			end
 		}

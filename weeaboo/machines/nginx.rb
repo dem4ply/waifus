@@ -6,8 +6,9 @@ class Nginx < Base_centos
 		@abstract = true
 		@name = 'Nginx'
 		@box = "base_centos_7"
+		@ram = 1024
 		@scripts = [
-			Python.new( "provision/update_python_lib.py" ),
+			Script.new( "provision/update_python_lib.sh" ),
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
 

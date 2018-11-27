@@ -17,6 +17,7 @@ class Provision
 			rabbit: [ Cocoa, Chino, Rize ],
 			maria: [ Chii, Sumomo, Freya ],
 			postgresql: [ Cyborg_009, Cyborg_003 ],
+			redis: [ Nanoha, Fate ],
 		}
 	end
 
