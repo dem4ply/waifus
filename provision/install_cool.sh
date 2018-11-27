@@ -1,5 +1,4 @@
 #!/bin/bash
-
 FILE_CHECK=".install_cool"
 
 if [ ! -f ~/$FILE_CHECK ]

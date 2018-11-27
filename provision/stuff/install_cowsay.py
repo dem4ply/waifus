@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from chibi.command import echo, yum
 from chibi.file import inflate_dir, Chibi_file, join, exists
 from chibi.net import download

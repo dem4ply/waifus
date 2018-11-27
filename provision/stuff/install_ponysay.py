@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from chibi.command import echo, yum
 from chibi.file import inflate_dir, Chibi_file, join, exists, current_dir, cd
 from chibi.net import download
@@ -26,7 +27,7 @@ if __name__ == "__main__" and not version_to_check in file_check:
 
     cd( ponysay_dir )
 
-    command( 'python3.6', './setup.py', 'install', '--freedom=partial' )
+    command( 'python3', './setup.py', 'install', '--freedom=partial' )
 
     cd( original_dir )
     file_check.append( version_to_check )

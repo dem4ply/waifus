@@ -1,8 +1,9 @@
+#!/usr/bin/env python3
 from chibi.command.echo import cowsay
 from chibi.file import Chibi_file, join
 
 
-provision_folder = '/home/vagrant/provision'
+provision_folder = '/vagrant/provision'
 file_host = 'hosts'
 
 dest = '/etc/hosts'

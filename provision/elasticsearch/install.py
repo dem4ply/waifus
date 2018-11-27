@@ -1,7 +1,7 @@
-from chibi.command import yum, command, systemctl
+#!/usr/bin/env python3
+from chibi.command import yum, systemctl, rpm
 from chibi.command.echo import cowsay
 from chibi.file import inflate_dir, Chibi_file
-from chibi.command import rpm
 
 
 file_check_path = inflate_dir( '~/provision_installed' )

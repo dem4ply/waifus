@@ -1,11 +1,15 @@
 from chibi.file import mkdir, copy, ln, exists, ls, join
-from chibi.command import systemctl
+from chibi.command import systemctl, command
 from chibi.command.echo import cowsay
 
 
 FOLDER_PROVISION="/home/vagrant/provision/nginx/provision"
 
+
+
 cowsay( "inicia de inicio de nginx" )
+
+command( 'setsebool', '-P', 'httpd_can_network_connect', '1', )
 
 folders = (
     "/var/log/nginx", "/etc/nginx/sites_available",

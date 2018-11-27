@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from chibi.command import echo, yum
 from chibi.file import inflate_dir, Chibi_file, join, exists, current_dir, cd
 from chibi.net import download
@@ -17,7 +18,7 @@ if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "Starting install for essential" )
     yum.install(
         'bash-completion', 'bash-completion-extras', 'texinfo',  'vim',
-        'ruby', 'git', 'kernel-headers', 'kernel-devel' )
+        'ruby', 'git', 'kernel-headers', 'kernel-devel', 'htop' )
 
     file_check.append( version_to_check )
     cowsay( "Ending install for essential" )

@@ -15,23 +15,27 @@ cowsay( "provisionado posrgresql" )
 
 copy(
     join( FOLDER_PROVISION, "pg_hba.conf" ),
-    "/var/lib/pgsql/data/pg_hba.conf", verbose=True )
+    "/var/lib/pgsql/9.5/data/pg_hba.conf", verbose=True )
 
 chown(
-    "/var/lib/pgsql/data/pg_hba.conf",
+    "/var/lib/pgsql/9.5/data/pg_hba.conf",
     user_name='postgres', group_name='postgres' )
 
 copy(
     join( FOLDER_PROVISION, "postgresql.conf" ),
-    "/var/lib/pgsql/data/postgresql.conf", verbose=True )
+    "/var/lib/pgsql/9.5/data/postgresql.conf", verbose=True )
 
 chown(
-    "/var/lib/pgsql/data/postgresql.conf",
+    "/var/lib/pgsql/9.5/data/postgresql.conf",
     user_name='postgres', group_name='postgres' )
 
 
 for database in databases:
     command( "su", "postgres", "-c", "createdb {}".format( database ) )
+    command(
+        "su", "postgres", "-c",
+        "psql -d {} -c "
+        "\"CREATE EXTENSION IF NOT EXISTS postgis;\"".format( database) )
 
 for user in list_of_user_to_create:
     command( "su", "postgres", "-c", "createuser -d -s -r {}".format( user ) )
@@ -40,6 +44,6 @@ for user in list_of_user_to_create:
         "psql -c \"ALTER USER {} WITH PASSWORD 'asdf';\"".format( user ) )
 
 
-systemctl.restart( "postgresql" )
+systemctl.restart( "postgresql-9.5" )
 
 cowsay( "termino de provisionado posrgresql" )

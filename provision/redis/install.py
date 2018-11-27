@@ -1,4 +1,4 @@
-from chibi.command import yum
+from chibi.command import yum, systemctl, command
 from chibi.command.echo import cowsay
 from chibi.file import inflate_dir, Chibi_file
 
@@ -11,9 +11,16 @@ version_to_check = "{file}\n".format( file=__file__, )
 
 
 if __name__ == "__main__" and not version_to_check in file_check:
-    cowsay( "Starting install for kibana" )
+    cowsay( "instalado redis" )
 
-    yum.install( 'kibana' )
+    yum.install( 'redis' )
+    systemctl.start( "redis" )
+    systemctl.enable( "redis" )
+
+    cowsay( "termino de instalar redis" )
+
+    result, error, return_code = command( 'redis-cli', 'ping', stdout='pipe' )
+
+    cowsay( "redis ping say: {}".format( result ) )
 
     file_check.append( version_to_check )
-    cowsay( "Ending install for kibana" )
