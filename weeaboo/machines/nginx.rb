@@ -12,8 +12,8 @@ class Nginx < Base_centos
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
 
-			Python.new( "provision/nginx/install_nginx.py" ),
-			Python.new( "provision/nginx/start_nginx.py" ),
+			Python.new( "provision/nginx/install.py" ),
+			Python.new( "provision/nginx/start.py" ),
 			#Script.new( "provision/logstash/install_filebeat.sh" ),
 			#Script.new( "provision/logstash/install_topbeat.sh" ),
 			#Script.new( "provision/logstash/install_packetbeat.sh" ),

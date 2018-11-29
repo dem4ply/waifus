@@ -1,10 +1,10 @@
-from chibi.file import mkdir, copy, ln, exists, ls, join
+#!/usr/bin/env python3
 from chibi.command import systemctl, command
 from chibi.command.echo import cowsay
+from chibi.file import mkdir, copy, ln, exists, ls, join
 
 
-FOLDER_PROVISION="/home/vagrant/provision/nginx/provision"
-
+FOLDER_PROVISION="/vagrant/provision/nginx/provision"
 
 
 cowsay( "inicia de inicio de nginx" )
@@ -24,17 +24,12 @@ for folder in folders:
     nginx_folder = join( '/etc/nginx/', folder )
     provision_folder = join( FOLDER_PROVISION, folder )
     files = ls( provision_folder )
-    for file in files:
-        copy(
-            join( provision_folder, file ), join( nginx_folder, file ),
-            verbose=True )
+    copy( join( provision_folder, '*' ), nginx_folder, verbose=True )
 
 copy(
     join( FOLDER_PROVISION, 'nginx.conf' ),
     join( '/etc/nginx/', 'nginx.conf' ), verbose=True )
 
-
-ls()
 
 if not exists( "/etc/nginx/sites_enabled/waifus.conf" ):
     ln(
