@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 from chibi.command import echo, yum
-from chibi.file import inflate_dir, Chibi_file, join, exists
+from chibi.file import Chibi_file
+from chibi.file.snippets import inflate_dir, join, exists
 from chibi.net import download
+
 
 file_check_path = inflate_dir( '~/provision_installed' )
 file_check = Chibi_file( file_check_path )
@@ -13,7 +15,7 @@ url_of_cowsay_rpm = (
 
 
 version_to_check = (
-    "{file} with {url}\n".format( file=__file__, url=url_of_cowsay_rpm )
+    "cowsay with {url}\n".format( file=__file__, url=url_of_cowsay_rpm )
 )
 
 cache_directory = inflate_dir( '~/.cache/' )

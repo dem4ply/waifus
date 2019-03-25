@@ -1,15 +1,16 @@
-from chibi.command import yum, command, systemctl
+#!/usr/bin/env python3
+from chibi.command import command, systemctl
 from chibi.command.echo import cowsay
-from chibi.file import inflate_dir, Chibi_file, copy, join, chown
-from chibi.command import rpm
+from chibi.file.snippets import copy, join, chown
 
 
 list_of_user_to_create = [ 'dem4ply', "root" ]
 databases = [
-    "dem4ply", "root", "turning_db_dev", "turning_db_test", "turn_profiling" ]
+    "dem4ply", "root", "turning_db_dev", "turning_db_test", "turn_profiling",
+    "laniidae_db_dev" ]
 
 
-FOLDER_PROVISION="/home/vagrant/provision/postgresql/provision"
+FOLDER_PROVISION="/vagrant/provision/postgresql/provision"
 
 cowsay( "provisionado posrgresql" )
 

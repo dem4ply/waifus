@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from chibi.command import systemctl, command
 from chibi.command.echo import cowsay
-from chibi.file import mkdir, copy, ln, exists, ls, join
+from chibi.file.snippets import mkdir, copy, ln, exists, ls, join
 
 
 FOLDER_PROVISION="/vagrant/provision/nginx/provision"

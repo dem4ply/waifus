@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from chibi.command.echo import cowsay
-from chibi.file import copy
+from chibi.file.snippets import copy
 
 
 directory_of_repos = '/vagrant/provision/repos/*'

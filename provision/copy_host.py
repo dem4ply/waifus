@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from chibi.command.echo import cowsay
-from chibi.file import Chibi_file, join
+from chibi.file.snippets import join
+from chibi.file import Chibi_file
 
 
 provision_folder = '/vagrant/provision'

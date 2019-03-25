@@ -1,14 +1,15 @@
+#!/usr/bin/env python3
 import sys
 import yaml
 
 from chibi.parser import to_bool
 from chibi.command import command, systemctl
-from chibi.file import exists, join, mkdir, chown, ls, copy
+from chibi.file.snippets import exists, join, mkdir, chown, ls, copy
 from chibi.command.echo import cowsay
 
 
 masters = [ 'Pitou', 'Sakura', 'Mizusu' ]
-FOLDER_PROVISION="/home/vagrant/provision/elasticsearch/provision"
+FOLDER_PROVISION="/vagrant/provision/elasticsearch/provision"
 
 if __name__ == "__main__":
 
@@ -44,11 +45,9 @@ if __name__ == "__main__":
         mkdir( '/etc/elasticsearch/synonyms', verbose=True )
 
     synonyms_folder = join( FOLDER_PROVISION, 'synonyms' )
-    synonyms = filter( lambda f: f.endswith( '.txt' ), ls( synonyms_folder ) )
-    for source in synonyms:
-        copy(
-            join( synonyms_folder, source ), '/etc/elasticsearch/synonyms/',
-            verbose=True )
+    copy(
+        join( synonyms_folder, '*.txt' ), '/etc/elasticsearch/synonyms/',
+        verbose=True )
 
     chown(
         '/var/data/waifus', '/var/log/waifus', '/etc/elasticsearch/synonyms',

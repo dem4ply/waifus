@@ -1,7 +1,9 @@
+#!/usr/bin/env python3
 from chibi.command import yum, command, systemctl
 from chibi.net import download
 from chibi.command.echo import cowsay
-from chibi.file import inflate_dir, Chibi_file, cd
+from chibi.file.snippets import inflate_dir, cd
+from chibi.file import Chibi_file
 
 
 cowsay( "instalasion daskboards de kibana" )

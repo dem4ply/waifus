@@ -1,7 +1,7 @@
 #!/bin/bash
 
-cowsay "update gloabal"
-pip3.7 install --upgrade chibi
+cowsay "update global"
+pip3 install --upgrade chibi
 
 cd ~/python_lib/
 cowsay "iniciando actualizacion de bibliotecas locales de python"

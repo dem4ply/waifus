@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
-from chibi.command import yum, systemctl, command, firewall, rpm
+from chibi.command import yum, rpm
 from chibi.command.echo import cowsay
-from chibi.file import inflate_dir, Chibi_file
+from chibi.file import Chibi_file
+from chibi.file.snippets import inflate_dir
 from chibi.net import download
 
 
@@ -9,7 +10,7 @@ file_check_path = inflate_dir( '~/provision_installed' )
 file_check = Chibi_file( file_check_path )
 
 
-version_to_check = "{file}\n".format( file=__file__, )
+version_to_check = "erlang\n".format( file=__file__, )
 
 
 if __name__ == "__main__" and not version_to_check in file_check:
