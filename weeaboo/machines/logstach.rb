@@ -19,34 +19,26 @@ class Logstash < Base_centos
 	end
 end
 
-class Ai < Logstash
+class Tohru < Logstash
 	def initialize()
 		super
-		@name = 'Ai'
+		@name = 'Tohru'
 		@abstract = false
 	end
 end
 
-class Nanami < Logstash
+class Kanna < Logstash
 	def initialize()
 		super
-		@name = 'Nanami'
+		@name = 'Kanna'
 		@abstract = false
 	end
 end
 
-class Touko < Logstash
+class Elma < Logstash
 	def initialize()
 		super
-		@name = 'Touko'
-		@abstract = false
-	end
-end
-
-class Yuu < Logstash
-	def initialize()
-		super
-		@name = 'Yuu'
+		@name = 'Elma'
 		@abstract = false
 	end
 end

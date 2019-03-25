@@ -11,13 +11,14 @@ class Provision
 			magi: [ Melchor, Baltasar, Gaspar, ],
 			nginx: [ Ikaros, Astraea, Caos, Nymph ],
 			elasticsearch: [ Misuzu, Pitou, Sakura, Rem, Rei, Ren, Sonico, Tifa, ],
-			logstash: [ Ai, Nanami, Touko, Yuu, ],
+			logstash: [ Tohru, Kanna, Elma ],
 			django: [ Shiro, Shionji, Victorique, ],
 			scrapy: [ Potato ],
 			rabbit: [ Cocoa, Chino, Rize ],
 			maria: [ Chii, Sumomo, Freya ],
 			postgresql: [ Cyborg_009, Cyborg_003 ],
 			redis: [ Nanoha, Fate ],
+			windows: [ Touko_madobe, Ai_madobe, Yuu_madobe, Nanami_madobe, ],
 		}
 	end
 
@@ -30,7 +31,7 @@ class Provision
 				instance.assing_ip( ip )
 				instance.make_config( @config )
 				name_waifu = "#{waifu}"
-				puts( "\t#{name_waifu.ljust(10)} : #{ip}" )
+				puts( "\t#{name_waifu.ljust(15)} : #{ip}" )
 			}
 		}
 	end

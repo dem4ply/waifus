@@ -7,14 +7,14 @@ require './weeaboo/machine.rb'
 require './weeaboo/provision.rb'
 
 REL_DIR = File.dirname(__FILE__)
-HOST_CACHE_SHARE_FOLDER = REL_DIR + "/" + "cache"
-HOST_SHARE_FOLDER = REL_DIR + "/" + "src"
-HOST_BACKUPS_SHARE_FOLDER = REL_DIR + "/" + "backups"
-GUEST_SHARE_FOLDER = "/home/vagrant/src"
-GUEST_SHARE_FOLDER_PROVISION = "/home/vagrant/provision"
-GUEST_SHARE_FOLDER_CACHE = "/tmp/.cache"
+#HOST_CACHE_SHARE_FOLDER = REL_DIR + "/" + "cache"
+#HOST_SHARE_FOLDER = REL_DIR + "/" + "src"
+#HOST_BACKUPS_SHARE_FOLDER = REL_DIR + "/" + "backups"
+#GUEST_SHARE_FOLDER = "/home/vagrant/src"
+#GUEST_SHARE_FOLDER_PROVISION = "/home/vagrant/provision"
+#GUEST_SHARE_FOLDER_CACHE = "/tmp/.cache"
 
-BACKUPS_SHARE_FOLDER = "/home/vagrant/backups"
+#BACKUPS_SHARE_FOLDER = "/home/vagrant/backups"
 
 
 Vagrant.configure(2) do |config|
@@ -28,7 +28,7 @@ Vagrant.configure(2) do |config|
 	#
 
 	config.vm.synced_folder ".", "/vagrant", type: "rsync",
-    rsync__exclude: [
+		rsync__exclude: [
 		".git/", "base_centos_7.box", ".ropeproject/", "backups/",
 		"src/", "weeaboo/", "cache/", "diagrams/", ".gitignore",
 		".gitmodules" ],
