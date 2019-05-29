@@ -16,17 +16,18 @@ if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "instalado postgresql" )
 
     yum.install(
-        "https://download.postgresql.org/pub/repos/yum/9.5/"
-        "redhat/rhel-7-x86_64/pgdg-centos95-9.5-2.noarch.rpm" )
+        "https://download.postgresql.org/pub/repos/yum/9.6/"
+        "redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm" )
 
     yum.install(
-        'postgresql95', 'postgresql95-server', 'postgresql95-libs',
-        'postgresql95-contrib', 'postgresql95-devel' )
-    yum.install( 'postgis2_95-client' )
-    command( "/usr/pgsql-9.5/bin/postgresql95-setup", "initdb" )
+        'postgresql96', 'postgresql96-server', 'postgresql96-libs',
+        'postgresql96-contrib', 'postgresql96-devel' )
+    yum.install( 'postgis2_96-client' )
+    command( "/usr/pgsql-9.6/bin/postgresql96-setup", "initdb" )
     #command( "postgresql-setup", "initdb" )
-    systemctl.start( "postgresql-9.5" )
-    systemctl.enable( "postgresql-9.5" )
+    systemctl.start( "postgresql-9.6" )
+    systemctl.enable( "postgresql-9.6" )
+
 
     cowsay( "termino de instalar postgresql" )
 

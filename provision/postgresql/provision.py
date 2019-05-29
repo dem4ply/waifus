@@ -16,18 +16,18 @@ cowsay( "provisionado posrgresql" )
 
 copy(
     join( FOLDER_PROVISION, "pg_hba.conf" ),
-    "/var/lib/pgsql/9.5/data/pg_hba.conf", verbose=True )
+    "/var/lib/pgsql/9.6/data/pg_hba.conf", verbose=True )
 
 chown(
-    "/var/lib/pgsql/9.5/data/pg_hba.conf",
+    "/var/lib/pgsql/9.6/data/pg_hba.conf",
     user_name='postgres', group_name='postgres' )
 
 copy(
     join( FOLDER_PROVISION, "postgresql.conf" ),
-    "/var/lib/pgsql/9.5/data/postgresql.conf", verbose=True )
+    "/var/lib/pgsql/9.6/data/postgresql.conf", verbose=True )
 
 chown(
-    "/var/lib/pgsql/9.5/data/postgresql.conf",
+    "/var/lib/pgsql/9.6/data/postgresql.conf",
     user_name='postgres', group_name='postgres' )
 
 
@@ -45,6 +45,6 @@ for user in list_of_user_to_create:
         "psql -c \"ALTER USER {} WITH PASSWORD 'asdf';\"".format( user ) )
 
 
-systemctl.restart( "postgresql-9.5" )
+systemctl.restart( "postgresql-9.6" )
 
 cowsay( "termino de provisionado posrgresql" )
