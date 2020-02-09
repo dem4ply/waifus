@@ -15,6 +15,7 @@ class Rabbitmq < Base_centos
 			Python.new( "provision/rabbitmq/add_user.py" ),
 			Python.new( "provision/rabbitmq/users/turn_profile.py" ),
 			Python.new( "provision/rabbitmq/users/laniidae.py" ),
+			Python.new( "provision/rabbitmq/users/lemming.py" ),
 			#Script.new( "provision/stuff/install_elixir.sh" ),
 			#Script.new( "provision/rabbitmq/install_rabbitmq.sh" ),
 			#Script.new( "provision/rabbitmq/add_user.sh" ),

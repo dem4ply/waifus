@@ -7,7 +7,7 @@ from chibi.file.snippets import copy, join, chown
 list_of_user_to_create = [ 'dem4ply', "root" ]
 databases = [
     "dem4ply", "root", "turning_db_dev", "turning_db_test", "turn_profiling",
-    "laniidae_db_dev" ]
+    "laniidae_db_dev", "lemming_db_dev" ]
 
 
 FOLDER_PROVISION="/vagrant/provision/postgresql/provision"

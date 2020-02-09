@@ -1,0 +1,6 @@
+[packages-microsoft-com-mssql-server-preview]
+name=packages-microsoft-com-mssql-server-preview
+baseurl=https://packages.microsoft.com/rhel/7/mssql-server-preview/
+enabled=1
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc

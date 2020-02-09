@@ -5,18 +5,16 @@ class Maria < Base_centos
 		super
 		@abstract = true
 		@name = 'Maria'
+		@box = "base_centos_7"
 		@scripts = [
-			Script.new( "provision/copy_hosts.sh" ),
-			Script.new( "provision/repos/cp_all.sh" ),
-			Script.new( "provision/mariadb/install.sh" ),
-			Script.new( "provision/mariadb/add_databases.sh" ),
+			Script.new( "provision/update_python_lib.sh" ),
+			Python.new( "provision/copy_host.py" ),
+			Python.new( "provision/repos/cp_all_repos.py" ),
 
-			Script.new( "provision/logstash/install_topbeat.sh" ),
-			Script.new( "provision/logstash/install_packetbeat.sh" ),
-			Script.new( "provision/logstash/start_topbeat.sh",
-							args: [ 'topbeat_mariadb.yml' ] ),
-			Script.new( "provision/logstash/start_packetbeat.sh",
-							args: [ 'packetbeat_mariadb.yml' ] ),
+			#Script.new( "provision/mariadb/install.sh" ),
+			Python.new( "provision/mariadb/install.py" ),
+			Python.new( "provision/mariadb/add_databases.py" ),
+			#Script.new( "provision/mariadb/add_databases.sh" ),
 		]
 	end
 end
