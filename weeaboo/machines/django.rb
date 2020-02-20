@@ -4,10 +4,14 @@ class Django < Base_centos
 	def initialize()
 		super
 		@abstract = true
-		@name = 'Djano'
+		@name = 'Django'
+		@box = "base_centos_7"
+		@ram = 512
 		@scripts = [
-			Script.new( "provision/copy_hosts.sh" ),
-			Script.new( "provision/repos/cp_all.sh" ),
+			Script.new( "provision/update_python_lib.sh" ),
+			Python.new( "provision/copy_host.py" ),
+			Python.new( "provision/lxc/install.py" ),
+			Python.new( "provision/django/provision.py" ),
 		]
 	end
 end
