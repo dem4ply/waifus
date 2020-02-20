@@ -1,5 +1,5 @@
 # Kibana is served by a back end server. This setting specifies the port to use.
-# server.port: 5601
+server.port: 5601
 
 # This setting specifies the IP address of the back end server.
 server.host: "0.0.0.0"
@@ -12,7 +12,7 @@ server.host: "0.0.0.0"
 # server.maxPayloadBytes: 1048576
 
 # The URL of the Elasticsearch instance to use for all your queries.
-elasticsearch.url: "http://pitou:9200"
+elasticsearch.hosts: [ "http://pitou:9200" ]
 
 # When this setting’s value is true Kibana uses the hostname specified in the server.host
 # setting. When the value of this setting is false, Kibana uses the hostname of the host

@@ -70,8 +70,8 @@ if __name__ == "__main__":
         'node.data': is_data,
         'network.host': '${HOSTNAME}',
         'network.bind_host': '${HOSTNAME}',
-        'discovery.seed_hosts':  masters[::],
-        'cluster.initial_master_nodes': masters[::],
+        'discovery.seed_hosts':  masters[:],
+        'cluster.initial_master_nodes': masters[:],
         'path.data': '/var/data/waifus',
         'path.logs': '/var/log/waifus',
     }
