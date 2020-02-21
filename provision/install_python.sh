@@ -1,4 +1,5 @@
 #!/bin/bash
+set -e
 FILE_CHECK=~/provision_installed
 touch $FILE_CHECK
 if ! grep -q -m 1 'python 3.7' $FILE_CHECK;
@@ -29,6 +30,7 @@ then
 	fi
 
 	pip3 install chibi
+	pip3 install chibi_command
 	pip3 install pyyaml
 
 	echo "python 3.7" >> $FILE_CHECK
