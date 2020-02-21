@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
 from chibi.command import git
-from chibi.command.echo import cowsay
-from chibi.file.snippets import inflate_dir, cd
-from chibi.file import Chibi_file
+from chibi_command.echo import cowsay
+from chibi.file.snippets import cd
+from chibi.file import Chibi_path
 
 
-file_check_path = inflate_dir( '~/provision_installed' )
-file_check = Chibi_file( file_check_path )
+file_check_path = Chibi_path( '~/provision_installed' )
+file_check = file_check_path.open()
 
 
 version_to_check = "elixir\n".format( file=__file__, )

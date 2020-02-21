@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
-from chibi_command.echo import cowsay
+import os
 from chibi.file import Chibi_path
+from chibi_command.echo import cowsay
 
 
-provision_folder = Chibi_path( '/vagrant/provision' )
+provision_folder = Chibi_path( os.environ[ 'PROVISION_PATH' ] )
 file_host = provision_folder + 'hosts'
 
 dest = '/etc/hosts'
