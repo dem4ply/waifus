@@ -1,12 +1,21 @@
 #!/usr/bin/env python3
-from chibi.command import systemctl, command
-from chibi.command.echo import cowsay
-from chibi.file.snippets import copy, ln, exists, ls, join
-from chibi.file import Chibi_file, Chibi_path
+import logging
+import os
+
+from chibi.command import command
+from chibi.file import Chibi_path
+from chibi.file.snippets import ln
 from chibi.net.hostname import get_hostname
+from chibi_command.echo import cowsay
+from chibi_command.nix import Systemctl
 
 
-FOLDER_PROVISION= Chibi_path( "/vagrant/provision/nginx/provision" )
+logger = logging.getLogger( 'nginx.start' )
+
+
+provision_folder = (
+    Chibi_path( os.environ[ 'PROVISION_PATH' ] )
+    + 'nginx' + 'provision' )
 
 
 cowsay( "inicia de inicio de nginx" )
@@ -22,46 +31,32 @@ for folder in folders:
 
 folders = ( 'conf.d', "sites_available" )
 
+nginx_folder = Chibi_path( '/etc/nginx/' )
+
 for folder in folders:
-    nginx_folder = Chibi_path( '/etc/nginx/' ) + folder
-    provision_folder = FOLDER_PROVISION + folder
-    provision_folder.copy( nginx_folder )
+    dest = nginx_folder + folder
+    folders_for_copy = provision_folder + folder
+    folders_for_copy.copy( dest )
 
-copy(
-    join( FOLDER_PROVISION, 'nginx.conf' ),
-    join( '/etc/nginx/', 'nginx.conf' ), verbose=True )
+( provision_folder + 'nginx.conf' ).copy( nginx_folder + 'nginx.conf' )
 
+sites_enabled = nginx_folder + 'sites_enabled'
+sites_available = nginx_folder + 'sites_available'
 
-if not exists( "/etc/nginx/sites_enabled/waifus.conf" ):
-    ln(
-        "/etc/nginx/sites_available/waifus.conf",
-        "/etc/nginx/sites_enabled/waifus.conf" )
-else:
-    print( "el archivo de waifus existe" )
+configs = [ 'waifus.conf', 'kibana.conf', 'default.conf' ]
 
-if not exists( "/etc/nginx/sites_enabled/kibana.conf" ):
-    ln(
-        "/etc/nginx/sites_available/kibana.conf",
-        "/etc/nginx/sites_enabled/kibana.conf" )
-else:
-    print( "el archivo de kibana existe" )
-
-
-if not exists( "/etc/nginx/sites_enabled/default.conf" ):
-    ln(
-        "/etc/nginx/sites_available/default.conf",
-        "/etc/nginx/sites_enabled/default.conf" )
-else:
-    print( "el archivo de default existe" )
+for config in configs:
+    if not ( sites_enabled + config ).exists:
+        ln( sites_available + config, sites_enabled + config )
+    else:
+        logger.info( 'el archivo {config} existe' )
 
 
 Chibi_path( '/var/www/default/' ).mkdir( is_ok_exists=True )
-index = Chibi_file( "/var/www/default/index.html" )
+index = Chibi_path( "/var/www/default/index.html" ).open()
 index.write( "<h1>{} - waifus lab</h1>".format( get_hostname() ) )
 command( 'chcon', '-Rt', 'httpd_sys_content_t', '/var/www/' )
 
-
-systemctl.restart( "nginx" )
-
+Systemctl.restart( "nginx" )
 
 cowsay( "fin de inicio de nginx" )

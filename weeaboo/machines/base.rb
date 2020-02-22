@@ -19,7 +19,7 @@ class Base_centos < Machine
 			Script.new( "provision/update_python_lib.sh" ),
 			Python.new( "provision/update_centos.py" ),
 			Python.new( "provision/set_envars.py",
-				args: [ "/vagrant/provisions" ] ),
+				args: [ "/vagrant/provision" ] ),
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/stuff/install_essential.py" ),
 			Python.new( "provision/stuff/install_ponysay.py" ),
