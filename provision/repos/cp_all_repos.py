@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
+import os
+
 from chibi.command.echo import cowsay
-from chibi.file.snippets import copy
+from chibi.file import Chibi_path
 
 
-directory_of_repos = '/vagrant/provision/repos/*'
-destiny_of_repos = '/etc/yum.repos.d'
+provision_folder = Chibi_path( os.environ[ 'PROVISION_PATH' ] )
+
+directory_of_repos = provision_folder + 'repos/*'
+destiny_of_repos = Chibi_path( '/etc/yum.repos.d' )
 
 cowsay( "starting to copy repos" )
-copy( directory_of_repos, destiny_of_repos, verbose=True )
+directory_of_repos.copy( destiny_of_repos, verbose=True )
 cowsay( "ending to copy repos" )

@@ -1,9 +1,12 @@
 #!/bin/bash
+set -e
 
 cowsay "update global"
 pip3 install --upgrade pip
 pip3 install --upgrade chibi
 pip3 install --upgrade chibi_command
+
+set +e
 
 cd ~/python_lib/
 cowsay "iniciando actualizacion de bibliotecas locales de python"

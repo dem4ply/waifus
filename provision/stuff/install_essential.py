@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
-from chibi.command import yum
-from chibi.command.echo import cowsay
+from chibi_command.centos import Yum
+from chibi_command.echo import cowsay
 from chibi.file.snippets import inflate_dir
 from chibi.file import Chibi_file
 
@@ -14,7 +14,7 @@ version_to_check = "essential 1\n".format( file=__file__, )
 
 if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "Starting install for essential" )
-    yum.install(
+    Yum.install(
         'bash-completion', 'bash-completion-extras', 'texinfo',  'vim',
         'ruby', 'git', 'kernel-headers', 'kernel-devel', 'htop' )
 

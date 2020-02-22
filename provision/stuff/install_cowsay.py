@@ -15,7 +15,7 @@ url_of_cowsay_rpm = (
 
 
 version_to_check = (
-    "cowsay with {url}\n".format( file=__file__, url=url_of_cowsay_rpm )
+    "cowsay with {url}\n".format( url=url_of_cowsay_rpm )
 )
 
 cache_directory = Chibi_path( '~/.cache/' )

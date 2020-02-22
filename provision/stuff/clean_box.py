@@ -1,17 +1,22 @@
 #!/usr/bin/env python3
-from chibi.command.disk.dd import dd_zero_to
-from chibi.file.snippets import delete, exists
-from chibi.command.echo import cowsay
+from chibi.file import Chibi_path
+from chibi_command.disk.dd import DD
+from chibi_command.echo import cowsay
+
 
 cowsay( "limpiando box" )
 
-dd_zero_to( '/EMPTY' )
+empty = Chibi_path( '/EMPTY' )
 
-delete( '/EMPTY' )
-if exists( '/root/.bash_history' ):
-    delete( '/root/.bash_history' )
+DD.to_zero( empty ).run()
+empty.delete()
 
-if exists( '/home/vagrant/.bash_history' ):
-    delete( '/home/vagrant/.bash_history' )
+bash_history = Chibi_path( '/root/.bash_history' )
+vagrant_history = Chibi_path( '/home/vagrant/.bash_history' )
+
+if bash_history.exists:
+    bash_history.delete()
+if vagrant_history.exists:
+    vagrant_history.delete()
 
 cowsay( "termini de limpiar la box" )
