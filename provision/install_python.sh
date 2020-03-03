@@ -29,7 +29,10 @@ then
 		mkdir ~/python_lib
 	fi
 
+	yum update -y
+
 	pip3 install chibi
+	pip3 install chibi-requests
 	pip3 install chibi_command
 	pip3 install pyyaml
 

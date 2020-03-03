@@ -1,12 +1,13 @@
 #!/usr/bin/env python3
-from chibi.command import yum, systemctl, rpm
 from chibi.command.echo import cowsay
-from chibi.file.snippets import inflate_dir
-from chibi.file import Chibi_file
+from chibi.file import Chibi_path
+from chibi_command.centos import Yum
+from chibi_command.nix import Systemctl
+from chibi_command.rpm import RPM
 
 
-file_check_path = inflate_dir( '~/provision_installed' )
-file_check = Chibi_file( file_check_path )
+file_check_path = Chibi_path( '~/provision_installed' )
+file_check = file_check_path.open()
 
 
 version_to_check = "elasticsearch 6\n".format( file=__file__, )
@@ -15,11 +16,15 @@ version_to_check = "elasticsearch 6\n".format( file=__file__, )
 if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "Starting install for elasticsearch" )
 
-    rpm.rpm_import( 'https://artifacts.elastic.co/GPG-KEY-elasticsearch' )
-    yum.install( 'elasticsearch' )
+    RPM.rpm_import( 'https://artifacts.elastic.co/GPG-KEY-elasticsearch' )
+    result = Yum.install( 'elasticsearch' )
+    if not result:
+        raise Exception(
+            f"no se puedo instalar elasticsearch {vars(result)}" )
 
-    systemctl.enable( 'elasticsearch.service' )
-    systemctl.start( 'elasticsearch.service' )
+    Systemctl.daemon_reload()
+    Systemctl.enable( 'elasticsearch.service' )
+    Systemctl.start( 'elasticsearch.service' )
 
     #command(
     #    '/usr/share/elasticsearch/bin/plugin', 'install',

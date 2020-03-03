@@ -1,19 +1,21 @@
 #!/usr/bin/env python3
-import time
+import os
 import sys
-import yaml
-import requests
-
-from chibi.parser import to_bool
-from chibi.command import command, systemctl
-from chibi.file.snippets import exists, join, mkdir, chown, ls, copy
-from chibi.command.echo import cowsay
+import time
+from pprint import pprint
 from datetime import datetime
+
+import requests
 from chibi.file import Chibi_file, Chibi_path
+from chibi.file.snippets import chown
+from chibi.parser import to_bool
+from chibi_command.echo import cowsay
+from chibi_command.nix import Systemctl
 
 
 masters = [ 'Pitou', 'Sakura', 'Misuzu' ]
-FOLDER_PROVISION = Chibi_path( "/vagrant/provision/elasticsearch/provision" )
+provision_folder = (
+    Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'elasticsearch/provision' )
 
 
 def is_time( start, max_wait_time ):
@@ -30,7 +32,7 @@ def wait_until_elastic_is_up( name ):
 
     while True:
         status = (
-            systemctl.status( 'elasticsearch' )
+            Systemctl.status( 'elasticsearch' )
                 .properties.get( 'active_state', 'No' ) )
         try:
             response = requests.get( url )
@@ -77,23 +79,27 @@ if __name__ == "__main__":
     }
 
     elastic_config = Chibi_file( '/etc/elasticsearch/elasticsearch.yml' )
-    elastic_config.write_yaml( config, is_safe=True )
-    print( elastic_config.read() )
+    elastic_config.write( config, is_safe=True )
+    pprint( elastic_config.read() )
 
-    mkdir( '/var/data/waifus', verbose=True )
-    mkdir( '/var/log/waifus', verbose=True )
+    data = Chibi_path( '/var/data/waifus' )
+    log = Chibi_path( '/var/log/waifus' )
+    data.mkdir()
+    log.mkdir()
 
-    if not exists( '/etc/elasticsearch/synonyms' ):
-        mkdir( '/etc/elasticsearch/synonyms', verbose=True )
+    synonims = Chibi_path( '/etc/elasticsearch/synonyms' )
 
-    synonyms_folder = FOLDER_PROVISION + 'synonyms'
-    synonyms_folder.copy( '/etc/elasticsearch/synonyms/', verbose=True )
+    if not synonims.exists:
+        synonims.mkdir()
 
-    chown(
-        '/var/data/waifus', '/var/log/waifus', '/etc/elasticsearch/synonyms',
-        user_name='elasticsearch', group_name='elasticsearch' )
+    synonyms_folder = provision_folder + 'synonyms'
+    synonyms_folder.copy( synonims )
 
-    systemctl.restart( 'elasticsearch.service' )
+    synonims.chown( user_name='elasticsearch', group_name='elasticsearch' )
+    data.chown( user_name='elasticsearch', group_name='elasticsearch' )
+    log.chown( user_name='elasticsearch', group_name='elasticsearch' )
+
+    Systemctl.restart( 'elasticsearch.service' )
     wait_until_elastic_is_up( name )
 
     cowsay( "termino de actualizar la configuracion de elasticsearch" )

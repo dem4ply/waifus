@@ -2,6 +2,7 @@
 import logging
 import os
 
+from chibi.config import basic_config
 from chibi.command import command
 from chibi.file import Chibi_path
 from chibi.file.snippets import ln
@@ -10,6 +11,7 @@ from chibi_command.echo import cowsay
 from chibi_command.nix import Systemctl
 
 
+basic_config()
 logger = logging.getLogger( 'nginx.start' )
 
 
