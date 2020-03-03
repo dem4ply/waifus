@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 import yaml
+from chibi.config import basic_config
 
+
+basic_config()
 cluster_name = 'waifus'
 master = False
 data = True

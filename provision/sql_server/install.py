@@ -2,6 +2,7 @@
 import os
 import logging
 
+from chibi.config import basic_config
 from chibi.command.echo import cowsay
 from chibi.file import Chibi_path, Chibi_file
 from chibi_command.centos import Yum, Firewall_cmd
@@ -10,7 +11,7 @@ from chibi_command.nix import Systemctl
 from chibi_command import Command
 
 
-logging.basicConfig( level=logging.INFO )
+basic_config()
 FOLDER_PROVISION = Chibi_path( "/vagrant/provision/sql_server/provision" )
 
 

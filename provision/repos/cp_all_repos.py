@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 import os
 
+from chibi.config import basic_config
 from chibi.command.echo import cowsay
 from chibi.file import Chibi_path
 
 
+basic_config()
 provision_folder = Chibi_path( os.environ[ 'PROVISION_PATH' ] )
 
 directory_of_repos = provision_folder + 'repos/*'

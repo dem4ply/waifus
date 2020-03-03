@@ -1,9 +1,11 @@
 #!/usr/bin/env python3
+from chibi.config import basic_config
 from chibi.command import command, systemctl
 from chibi.command.echo import cowsay
 from chibi.file.snippets import copy, join, chown
 
 
+basic_config()
 list_of_user_to_create = [ 'dem4ply', "root" ]
 databases = [
     "dem4ply", "root", "turning_db_dev", "turning_db_test", "turn_profiling",

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import logging
 
+from chibi.config import basic_config
 from chibi.command.echo import cowsay
 from chibi.file.snippets import Chibi_path
 from chibi_command.centos import Yum, Firewall_cmd
@@ -8,9 +9,7 @@ from chibi_command.db import Mysql
 from chibi_command.nix import Systemctl
 
 
-logging.basicConfig( level=logging.INFO )
-
-
+basic_config()
 file_check_path = Chibi_path( '~/provision_installed' )
 file_check = file_check_path.open()
 

@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
+from chibi.config import basic_config
 from chibi.command import git
 from chibi_command.echo import cowsay
 from chibi.file.snippets import cd
 from chibi.file import Chibi_path
 
 
+basic_config()
 file_check_path = Chibi_path( '~/provision_installed' )
 file_check = file_check_path.open()
 

@@ -2,17 +2,18 @@
 import os
 import sys
 import time
-from pprint import pprint
-from datetime import datetime
-
 import requests
+from datetime import datetime
+from pprint import pprint
+
+from chibi.config import basic_config
 from chibi.file import Chibi_file, Chibi_path
-from chibi.file.snippets import chown
 from chibi.parser import to_bool
 from chibi_command.echo import cowsay
 from chibi_command.nix import Systemctl
 
 
+basic_config()
 masters = [ 'Pitou', 'Sakura', 'Misuzu' ]
 provision_folder = (
     Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'elasticsearch/provision' )
