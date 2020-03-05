@@ -64,8 +64,8 @@ if __name__ == "__main__": #and not version_to_check in file_check:
 
 
 
-    Systemctl.enable( "mssql-server" )
-    Systemctl.start( "mssql-server" )
+    Systemctl.enable( "mssql-server" ).run()
+    Systemctl.start( "mssql-server" ).run()
 
     Firewall_cmd.add_port( '1433', kind='tcp', permanent=True )
     Firewall_cmd.reload()

@@ -59,6 +59,6 @@ index = Chibi_path( "/var/www/default/index.html" ).open()
 index.write( "<h1>{} - waifus lab</h1>".format( get_hostname() ) )
 command( 'chcon', '-Rt', 'httpd_sys_content_t', '/var/www/' )
 
-Systemctl.restart( "nginx" )
+Systemctl.restart( "nginx" ).run()
 
 cowsay( "fin de inicio de nginx" )

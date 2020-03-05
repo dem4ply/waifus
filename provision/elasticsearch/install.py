@@ -24,9 +24,9 @@ if __name__ == "__main__" and not version_to_check in file_check:
         raise Exception(
             f"no se puedo instalar elasticsearch {vars(result)}" )
 
-    Systemctl.daemon_reload()
-    Systemctl.enable( 'elasticsearch.service' )
-    Systemctl.start( 'elasticsearch.service' )
+    Systemctl.daemon_reload().run()
+    Systemctl.enable( 'elasticsearch.service' ).run()
+    Systemctl.start( 'elasticsearch.service' ).run()
 
     #command(
     #    '/usr/share/elasticsearch/bin/plugin', 'install',

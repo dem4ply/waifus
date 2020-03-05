@@ -32,9 +32,8 @@ def wait_until_elastic_is_up( name ):
     max_time_to_wait = 300
 
     while True:
-        status = (
-            Systemctl.status( 'elasticsearch' )
-                .properties.get( 'active_state', 'No' ) )
+        status = Systemctl.status( 'elasticsearch' ).run()
+        status = status.result.properties.get( 'active_state', 'No' )
         try:
             response = requests.get( url )
         except requests.exceptions.RequestException:
@@ -100,7 +99,7 @@ if __name__ == "__main__":
     data.chown( user_name='elasticsearch', group_name='elasticsearch' )
     log.chown( user_name='elasticsearch', group_name='elasticsearch' )
 
-    Systemctl.restart( 'elasticsearch.service' )
+    Systemctl.restart( 'elasticsearch.service' ).run()
     wait_until_elastic_is_up( name )
 
     cowsay( "termino de actualizar la configuracion de elasticsearch" )

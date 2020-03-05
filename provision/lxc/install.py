@@ -25,8 +25,8 @@ if __name__ == "__main__" and not version_to_check in file_check:
         'epel-release', 'debootstrap', 'perl', 'libvirt', 'lxc',
         'lxc-templates', 'lxc-extra'
     )
-    Systemctl.start( 'lxc.service', 'libvirtd' )
-    Systemctl.enable( 'lxc.service', 'libvirtd' )
+    Systemctl.start( 'lxc.service', 'libvirtd' ).run()
+    Systemctl.enable( 'lxc.service', 'libvirtd' ).run()
 
     file_check.append( version_to_check )
     cowsay( "Ending install for lxc" )

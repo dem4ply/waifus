@@ -12,3 +12,6 @@ if __name__ == "__main__":
     profile = Chibi_path( '/etc/profile.d/' )
     provision = profile + 'provision.sh'
     provision.open().write( f'export PROVISION_PATH={path}' )
+
+    local_bin = profile + 'local_bin.sh'
+    local_bin.open().write( f'export PATH="$PATH:/usr/local/bin"' )

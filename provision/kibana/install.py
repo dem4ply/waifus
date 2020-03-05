@@ -19,8 +19,8 @@ if __name__ == "__main__" and not version_to_check in file_check:
 
     Yum.install( 'kibana' )
 
-    Systemctl.enable( "kibana" )
-    Systemctl.start( "kibana" )
+    Systemctl.enable( "kibana" ).run()
+    Systemctl.start( "kibana" ).run()
 
     file_check.append( version_to_check )
     cowsay( "Ending install for kibana" )

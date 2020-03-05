@@ -9,6 +9,7 @@ from chibi_command.rsync import Rsync
 from chibi.atlas import Chibi_atlas
 from chibi_command.echo import cowsay
 from chibi_command.nix import Systemctl
+from chibi_requests import Chibi_url
 
 
 basic_config()
@@ -23,11 +24,16 @@ django_projects = Chibi_atlas( {
         'git_repo': 'https://github.com/dem4ply/quetzalcoatl.git',
         'scripts': [
             provision_folder + 'install_python.sh',
+            (
+                provision_folder + 'set_envars.sh',
+                '/home/chibi/provision/',
+            ),
             provision_folder + 'stuff/install_cowsay.py',
             provision_folder + 'update_python_lib.sh',
             provision_folder + 'stuff/install_essential.py',
             provision_folder + 'stuff/install_ponysay.py',
             provision_folder + 'update_python_lib.sh',
+            provision_folder + 'mariadb/install_client.py',
         ],
         'systemd': [
             'quetzalcoalt_gunicorn.service',
@@ -69,11 +75,28 @@ def copy_sysmted( name, props ):
     systemd_root = root + 'etc' + 'systemd' + 'system'
     for s in props.systemd:
         systemd_service = systemd_provision + s
+        envars = systemd_service.replace_extensions( 'env' )
         systemd_service.copy( systemd_root )
-    Systemctl.daemon_reload()
+        if envars.exists:
+            envars.copy( systemd_root )
+
+    lxc.Attach.name( name ).run( Systemctl.daemon_reload() )
     for s in props.systemd:
-        Systemctl.start( s )
-        Systemctl.enable( s )
+        lxc.Attach.name( name ).run( Systemctl.start( s ) )
+        lxc.Attach.name( name ).run( Systemctl.enable( s ) )
+
+
+def install_dependencies( name, props ):
+    cowsay( 'instalando dependencias' )
+    chibi_home = Chibi_path( '/home' ) + 'chibi'
+
+    git_repo_url = Chibi_url( props.git_repo )
+    folder = git_repo_url.base_name.rsplit( '.git', 1 )[0]
+    projects = chibi_home + 'projects'
+    git_folder = projects + folder
+    requirements = git_folder + 'requirements_dev.txt'
+    lxc.Attach.name( name ).run( 'pip3', 'install', '-r', requirements )
+    cowsay( 'termino de instalar dependencias' )
 
 
 def prepare_script( script ):
@@ -91,11 +114,18 @@ for name, props in django_projects.items():
     if not info.is_running:
         lxc.Start.name( name ).daemon().run()
 
+    time.sleep( 10 )
     cowsay( f'ejecutando scripts en {name}' )
     for script in props.scripts:
         cowsay( f"ejecutando {script}" )
-        lxc.Attach.name( name ).run( *prepare_script( script ) )
-        time.sleep( 1 )
+        if isinstance( script, tuple ):
+            script = script[0]
+            args = script[1:]
+            lxc.Attach.name( name ).run( *prepare_script( script ), *args )
+        else:
+            lxc.Attach.name( name ).run( *prepare_script( script ) )
 
     clone_repo( name, props.git_repo )
+    install_dependencies( name, props )
     copy_sysmted( name, props )
+

@@ -3,7 +3,7 @@ import logging
 
 from chibi.config import basic_config
 from chibi.command.echo import cowsay
-from chibi.file.snippets import Chibi_path
+from chibi.file import Chibi_path
 from chibi_command.centos import Yum, Firewall_cmd
 from chibi_command.db import Mysql
 from chibi_command.nix import Systemctl
@@ -29,8 +29,8 @@ FLUSH PRIVILEGES;
 if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "iniciando instalacion de mariadb" )
     Yum.install( "mariadb-server" )
-    Systemctl.enable( "mariadb" )
-    Systemctl.start( "mariadb" )
+    Systemctl.enable( "mariadb" ).run()
+    Systemctl.start( "mariadb" ).run()
 
     mysql = Mysql.user( "root" )
     result = mysql.run_script( remove_root )
@@ -38,7 +38,7 @@ if __name__ == "__main__" and not version_to_check in file_check:
 
     Firewall_cmd.add_port( '3306', kind='tcp', permanent=True )
 
-    Systemctl.restart( "mariadb" )
+    Systemctl.restart( "mariadb" ).run()
 
     file_check.append( version_to_check )
 
