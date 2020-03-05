@@ -2,11 +2,12 @@
 # vi: set ft=ruby :
 #
 require 'yaml'
-require './weeaboo/ip_table.rb'
-require './weeaboo/machine.rb'
-require './weeaboo/provision.rb'
 
 REL_DIR = File.dirname(__FILE__)
+
+require "#{REL_DIR}/weeaboo/ip_table.rb"
+require "#{REL_DIR}/weeaboo/machine.rb"
+require "#{REL_DIR}/weeaboo/provision.rb"
 #HOST_CACHE_SHARE_FOLDER = REL_DIR + "/" + "cache"
 #HOST_SHARE_FOLDER = REL_DIR + "/" + "src"
 #HOST_BACKUPS_SHARE_FOLDER = REL_DIR + "/" + "backups"

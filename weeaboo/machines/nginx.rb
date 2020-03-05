@@ -32,7 +32,7 @@ class Ikaros < Nginx
 		super
 		@abstract = false
 		@name = 'Ikaros'
-		@hosts = [ 'kibana', 'waifus' ]
+		@hosts_names = [ 'kibana', 'waifus' ]
 	end
 end
 

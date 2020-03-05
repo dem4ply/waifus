@@ -7,6 +7,7 @@ Dir[ File.dirname(__FILE__) + "/../script.rb" ].each { |file|
 
 class Base_centos < Machine
 	def initialize()
+		super
 		@name = 'base-centos-7'
 		@ram = 400
 		@cpus = 1

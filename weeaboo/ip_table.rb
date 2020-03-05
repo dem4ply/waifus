@@ -8,24 +8,13 @@ class Ip_table
 
 	end
 
-	def add( name, ip: nil, comment: '' )
+	def add( instance, ip: nil, comment: '' )
 		if ip == nil
 			self.increment_ip()
 			ip = @current_ip
 		end
-		@machine_table[ name ] = ip
+		@machine_table[ instance ] = ip
 		return ip
-	end
-
-	def get_or_add( name, ip: nil, comment: '' )
-		if @machine_table.has_key? name
-			return @machine_table[ name ]
-		end
-		if ip == nil
-			self.increment_ip()
-			ip = @current_ip
-		end
-		@machine_table[ name ] = ip
 	end
 
 	def increment_ip()
@@ -40,7 +29,7 @@ class Ip_table
 
 	def print()
 		@machine_table.each { | machine, ip |
-			machine = machine.ljust( 20 )
+			machine = machine.hosts().ljust( 20 )
 			puts "#{machine}\t#{ip}"
 		}
 	end
@@ -52,7 +41,12 @@ class Ip_table
 
 		@machine_table.each { | machine, ip |
 			#machine = machine.ljust( 20 )
-			file << "#{ip.ljust(18)}\t#{machine}\n"
+			if machine.is_a? Machine
+				hosts = machine.hosts()
+			else
+				hosts = machine
+			end
+			file << "#{ip.ljust(18)}\t#{hosts}\n"
 		}
 		hosts_end = File.open( dir_file, "w")
 		hosts_end.write( file )

@@ -1,8 +1,17 @@
 class Machine
 	attr_reader :name
-	def initializer()
+	def initialize()
 		@name = name
 		@box = "base_centos_7"
+		@hosts_names = []
+	end
+
+	def hosts()
+		result = "#{@name}"
+		@hosts_names.each { | name |
+			result << " #{name}"
+		}
+		return result
 	end
 
 	def assing_ip( ip )

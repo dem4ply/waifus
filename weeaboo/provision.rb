@@ -26,11 +26,11 @@ class Provision
 	def create_machines()
 		@machines.each { | owner, waifus |
 			ip = @ip_table.add( owner )
-         name_owner = "#{owner}"
+			name_owner = "#{owner}"
 			puts( "#{name_owner.ljust(13)} : #{ip}" )
 			waifus.each{ | waifu |
 				instance = waifu.new()
-				ip = @ip_table.add( instance.name )
+				ip = @ip_table.add( instance )
 				instance.assing_ip( ip )
 				instance.make_config( @config )
 				name_waifu = "#{waifu}"
