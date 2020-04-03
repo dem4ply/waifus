@@ -35,7 +35,11 @@ basic_scripts = [
     provision_folder + 'stuff/install_ponysay.py',
     provision_folder + 'update_python_lib.sh',
     provision_folder + 'mariadb/install_client.py',
+    ( provision_folder + 'add_user.py', 'chibi' )
 ]
+
+celery_provision_script = (
+    provision_folder + 'django' + 'celery_provision.py' )
 
 django_projects = Chibi_atlas( {
     'quetzalcoatl_django': {
@@ -47,7 +51,10 @@ django_projects = Chibi_atlas( {
     },
     'quetzalcoatl_celery': {
         'git_repo': 'https://github.com/dem4ply/quetzalcoatl.git',
-        'scripts': basic_scripts,
+        'scripts': basic_scripts + [
+            ( provision_folder + 'add_user.py', 'celery' ),
+            celery_provision_script
+        ],
         'systemd': [
             Chibi_path( 'quetzalcoatl/celery.service' ),
         ],
@@ -62,7 +69,10 @@ django_projects = Chibi_atlas( {
     },
     'corona_chan_celery': {
         'git_repo': 'https://github.com/dem4ply/corona_chan.git',
-        'scripts': basic_scripts,
+        'scripts': basic_scripts + [
+            ( provision_folder + 'add_user.py', 'celery' ),
+            celery_provision_script
+        ],
         'systemd': [
             Chibi_path( 'corona_chan/celery.service' ),
         ],
