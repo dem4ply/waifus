@@ -2,7 +2,7 @@
 import logging
 
 from chibi.config import basic_config
-from chibi.command.echo import cowsay
+from chibi_command.echo import cowsay
 from chibi.file import Chibi_path
 from chibi_command.centos import Yum, Firewall_cmd
 from chibi_command.db import Mysql

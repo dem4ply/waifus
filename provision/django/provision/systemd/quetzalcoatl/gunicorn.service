@@ -1,0 +1,27 @@
+[Unit]
+Description=quetzalcoalt gunicorn daemon
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+User=chibi
+Group=chibi
+
+PIDFile=/run/gunicorn/pid
+# RuntimeDirectory=gunicorn
+EnvironmentFile=/etc/systemd/system/gunicorn.env
+WorkingDirectory=/home/chibi/projects/quetzalcoatl
+ExecStart=/usr/local/bin/gunicorn \
+	-w $QUETZALCOATL__WEB__THREADS \
+	--worker-class gevent -b 0.0.0.0:8000 quetzalcoatl.wsgi
+
+ExecStop=/bin/kill -s TERM $MAINPID
+ExecReload=/bin/kill -s HUP $MAINPID
+
+KillMode=mixed
+TimeoutStopSec=5
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

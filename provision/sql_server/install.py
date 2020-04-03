@@ -1,18 +1,17 @@
 #!/usr/bin/env python3
 import os
-import logging
 
 from chibi.config import basic_config
-from chibi.command.echo import cowsay
-from chibi.file import Chibi_path, Chibi_file
-from chibi_command.centos import Yum, Firewall_cmd
-from chibi_command.db import Mysql
-from chibi_command.nix import Systemctl
+from chibi.file import Chibi_path
 from chibi_command import Command
+from chibi_command.centos import Yum, Firewall_cmd
+from chibi_command.echo import cowsay
+from chibi_command.nix import Systemctl
 
 
 basic_config()
-FOLDER_PROVISION = Chibi_path( "/vagrant/provision/sql_server/provision" )
+provision_folder = (
+    Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'elasticsearch/provision' )
 
 
 file_check_path = Chibi_path( '~/provision_installed' )
@@ -35,7 +34,7 @@ if __name__ == "__main__": #and not version_to_check in file_check:
     mssql = Chibi_path( '/var/opt/mssql/' )
     config_path = Chibi_path( '/var/opt/mssql/mssql.conf' )
 
-    ( FOLDER_PROVISION + 'mssql.conf' ).copy( config_path )
+    ( provision_folder + 'mssql.conf' ).copy( config_path )
 
     data = mssql + 'data'
     log = mssql + 'log'

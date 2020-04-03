@@ -2,8 +2,8 @@
 import logging
 import os
 
+from chibi_command import Command
 from chibi.config import basic_config
-from chibi.command import command
 from chibi.file import Chibi_path
 from chibi.file.snippets import ln
 from chibi.net.hostname import get_hostname
@@ -22,7 +22,7 @@ provision_folder = (
 
 cowsay( "inicia de inicio de nginx" )
 
-command( 'setsebool', '-P', 'httpd_can_network_connect', '1', )
+Command( 'setsebool', '-P', 'httpd_can_network_connect', '1', ).run()
 
 folders = (
     "/var/log/nginx", "/etc/nginx/sites_available",
@@ -45,7 +45,7 @@ for folder in folders:
 sites_enabled = nginx_folder + 'sites_enabled'
 sites_available = nginx_folder + 'sites_available'
 
-configs = [ 'waifus.conf', 'kibana.conf', 'default.conf' ]
+configs = [ 'waifus.conf', 'kibana.conf', 'default.conf', 'quetzalcoatl.conf' ]
 
 for config in configs:
     if not ( sites_enabled + config ).exists:
@@ -57,7 +57,7 @@ for config in configs:
 Chibi_path( '/var/www/default/' ).mkdir( is_ok_exists=True )
 index = Chibi_path( "/var/www/default/index.html" ).open()
 index.write( "<h1>{} - waifus lab</h1>".format( get_hostname() ) )
-command( 'chcon', '-Rt', 'httpd_sys_content_t', '/var/www/' )
+Command( 'chcon', '-Rt', 'httpd_sys_content_t', '/var/www/' ).run()
 
 Systemctl.restart( "nginx" ).run()
 

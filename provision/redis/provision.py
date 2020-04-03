@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 from chibi.config import basic_config
-from chibi.command import yum, command, systemctl
-from chibi.command.echo import cowsay
-from chibi.file.snippets import inflate_dir, copy, join, chown
-from chibi.file import Chibi_file
-from chibi.command import rpm
+from chibi_command.echo import cowsay
+from chibi_command.nix import Systemctl
 
 
 basic_config()
-FOLDER_PROVISION="/vagrant/provision/redis/provision"
+provision_folder = (
+    Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'redis/provision' )
 
 cowsay( "provisionado redis" )
 
-copy( join( FOLDER_PROVISION, "redis.conf" ), "/etc/redis.conf", verbose=True )
+redis_conf = provision_folder + "redis.conf"
+redis_conf.copy( '/etc/redis.conf' )
 
-systemctl.restart( "redis" )
+Systemctl.restart( "redis" ).run()
 
 cowsay( "termino de provisionado redis" )

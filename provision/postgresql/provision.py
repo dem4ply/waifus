@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from chibi.config import basic_config
-from chibi.command import command, systemctl
-from chibi.command.echo import cowsay
+from chibi_command.nix import Systemctl
+from chibi_command.echo import cowsay
 from chibi.file.snippets import copy, join, chown
 
 
@@ -47,6 +47,6 @@ for user in list_of_user_to_create:
         "psql -c \"ALTER USER {} WITH PASSWORD 'asdf';\"".format( user ) )
 
 
-systemctl.restart( "postgresql-9.6" )
+Systemctl.restart( "postgresql-9.6" ).run()
 
 cowsay( "termino de provisionado posrgresql" )

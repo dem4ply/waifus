@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 from chibi.config import basic_config
 from chibi.file import Chibi_path
-from chibi.net import download
+from chibi_requests import Chibi_url
 from chibi_command.centos import Yum
 from chibi_command.echo import echo, cowsay
 
@@ -30,9 +30,8 @@ if __name__ == "__main__" and not version_to_check in file_check:
     echo( '===============================' )
 
     if not full_path_cowsay_rpm.exists:
-        download(
-            url_of_cowsay_rpm, directory=cache_directory,
-            file_name='cowsay.rpm' )
+        full_path_cowsay_rpm = Chibi_url(
+            url_of_cowsay_rpm ).download( path=cache_directory )
     else:
         echo.echo( "usando el cache para instalar cowsay" )
 

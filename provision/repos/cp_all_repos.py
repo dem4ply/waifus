@@ -2,7 +2,7 @@
 import os
 
 from chibi.config import basic_config
-from chibi.command.echo import cowsay
+from chibi_command.echo import cowsay
 from chibi.file import Chibi_path
 
 

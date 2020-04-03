@@ -10,6 +10,7 @@ class Django < Base_centos
 		@scripts = [
 			Script.new( "provision/update_python_lib.sh" ),
 			Python.new( "provision/copy_host.py" ),
+			Python.new( "provision/repos/cp_all_repos.py" ),
 			Python.new( "provision/lxc/install.py" ),
 			Python.new( "provision/django/provision.py" ),
 		]

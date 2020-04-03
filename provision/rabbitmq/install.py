@@ -1,10 +1,13 @@
 #!/usr/bin/env python3
+from chibi_command.rpm import RPM
+from chibi_command.echo import cowsay
 from chibi.config import basic_config
-from chibi.command import yum, systemctl, command, firewall, rpm
-from chibi.command.echo import cowsay
 from chibi.file import Chibi_file, Chibi_path
-from chibi.file.snippets import inflate_dir
-from chibi.net import download
+from chibi.file.temp import Chibi_temp_path
+from chibi_command import Command
+from chibi_command.centos import Yum, Firewall_cmd
+from chibi_command.nix import Systemctl
+from chibi_requests import Chibi_url
 
 
 basic_config()
@@ -17,25 +20,25 @@ version_to_check = "rabbitmq\n".format( file=__file__, )
 
 if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "instalando rabbitmq" )
-    rpm.rpm_import( 'https://artifacts.elastic.co/GPG-KEY-elasticsearch' )
-    download(
+    RPM.rpm_import( 'https://artifacts.elastic.co/GPG-KEY-elasticsearch' )
+    download_path = Chibi_temp_path()
+    rebbitmq_rpm = Chibi_url(
         "https://www.rabbitmq.com/releases/rabbitmq-server/v3.6.1/"
-        "rabbitmq-server-3.6.1-1.noarch.rpm",
-        directory='/tmp', file_name='rabbitmq.rpm' )
+        "rabbitmq-server-3.6.1-1.noarch.rpm" ).download( path=download_path )
 
-    yum.local_install( "/tmp/rabbitmq.rpm" )
+    Yum.local_install( rebbitmq_rpm )
 
-    systemctl.enable( 'firewalld' )
-    systemctl.start( 'firewalld' )
+    Systemctl.enable( 'firewalld' ).run()
+    Systemctl.start( 'firewalld' ).run()
 
     ports = [ "8883", "61613-61614", "15672", "5671-5672", "25672", "4369" ]
     for port in ports:
-        firewall.add_port( ports=port )
-    firewall.reload()
+        Firewall_cmd.add_port( ports=port ).run()
+    Firewall_cmd.reload()
 
-    command( 'setsebool', "-P", "nis_enabled", "1" )
-    systemctl.enable( 'rabbitmq-server' )
-    systemctl.start( 'rabbitmq-server' )
+    Command( 'setsebool', "-P", "nis_enabled", "1" )
+    Systemctl.enable( 'rabbitmq-server' ).run()
+    Systemctl.start( 'rabbitmq-server' ).run()
 
     file_check.append( version_to_check )
 

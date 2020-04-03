@@ -14,7 +14,7 @@ from chibi_command.nix import Systemctl
 
 
 basic_config()
-masters = [ 'Pitou', 'Sakura', 'Misuzu' ]
+masters = [ 'Pitou', 'Misuzu' ]
 provision_folder = (
     Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'elasticsearch/provision' )
 

@@ -4,9 +4,7 @@ set -e
 cowsay "update global"
 pip3 install --upgrade pip
 pip3 install --upgrade python-hosts
-pip3 install --upgrade chibi
-pip3 install --upgrade chibi-requests
-pip3 install --upgrade chibi_command
+pip3 install --upgrade chibi chibi-requests chibi_command
 
 set +e
 

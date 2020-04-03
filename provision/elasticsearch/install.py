@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 from chibi.config import basic_config
-from chibi.command.echo import cowsay
+from chibi_command.echo import cowsay
 from chibi.file import Chibi_path
 from chibi_command.centos import Yum
 from chibi_command.nix import Systemctl
