@@ -2,6 +2,8 @@
 from chibi.config import basic_config
 from chibi_command.echo import cowsay
 from chibi_command.nix import Systemctl
+from chibi.file import Chibi_path
+import os
 
 
 basic_config()
