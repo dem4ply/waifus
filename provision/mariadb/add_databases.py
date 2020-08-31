@@ -7,7 +7,7 @@ from chibi_command.echo import cowsay
 basic_config()
 databases = [
     'notarius', 'reader_moe', 'test_reader_moe', 'quetzalcoatl',
-    'corona_chan' ]
+    'corona_chan', 'friends_on_demand' ]
 
 if __name__ == "__main__":
     cowsay( "creando bases de datos" )

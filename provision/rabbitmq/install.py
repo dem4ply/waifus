@@ -31,10 +31,10 @@ if __name__ == "__main__" and not version_to_check in file_check:
     Systemctl.enable( 'firewalld' ).run()
     Systemctl.start( 'firewalld' ).run()
 
-    ports = [ "8883", "61613-61614", "15672", "5671-5672", "25672", "4369" ]
-    for port in ports:
-        Firewall_cmd.add_port( ports=port ).run()
-    Firewall_cmd.reload()
+    #ports = [ "8883", "61613-61614", "15672", "5671-5672", "25672", "4369" ]
+    #for port in ports:
+    #    Firewall_cmd.add_port( ports=port ).run()
+    #Firewall_cmd.reload()
 
     Command( 'setsebool', "-P", "nis_enabled", "1" )
     Systemctl.enable( 'rabbitmq-server' ).run()

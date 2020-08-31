@@ -13,7 +13,7 @@ PIDFile=/run/gunicorn/pid
 EnvironmentFile=/etc/systemd/system/gunicorn.env
 WorkingDirectory=/home/chibi/projects/corona_chan
 ExecStart=/usr/local/bin/gunicorn \
-	-w $QUETZALCOATL__WEB__THREADS \
+	-w $CORONA_CHAN__WEB__THREADS \
 	--worker-class gevent -b 0.0.0.0:8000 corona_chan.wsgi
 
 ExecStop=/bin/kill -s TERM $MAINPID
