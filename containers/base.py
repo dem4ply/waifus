@@ -11,4 +11,12 @@ class Centos_7( Container ):
     }
     scripts = (
         'install_python.sh',
+        'update_python_lib.sh',
+        'stuff/install_cowsay.py',
+        'update_centos.py',
+        'copy_host.py',
+        'stuff/install_essential.py',
+        'stuff/install_ponysay.py',
+        'repos/cp_all_repos.py',
+        ( 'add_user.py', 'chibi', )
     )
