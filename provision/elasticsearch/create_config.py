@@ -11,6 +11,7 @@ from chibi.file import Chibi_file, Chibi_path
 from chibi.parser import to_bool
 from chibi_command.echo import cowsay
 from chibi_command.nix import Systemctl
+from chibi.file.other import Chibi_systemd
 
 
 basic_config()
@@ -99,7 +100,17 @@ if __name__ == "__main__":
     data.chown( user_name='elasticsearch', group_name='elasticsearch' )
     log.chown( user_name='elasticsearch', group_name='elasticsearch' )
 
+    service = Chibi_path( '/usr/lib/systemd/system/elasticsearch.service' )
+    if not service.exists:
+        print( "no se encontro {service}" )
+    else:
+        f = service.open( chibi_file_class=Chibi_systemd )
+        result = f.read()
+        del result.service.TimeoutSec
+        result.service.TimeoutSec = '900'
+        f.write( result )
+
     Systemctl.restart( 'elasticsearch.service' ).run()
-    wait_until_elastic_is_up( name )
+    #wait_until_elastic_is_up( name )
 
     cowsay( "termino de actualizar la configuracion de elasticsearch" )

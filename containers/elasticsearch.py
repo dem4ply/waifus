@@ -11,6 +11,9 @@ class Elasticsearch( Centos_7 ):
         ( 'elasticsearch/create_config.py',
             'cls.name', 'cls.is_master', 'cls.is_data' )
     )
+    status_scripts = (
+        'elasticsearch/print_status.py',
+    )
 
 
 class Kibana( Centos_7 ):

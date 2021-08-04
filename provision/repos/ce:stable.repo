@@ -1,0 +1,7 @@
+[ce_10.6]
+name=Owncloud server 10.6 (CentOS_7)
+type=rpm-md
+baseurl=http://download.owncloud.org/download/repositories/production/CentOS_7
+gpgcheck=1
+gpgkey=http://download.owncloud.org/download/repositories/production/CentOS_7/repodata/repomd.xml.key
+enabled=1

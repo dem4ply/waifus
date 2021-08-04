@@ -10,6 +10,7 @@ from containers.elasticsearch import Misuzu, Pitou, Rei, Rem, Sakura
 from containers.nginx import Ikaros, Astraea, Caos, Nymph
 from containers.mariadb import Chii, Freya, Sumomo
 from containers.rabbitmq import Chino, Cocoa, Rize
+from containers.others.owncloud import Owncloud
 
 from containers.django.corona_chan import Corona_chan
 
@@ -35,5 +36,7 @@ configuration.chibi_lxc.containers.add( Cocoa )
 configuration.chibi_lxc.containers.add( Rize )
 
 configuration.chibi_lxc.containers.add( Corona_chan )
+
+configuration.chibi_lxc.containers.add( Owncloud )
 
 configuration.chibi_lxc.hosts = Chibi_path( 'hosts' )

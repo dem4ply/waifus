@@ -7,7 +7,8 @@ from chibi_command.echo import cowsay
 basic_config()
 databases = [
     'notarius', 'reader_moe', 'test_reader_moe', 'quetzalcoatl',
-    'corona_chan', 'friends_on_demand' ]
+    'corona_chan', 'friends_on_demand', 'owncloud_db' ]
+
 
 if __name__ == "__main__":
     cowsay( "creando bases de datos" )
@@ -15,3 +16,11 @@ if __name__ == "__main__":
     for db in databases:
         mysql.run_script(
             "CREATE DATABASE IF NOT EXISTS {};".format( db ) )
+
+
+    mysql.run_script(
+        "create user ownclouduser@localhost identified by 'ownclouduser@';" )
+    mysql.run_script(
+        "grant all privileges on owncloud_db.* to ownclouduser@localhost "
+        "identified by 'ownclouduser@';" )
+    mysql.run_script( "flush privileges;" )

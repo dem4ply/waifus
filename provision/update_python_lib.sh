@@ -1,12 +1,14 @@
 #!/bin/bash
 set -e
+set +v
 
-cowsay "update global"
+echo "update global"
 pip3 install --upgrade pip
 pip3 install --upgrade python-hosts
 pip3 install --upgrade chibi chibi-requests chibi_command chibi-donkey
 
 set +e
+set -v
 
 #cd ~/python_lib/
 #cowsay "iniciando actualizacion de bibliotecas locales de python"

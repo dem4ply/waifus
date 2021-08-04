@@ -10,7 +10,6 @@ from chibi.net.hostname import get_hostname
 from chibi_command.echo import cowsay
 from chibi_command.nix import Systemctl
 
-
 basic_config()
 logger = logging.getLogger( 'nginx.start' )
 
