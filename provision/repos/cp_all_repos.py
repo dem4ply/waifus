@@ -27,4 +27,7 @@ if origin_ls.intersection( dest_ls ) != origin_ls:
         f"no se encontraron todos los repos en el destino"
         f"{origin_ls.intersection( dest_ls )}" )
 
+cp_stable = destiny_of_repos + 'cp_stable.repo '
+cp_stable.move( destiny_of_repos + 'cp:stable.repo' )
+
 cowsay( "ending to copy repos" )
