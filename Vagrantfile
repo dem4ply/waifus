@@ -30,8 +30,7 @@ Vagrant.configure(2) do |config|
 
 	config.vm.synced_folder ".", "/vagrant", type: "rsync",
 		rsync__exclude: [
-		".git/", "base_centos_7.box", "base_centos_8.box",
-		".ropeproject/", "backups/",
+		".git/", "base_centos_7.box", ".ropeproject/", "backups/",
 		"src/", "weeaboo/", "cache/", "diagrams/", ".gitignore",
 		".gitmodules" ],
 	rsync__verbose: true
