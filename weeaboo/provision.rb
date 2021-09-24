@@ -21,6 +21,7 @@ class Provision
 			windows: [ Touko_madobe, Ai_madobe, Yuu_madobe, Nanami_madobe, ],
 			SQL_server: [ Misaka ],
 			LXC: [ Koko ],
+			Dot_net: [Mitsuha],
 		}
 	end
 
