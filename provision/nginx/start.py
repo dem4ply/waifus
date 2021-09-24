@@ -44,7 +44,7 @@ for folder in folders:
 sites_enabled = nginx_folder + 'sites_enabled'
 sites_available = nginx_folder + 'sites_available'
 
-configs = [ 'waifus.conf', 'kibana.conf', 'default.conf', 'quetzalcoatl.conf' ]
+configs = [ 'waifus.conf', 'kibana.conf', 'default.conf', 'quetzalcoatl.conf', 'mitsuha.conf'  ]
 
 for config in configs:
     if not ( sites_enabled + config ).exists:
