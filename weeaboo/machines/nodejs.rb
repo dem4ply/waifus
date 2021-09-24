@@ -1,30 +1,25 @@
 Dir[ File.dirname(__FILE__) + "/base.rb" ].each { |file| require file }
 
-class LXC < Base_centos
+class Nodejs < Base_centos
 	def initialize()
 		super
 		@abstract = true
-		@name = 'LXC'
+		@name = 'Nginx'
 		@box = "base_centos_7"
-		@ram = 1024
+		@ram = 512
 		@scripts = [
 			Script.new( "provision/update_python_lib.sh" ),
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
-
-			Python.new( "provision/lxc/install.py" ),
-			Script.new( "provision/lxc/install_chibi_lxc.sh" ),
-			Python.new( "provision/git_clone.py",
-				args: [ 'https://github.com/dem4ply/waifus.git' ] ),
-			Python.new( "provision/lxc/provision.py" ),
+			Script.new( "provision/nodejs/install.sh" ),
 		]
 	end
 end
 
-class Koko < LXC
+class Asuka < Nodejs
 	def initialize()
 		super
 		@abstract = false
-		@name = 'Koko'
+		@name = 'Asuka'
 	end
 end

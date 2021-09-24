@@ -12,7 +12,7 @@ class Base_centos < Machine
 		@ram = 400
 		@cpus = 1
 		@abstract = false
-		@box = "centos/8"
+		@box = "centos/7"
 		#@box = "base_centos_7"
 		@scripts = [
 			Script.new( "provision/install_python.sh" ),

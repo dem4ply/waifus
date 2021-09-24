@@ -1,0 +1,19 @@
+[Unit]
+Description=Nodejs example daemon
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+User=chibi
+Group=chibi
+
+EnvironmentFile=/etc/systemd/system/nodejs.env
+WorkingDirectory=/home/chibi/projects/nodejs
+ExecStart=/usr/local/bin/npm install
+ExecStart=/usr/local/bin/npm start
+
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
