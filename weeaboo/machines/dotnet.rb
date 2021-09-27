@@ -9,8 +9,21 @@ class Dot_net < Base_centos
 		@ram = 1000
 		@scripts = [
 			Script.new( "provision/update_python_lib.sh" ),
+			Python.new( "provision/add_user.py",
+				args: [ 'chibi' ] ),
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
+			Python.new( "provision/dotnet/install.py" ),
+			Python.new( "provision/ssh/provision.py" ),
+			Python.new( "provision/git_clone.py",
+				args: [ 'git@github.com:AptudeSiGRHA/clients_service.git' ] ),
+
+			Python.new( "provision/systemd/cp.py",
+				args: [ 'dotnet/sigrha_clients.service' ] ),
+			Python.new( "provision/systemd/systemd.py",
+				args: [ 'enable', 'sigrha_clients.service' ] ),
+			Python.new( "provision/systemd/systemd.py",
+				args: [ 'start', 'sigrha_clients.service' ] ),
 		]
 	end
 end

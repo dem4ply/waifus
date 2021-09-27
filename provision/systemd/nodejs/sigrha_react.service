@@ -1,0 +1,19 @@
+[Unit]
+Description=Nodejs example daemon
+After=network.target
+
+[Service]
+Type=simple
+Restart=always
+User=chibi
+Group=chibi
+
+EnvironmentFile=/etc/systemd/system/sigrha_react.env
+WorkingDirectory=/home/chibi/projects/sigrha_react
+ExecStart=/bin/npm start
+TimeoutSec=900
+
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
