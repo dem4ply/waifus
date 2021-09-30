@@ -8,5 +8,6 @@ then
 	yum -y install nodejs
 	node -v | cowsay
 	npm -v | cowsay
+	touch ~/$FILE_CHECK
 	cowsay "termino de instalando nodejs 14"
 fi

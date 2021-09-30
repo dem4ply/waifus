@@ -32,9 +32,11 @@ if ssh_config.exists:
     keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
     for key in keys:
         private_key = key.replace( '.pub', '' )
-    publics = filter( lambda x: x.extension == 'pub', ssh_config.ls() )
+    publics = filter( lambda x: x.extension == 'pub', ssh_folder.ls() )
     for ssh_key in publics:
-        ssh_key.chmod( 0o0644 )
+        private = ssh_key.replace( '.pub', '' )
+        print( f"{private} chmod 0600" )
+        private.chmod( 0o0600 )
 
     for user in users:
         ssh_folder = Chibi_path( f'/home/{user}/.ssh' )
@@ -46,9 +48,11 @@ if ssh_config.exists:
         keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
         for key in keys:
             private_key = key.replace( '.pub', '' )
-        publics = filter( lambda x: x.extension == 'pub', ssh_config.ls() )
+        publics = filter( lambda x: x.extension == 'pub', ssh_folder.ls() )
         for ssh_key in publics:
-            ssh_key.chmod( 0o0644 )
+            private = ssh_key.replace( '.pub', '' )
+            print( f"{private} chmod 0600" )
+            private.chmod( 0o0600 )
 
 
 else:
