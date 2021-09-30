@@ -29,6 +29,12 @@ if ssh_config.exists:
     if not ssh_folder.exists:
         ssh_folder.mkdir()
     ssh_config.copy( ssh_folder )
+    keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
+    for key in keys:
+        private_key = key.replace( '.pub', '' )
+    publics = filter( lambda x: x.extension == 'pub', ssh_config.ls() )
+    for ssh_key in publics:
+        ssh_key.chmod( 0o0644 )
 
     for user in users:
         ssh_folder = Chibi_path( f'/home/{user}/.ssh' )
@@ -37,6 +43,13 @@ if ssh_config.exists:
         ssh_config.copy( ssh_folder )
         ssh_folder.chown(
             user_name='chibi', group_name='chibi', recursive=True )
+        keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
+        for key in keys:
+            private_key = key.replace( '.pub', '' )
+        publics = filter( lambda x: x.extension == 'pub', ssh_config.ls() )
+        for ssh_key in publics:
+            ssh_key.chmod( 0o0644 )
+
 
 else:
     logger.warn( 'no se encontro el config ssh' )
