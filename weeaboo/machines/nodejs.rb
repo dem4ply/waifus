@@ -6,7 +6,7 @@ class Nodejs < Base_centos
 		@abstract = true
 		@name = 'Nginx'
 		@box = "base_centos_7"
-		@ram = 1024
+		@ram = 3072
 		@scripts = [
 			Script.new( "provision/update_python_lib.sh" ),
 			Python.new( "provision/add_user.py",
