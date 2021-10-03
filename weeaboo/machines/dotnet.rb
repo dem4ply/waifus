@@ -14,6 +14,7 @@ class Dot_net < Base_centos
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
 			Python.new( "provision/dotnet/install.py" ),
+			Script.new( "provision/dotnet/database_migration.sh" ),
 			Python.new( "provision/ssh/provision.py" ),
 			Python.new( "provision/git_clone.py",
 				args: [ 'git@github.com:AptudeSiGRHA/clients_service.git' ] ),
