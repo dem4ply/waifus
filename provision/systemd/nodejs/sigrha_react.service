@@ -9,8 +9,8 @@ User=chibi
 Group=chibi
 
 EnvironmentFile=/etc/systemd/system/sigrha_react.env
-WorkingDirectory=/home/chibi/projects/sigrha_react
-ExecStart=/bin/npm start
+WorkingDirectory=/home/chibi/projects/sigrha-react/
+ExecStart=/bin/serve -s build -l 8000
 TimeoutSec=900
 
 PrivateTmp=true
