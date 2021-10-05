@@ -25,7 +25,7 @@ if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "instalando dotnet" )
 
     Yum.install(
-        'dotnet-sdk-3.1','dotnet-runtime-3.1', 'aspnetcore-runtime-3.1'
+        'dotnet-sdk-3.1', 'dotnet-runtime-3.1', 'aspnetcore-runtime-3.1',
     )
 
     file_check.append( version_to_check )
