@@ -9,6 +9,8 @@ class LXC < Base_centos
 		@ram = 1024
 		@scripts = [
 			Script.new( "provision/update_python_lib.sh" ),
+			Python.new( "provision/add_user.py",
+				args: [ 'chibi' ] ),
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
 

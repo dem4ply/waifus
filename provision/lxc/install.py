@@ -59,12 +59,14 @@ if __name__ == "__main__" and not version_to_check in file_check:
     lxc_net_provision = provision_folder + 'lxc-net'
     lxc_net_provision.copy( '/etc/default/' )
 
+    """
     lxc_default_config = provision_folder + 'lxc' + 'default.conf'
 
     vagrant_lxc = Chibi_path( '/home/vagrant/.config/lxc' )
     vagrant_lxc.mkdir()
 
     lxc_default_config.copy( vagrant_lxc )
+    """
 
     lxc_subgid_config = provision_folder + 'subgid'
     lxc_subgid_config.copy( '/etc/subgid' )
@@ -72,6 +74,7 @@ if __name__ == "__main__" and not version_to_check in file_check:
     lxc_subuid_config = provision_folder + 'subuid'
     lxc_subuid_config.copy( '/etc/subuid' )
 
+    """
     config = Chibi_path( '/home/vagrant/.config' )
     config.chown(
         user_name='vagrant', group_name='vagrant', recursive=True )
@@ -82,6 +85,7 @@ if __name__ == "__main__" and not version_to_check in file_check:
     Chibi_path( '/home/vagrant/.cache' ).mkdir()
     Chibi_path( '/home/vagrant/.cache' ).chown(
         user_name='vagrant', group_name='vagrant', recursive=True )
+    """
 
     Systemctl.start( 'lxc.service', 'libvirtd', 'lxc-net' ).run()
     Systemctl.enable( 'lxc.service', 'libvirtd', 'lxc-net' ).run()
