@@ -32,3 +32,10 @@ execute the command:
 
 	vagrant up 
 ...
+
+=====
+hosts
+=====
+
+* api clients: api.sigrha.client.aptude.com
+* frontend: sigrha.aptude.com

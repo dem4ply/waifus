@@ -21,7 +21,7 @@ provision_folder = (
 
 cowsay( "inicia la provision de ssh" )
 
-users = [ 'vagrant', 'chibi' ]
+users = [ 'chibi' ]
 ssh_folder = Chibi_path( '~/.ssh' )
 ssh_config = provision_folder + 'config'
 if ssh_config.exists:
@@ -29,12 +29,31 @@ if ssh_config.exists:
     if not ssh_folder.exists:
         ssh_folder.mkdir()
     ssh_config.copy( ssh_folder )
+    keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
+    for key in keys:
+        private_key = key.replace( '.pub', '' )
+    publics = filter( lambda x: x.extension == 'pub', ssh_folder.ls() )
+    for ssh_key in publics:
+        private = ssh_key.replace( '.pub', '' )
+        print( f"{private} chmod 0600" )
+        private.chmod( 0o0600 )
 
     for user in users:
         ssh_folder = Chibi_path( f'/home/{user}/.ssh' )
         if not ssh_folder.exists:
             ssh_folder.mkdir()
         ssh_config.copy( ssh_folder )
+        ssh_folder.chown(
+            user_name='chibi', group_name='chibi', recursive=True )
+        keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
+        for key in keys:
+            private_key = key.replace( '.pub', '' )
+        publics = filter( lambda x: x.extension == 'pub', ssh_folder.ls() )
+        for ssh_key in publics:
+            private = ssh_key.replace( '.pub', '' )
+            print( f"{private} chmod 0600" )
+            private.chmod( 0o0600 )
+
 
 else:
     logger.warn( 'no se encontro el config ssh' )

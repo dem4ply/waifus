@@ -39,4 +39,6 @@ except ( NoSuchPathError, InvalidGitRepositoryError ):
     Git.clone( git_repo_url, git_folder )
     logger.info( f"clonando {git_folder}" )
 
+git_folder.chown( user_name='chibi', group_name='chibi', recursive=True )
+
 cowsay( f"termino de clonar {git_repo_url}" )
