@@ -1,2 +1,2 @@
 #!/bin/bash
-vagrant up Sakura Pitou Ikaros Misizu Ren Sonico Ai
+vagrant up Ikaros Chii Mitsuha Asuka
