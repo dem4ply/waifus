@@ -24,9 +24,12 @@ provision_ssh = (
 
 if __name__ == "__main__":
     if provision_ssh.exists:
-        provision_ssh.copy(
-            '/home/chibi/projects/waifus__master/provision/ssh/provision' ,
-            verbose=True)
+        ssh_provision = Chibi_path(
+            '/home/chibi/projects/waifus__master/provision/ssh/provision' )
+        provision_ssh.copy( ssh_provision, verbose=True )
+        for ssh_key in ssh_provision.ls():
+            ssh_key.chmod( 0o0600 )
+            ssh_key.chown( user_name='chibi', group_name='chibi', )
 
     first_machine = lxc.Create( '-n', 'test_machine' )
     first_machine.template( 'download' )
