@@ -19,10 +19,23 @@ class Dot_net < Base_centos
 			Python.new( "provision/ssh/provision.py" ),
 
 			Python.new( "provision/git_clone.py",
-				args: [ 'git@github.com:AptudeSiGRHA/clients_service.git' ] ),
+				args: [
+					'git@github.com:AptudeSiGRHA/clients_service.git',
+					'main',
+				] ),
+			Python.new( "provision/git_clone.py",
+				args: [
+					'git@github.com:AptudeSiGRHA/opportunities_service.git',
+					'main',
+				] ),
+			Python.new( "provision/git_clone.py",
+				args: [
+					'git@github.com:AptudeSiGRHA/ADLoginService.git',
+					'main',
+				] ),
 
 			Script.new( "provision/dotnet/database_migration.sh",
-				args: [ '/home/chibi/projects/clients_service/API_Clients/' ] ),
+				args: [ '/home/chibi/projects/clients_service__main/API_Clients/' ] ),
 
 			Python.new( "provision/systemd/cp.py",
 				args: [ 'dotnet/sigrha_clients.service' ] ),

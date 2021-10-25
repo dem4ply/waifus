@@ -13,11 +13,15 @@ class LXC < Base_centos
 				args: [ 'chibi' ] ),
 			Python.new( "provision/copy_host.py" ),
 			Python.new( "provision/repos/cp_all_repos.py" ),
+			Python.new( "provision/ssh/provision.py" ),
 
 			Python.new( "provision/lxc/install.py" ),
 			Script.new( "provision/lxc/install_chibi_lxc.sh" ),
 			Python.new( "provision/git_clone.py",
-				args: [ 'https://github.com/dem4ply/waifus.git' ] ),
+				args: [
+					'git@github.com:AptudeSiGRHA/waifus.git',
+					'master'
+				] ),
 			Python.new( "provision/lxc/provision.py" ),
 		]
 	end

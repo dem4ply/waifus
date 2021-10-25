@@ -33,7 +33,7 @@ class Ikaros < Nginx
 		@abstract = false
 		@name = 'Ikaros'
 		@hosts_names = [
-			'kibana', 'waifus', 'sigrha.aptude.com',
+			'kibana', 'waifus', 'sigrha.com.mx',
 			'api.sigrha.client.aptude.com' ]
 	end
 end

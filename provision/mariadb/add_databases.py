@@ -6,8 +6,15 @@ from chibi_command.echo import cowsay
 
 basic_config()
 databases = [
-    'notarius', 'reader_moe', 'test_reader_moe', 'quetzalcoatl',
-    'corona_chan', 'friends_on_demand', 'owncloud_db' ]
+    'sigrha__users',
+    'sigrha__users__test',
+    'sigrha_client',
+    'sigrha_client__test',
+    'sigrha_opportunities',
+    'sigrha_opportunities__test',
+    'sigrha_employees',
+    'sigrha_employees__test',
+]
 
 
 if __name__ == "__main__":
@@ -17,10 +24,4 @@ if __name__ == "__main__":
         mysql.run_script(
             "CREATE DATABASE IF NOT EXISTS {};".format( db ) )
 
-
-    mysql.run_script(
-        "create user ownclouduser@localhost identified by 'ownclouduser@';" )
-    mysql.run_script(
-        "grant all privileges on owncloud_db.* to ownclouduser@localhost "
-        "identified by 'ownclouduser@';" )
-    mysql.run_script( "flush privileges;" )
+    mydsfsql.run_script( "flush privileges;" )

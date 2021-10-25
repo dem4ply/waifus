@@ -18,18 +18,25 @@ file_check = file_check_path.open()
 
 provision_folder = (
     Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'lxc/provision' )
+provision_ssh = (
+    Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'ssh/provision/' )
 
 
 if __name__ == "__main__":
-    first_machine = lxc.Create( '-n', 'asdf' )
+    if provision_ssh.exists:
+        provision_ssh.copy(
+            '/home/chibi/projects/waifus__master/provision/ssh/provision' ,
+            verbose=True)
+
+    first_machine = lxc.Create( '-n', 'test_machine' )
     first_machine.template( 'download' )
     first_machine.parameters(
         '-d', 'centos', '-r', '7', '--arch', 'amd64', '--keyserver',
         'hkp://keyserver.ubuntu.com' )
     first_machine.run()
-    first_machine = lxc.Destroy( '-n', 'asdf' )
+    #first_machine = lxc.Destroy( '-n', 'asdf' )
 
-    cd( '/home/chibi/projects/waifus' )
+    cd( '/home/chibi/projects/waifus__master' )
     ikaros = Command( 'chibi_lxc', 'up', 'Ikaros', )
     """
     ikaros = Command(

@@ -50,7 +50,7 @@ for config in configs:
     if not ( sites_enabled + config ).exists:
         ln( sites_available + config, sites_enabled + config )
     else:
-        logger.info( 'el archivo {config} existe' )
+        logger.info( f'el archivo {config} existe' )
 
 
 Chibi_path( '/var/www/default/' ).mkdir( is_ok_exists=True )
