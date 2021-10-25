@@ -4,7 +4,7 @@ from .base import Centos_7
 class Nodejs( Centos_7 ):
     scripts = (
         'nodejs/install.sh',
-        'ssh/provision.sh',
+        'ssh/provision.py',
         (
             'git_clone.py',
             'git@github.com:AptudeSiGRHA/sigrha-react.git', 'main' ),
