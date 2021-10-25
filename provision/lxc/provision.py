@@ -40,11 +40,10 @@ if __name__ == "__main__":
     #first_machine = lxc.Destroy( '-n', 'asdf' )
 
     cd( '/home/chibi/projects/waifus__master' )
-    ikaros = Command( 'chibi_lxc', 'up', 'Ikaros', 'Asuka' )
-    ikaros = Command( 'chibi_lxc', 'provision', 'Ikaros', 'Asuka' )
+    Command( 'chibi_lxc', 'up', 'Ikaros', 'Asuka' ).run()
+    Command( 'chibi_lxc', 'provision', 'Ikaros', 'Asuka' ).run()
     """
     ikaros = Command(
         'chibi_lxc', 'up', 'Ikaros', 'Misuzu', 'Pitou', 'Rei', 'Chii' )
     """
-    ikaros.run()
     #Chibi_path( 'hosts' ).copy( '/etc/hosts' )
