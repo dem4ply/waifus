@@ -40,7 +40,7 @@ if __name__ == "__main__":
     #first_machine = lxc.Destroy( '-n', 'asdf' )
 
     cd( '/home/chibi/projects/waifus__master' )
-    ikaros = Command( 'chibi_lxc', 'up', 'Ikaros', )
+    ikaros = Command( 'chibi_lxc', 'up', 'Ikaros', 'Asuka' )
     """
     ikaros = Command(
         'chibi_lxc', 'up', 'Ikaros', 'Misuzu', 'Pitou', 'Rei', 'Chii' )
