@@ -29,6 +29,7 @@ if ssh_config.exists:
     if not ssh_folder.exists:
         ssh_folder.mkdir()
     ssh_config.copy( ssh_folder )
+    ( ssh_folder + 'config' ).chmod( 0o0755 )
     keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
     for key in keys:
         private_key = key.replace( '.pub', '' )
@@ -43,6 +44,7 @@ if ssh_config.exists:
         if not ssh_folder.exists:
             ssh_folder.mkdir()
         ssh_config.copy( ssh_folder )
+        ( ssh_folder + 'config' ).chmod( 0o0755 )
         ssh_folder.chown(
             user_name='chibi', group_name='chibi', recursive=True )
         keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
