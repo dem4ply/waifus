@@ -24,4 +24,4 @@ if __name__ == "__main__":
         mysql.run_script(
             "CREATE DATABASE IF NOT EXISTS {};".format( db ) )
 
-    mydsfsql.run_script( "flush privileges;" )
+    mysql.run_script( "flush privileges;" )
