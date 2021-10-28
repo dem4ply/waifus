@@ -15,7 +15,7 @@ file_check_path = Chibi_path( '~/provision_installed' )
 file_check = file_check_path.open()
 
 provision_folder = (
-    Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'dornet/provision' )
+    Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'dotnet/provision' )
 
 
 version_to_check = "dotnet\n".format( file=__file__, )
