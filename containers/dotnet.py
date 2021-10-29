@@ -4,7 +4,7 @@ from .base import Centos_7
 class Dotnet( Centos_7 ):
     scripts = (
         'ssh/provision.py',
-        'dotnet/install.sh',
+        'dotnet/install.py',
         'dotnet/post_install.sh',
         (
             'git_clone.py',

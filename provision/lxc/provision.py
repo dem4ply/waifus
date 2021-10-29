@@ -44,10 +44,10 @@ if __name__ == "__main__":
     cd( '/home/chibi/projects/waifus__master' )
     Command(
         'chibi_lxc', 'up',
-        'Ikaros', 'Chii', 'Asuka', 'Mitsuha' ).run()
-    Command(
-        'chibi_lxc', 'provision',
-        'Ikaros', 'Chii', 'Asuka', 'Mitsuha' ).run()
+        'Chii', 'Asuka', 'Mitsuha', 'Ikaros' ).run()
+    #Command(
+    #    'chibi_lxc', 'provision',
+    #    'Ikaros', 'Chii', 'Asuka', 'Mitsuha' ).run()
 
     hosts = Chibi_path( 'hosts' )
     print( hosts.open().read() )
