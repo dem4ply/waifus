@@ -11,6 +11,7 @@ from containers.nginx import Ikaros, Astraea, Caos, Nymph
 from containers.mariadb import Chii, Freya, Sumomo
 from containers.rabbitmq import Chino, Cocoa, Rize
 from containers.nodejs import Asuka
+from containers.dotnet import Dotnet
 
 
 configuration.chibi_lxc.containers.add( Centos_7 )
@@ -33,5 +34,6 @@ configuration.chibi_lxc.containers.add( Chino )
 configuration.chibi_lxc.containers.add( Cocoa )
 configuration.chibi_lxc.containers.add( Rize )
 configuration.chibi_lxc.containers.add( Asuka )
+configuration.chibi_lxc.containers.add( Mitsuha )
 
 configuration.chibi_lxc.hosts = Chibi_path( 'hosts' )

@@ -30,6 +30,8 @@ if ssh_config.exists:
         ssh_folder.mkdir()
     ssh_config.copy( ssh_folder )
     ( ssh_folder + 'config' ).chmod( 0o0755 )
+    ssh_folder.chown(
+        user_name='root', group_name='root', recursive=True )
     keys = ssh_folder.find( r'.*\.pub', dirs=False, files=True )
     for key in keys:
         private_key = key.replace( '.pub', '' )
