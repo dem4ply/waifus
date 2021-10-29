@@ -11,7 +11,7 @@ from containers.nginx import Ikaros, Astraea, Caos, Nymph
 from containers.mariadb import Chii, Freya, Sumomo
 from containers.rabbitmq import Chino, Cocoa, Rize
 from containers.nodejs import Asuka
-from containers.dotnet import Dotnet
+from containers.dotnet import Mitsuha
 
 
 configuration.chibi_lxc.containers.add( Centos_7 )
