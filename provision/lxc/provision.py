@@ -60,6 +60,8 @@ if __name__ == "__main__":
     iptable.in_interface( 'eth1' ).destination_port( 80 ).jump( 'DNAT' )
     iptable.to_destination( ikaros.info.ip, 80 )
     iptable.run()
+    Iptables.delete( "FORWARD", '4' ).run()
+    Iptables.delete( "FORWARD", '4' ).run()
     """
     ikaros = Command(
         'chibi_lxc', 'up', 'Ikaros', 'Misuzu', 'Pitou', 'Rei', 'Chii' )
