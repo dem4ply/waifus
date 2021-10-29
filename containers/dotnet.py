@@ -4,6 +4,7 @@ from .base import Centos_7
 class Dotnet( Centos_7 ):
     scripts = (
         'ssh/provision.py',
+        ( "systemd/cp.py", 'dotnet/sigrha_clients.service' ),
         'dotnet/install.py',
         'dotnet/post_install.sh',
         (
@@ -20,8 +21,9 @@ class Dotnet( Centos_7 ):
             'main' ),
         (
             'dotnet/database_migration.sh',
-            '/home/chibi/projects/clients_service__main/API_Clients/' ),
-        ( "systemd/cp.py", 'dotnet/sigrha_clients.service' ),
+            '/home/chibi/projects/clients_service__main/API_Clients/',
+            '/etc/systemd/system/sigrha_clients.env',
+        ),
         ( "systemd/systemd.py", 'enable', 'sigrha_clients.service' ),
         ( "systemd/systemd.py",'start', 'sigrha_clients.service' ),
     )
