@@ -18,6 +18,9 @@ class Dot_net < Base_centos
 			Script.new( "provision/dotnet/post_install.sh" ),
 			Python.new( "provision/ssh/provision.py" ),
 
+			Python.new( "provision/systemd/cp.py",
+				args: [ 'dotnet/sigrha_clients.service' ] ),
+
 			Python.new( "provision/git_clone.py",
 				args: [
 					'git@github.com:AptudeSiGRHA/clients_service.git',
@@ -35,10 +38,11 @@ class Dot_net < Base_centos
 				] ),
 
 			Script.new( "provision/dotnet/database_migration.sh",
-				args: [ '/home/chibi/projects/clients_service__main/API_Clients/' ] ),
+				args: [
+					'/home/chibi/projects/clients_service__main/API_Clients/',
+					'/etc/systemd/system/sigrha_clients.env',
+				] ),
 
-			Python.new( "provision/systemd/cp.py",
-				args: [ 'dotnet/sigrha_clients.service' ] ),
 			Python.new( "provision/systemd/systemd.py",
 				args: [ 'enable', 'sigrha_clients.service' ] ),
 			Python.new( "provision/systemd/systemd.py",
