@@ -14,6 +14,8 @@ databases = [
     'sigrha_opportunities__test',
     'sigrha_employees',
     'sigrha_employees__test',
+    'sigrha_users',
+    'sigrha_users__test',
 ]
 
 

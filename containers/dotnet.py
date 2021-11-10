@@ -27,6 +27,9 @@ class Dotnet( Centos_7 ):
         ( "systemd/systemd.py", 'enable', 'sigrha_clients.service' ),
         ( "systemd/systemd.py",'start', 'sigrha_clients.service' ),
     )
+    env_vars = {
+        'HOME': '/root/'
+    }
 
 
 class Mitsuha( Dotnet ):
