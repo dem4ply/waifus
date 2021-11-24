@@ -7,6 +7,6 @@ cat $2
 export $(grep -v '^#' $2 | xargs -d '\n')
 PATH="$PATH:/root/.dotnet/tools"
 
-dotnet build
+dotnet build --configuration Release
 dotnet ef database update
 cowsay "End Database Migration $1"

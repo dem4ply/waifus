@@ -19,7 +19,15 @@ class Dot_net < Base_centos
 			Python.new( "provision/ssh/provision.py" ),
 
 			Python.new( "provision/systemd/cp.py",
-				args: [ 'dotnet/sigrha_clients.service' ] ),
+				args: [
+						'dotnet/sigrha_clients.service',
+					] ),
+
+			# Added opportunities_service
+			Python.new( "provision/systemd/cp.py",
+				args: [
+						'dotnet/sigrha_opportunities.service',
+					] ),
 
 			Python.new( "provision/git_clone.py",
 				args: [
@@ -43,10 +51,23 @@ class Dot_net < Base_centos
 					'/etc/systemd/system/sigrha_clients.env',
 				] ),
 
+				# Added migration for opportunities
+				Script.new( "provision/dotnet/database_migration.sh",
+					args: [
+						'/home/chibi/projects/opportunities_service__main/Opportunities/',
+						'/etc/systemd/system/sigrha_opportunities.env',
+					] ),
+
 			Python.new( "provision/systemd/systemd.py",
 				args: [ 'enable', 'sigrha_clients.service' ] ),
 			Python.new( "provision/systemd/systemd.py",
 				args: [ 'start', 'sigrha_clients.service' ] ),
+
+			# Added opportunities_service
+			Python.new( "provision/systemd/systemd.py",
+				args: [ 'enable', 'sigrha_opportunities.service' ] ),
+			Python.new( "provision/systemd/systemd.py",
+				args: [ 'start', 'sigrha_opportunities.service' ] ),
 		]
 	end
 end

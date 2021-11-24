@@ -1,0 +1,20 @@
+[Unit]
+Description=Opportunities service
+
+[Service]
+Type=forking
+User=chibi
+Group=chibi
+
+WorkingDirectory=/home/chibi/projects/opportunities_service__main/Opportunities/bin/Release/netcoreapp3.1/
+ExecStart=/usr/share/dotnet/dotnet /home/chibi/projects/opportunities_service__main/Opportunities/bin/Release/netcoreapp3.1/Opportunities.dll
+
+KillSignal=SIGINT
+SyslogIdentifier=sigrha_opportunities_service
+EnvironmentFile=/etc/systemd/system/sigrha_opportunities.env
+
+Restart=on-failure
+RestartSec=5s
+
+[Install]
+WantedBy=multi-user.target
