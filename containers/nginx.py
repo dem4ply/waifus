@@ -13,6 +13,7 @@ class Nginx( Centos_7 ):
 
         "elasticsearch/beat/filebeat_install.py",
         "elasticsearch/beat/filebeat_nginx.py",
+        ( "systemd/systemd.py", 'enable', 'filebeat.service' ),
         ( "systemd/systemd.py", 'start', 'filebeat.service' )
     )
 
