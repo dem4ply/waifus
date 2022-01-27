@@ -5,6 +5,9 @@ class Nginx( Centos_7 ):
     scripts = (
         "nginx/install.py",
         "nginx/start.py",
+        "elasticsearch/beat/filebeat_install.py",
+        "elasticsearch/beat/filebeat_nginx.py",
+        ( "systemd/systemd.py", 'start', 'filebeat.service' )
     )
 
 

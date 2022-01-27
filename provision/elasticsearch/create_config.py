@@ -15,7 +15,7 @@ from chibi.file.other import Chibi_systemd
 
 
 basic_config()
-masters = [ 'Pitou', 'Misuzu' ]
+masters = [ 'Misuzu' ]
 provision_folder = (
     Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'elasticsearch/provision' )
 
@@ -106,7 +106,10 @@ if __name__ == "__main__":
     else:
         f = service.open( chibi_file_class=Chibi_systemd )
         result = f.read()
-        del result.service.TimeoutSec
+        try:
+            del result.service.TimeoutSec
+        except KeyError:
+            pass
         result.service.TimeoutSec = '900'
         f.write( result )
 

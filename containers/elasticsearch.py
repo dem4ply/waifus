@@ -23,12 +23,12 @@ class Kibana( Centos_7 ):
     )
 
 
-class Misuzu( Elasticsearch ):
+class Misuzu( Elasticsearch, Kibana ):
     is_master = True
-    is_data = False
+    is_data = True
 
 
-class Pitou( Elasticsearch, Kibana ):
+class Pitou( Elasticsearch ):
     is_master = True
     is_data = False
 
