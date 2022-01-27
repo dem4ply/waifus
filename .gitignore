@@ -192,3 +192,5 @@ api_next_cloud/settings/database/dev.py
 .vagrant
 
 .ropeproject
+
+provision/ssh/provision
