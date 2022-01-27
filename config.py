@@ -13,6 +13,7 @@ from containers.rabbitmq import Chino, Cocoa, Rize
 from containers.others.owncloud import Owncloud
 from containers.logstash import Tohru, Kanna, Elma
 from containers.kibana import Pochi, Tama
+from containers.django import Shiro, Shionji, Victorique
 
 from containers.django.corona_chan import Corona_chan
 
@@ -43,6 +44,10 @@ configuration.chibi_lxc.containers.add( Elma )
 
 configuration.chibi_lxc.containers.add( Pochi )
 configuration.chibi_lxc.containers.add( Tama )
+
+configuration.chibi_lxc.containers.add( Shiro )
+configuration.chibi_lxc.containers.add( Shionji )
+configuration.chibi_lxc.containers.add( Victorique )
 
 configuration.chibi_lxc.containers.add( Corona_chan )
 
