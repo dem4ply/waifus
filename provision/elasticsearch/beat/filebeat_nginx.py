@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import itertools
 from chibi.config import basic_config
 from chibi.file import Chibi_path
 from chibi_command.echo import cowsay
@@ -38,7 +39,13 @@ config[ 'filebeat.registry.file' ] = '/var/lib/filebeat/registry'
 nginx_sites_enabled = Chibi_path( '/etc/nginx/sites_enabled/' )
 hostname = socket.gethostname()
 
-inputs = [ x for x in inputs if 'nginx' not in x.fields.tags ]
+
+def is_nginx( d ):
+    if 'fields' not in d:
+        return False
+    return 'nginx' in d.fields.tags
+
+inputs = list( itertools.filterfalse( is_nginx, inputs ) )
 
 
 for nginx_config in nginx_sites_enabled.ls():

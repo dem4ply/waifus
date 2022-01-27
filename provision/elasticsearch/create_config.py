@@ -113,6 +113,9 @@ if __name__ == "__main__":
         result.service.TimeoutSec = '900'
         f.write( result )
 
+    mem_options = Chibi_path( '/etc/elasticsearch/jvm.options.d/mem.options' )
+    mem_options.open().write( "-Xms2g\n-Xmx2g\n" ) # 2GB
+
     Systemctl.restart( 'elasticsearch.service' ).run()
     #wait_until_elastic_is_up( name )
 
