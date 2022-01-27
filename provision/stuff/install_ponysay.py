@@ -5,6 +5,8 @@ from chibi_command import Command
 from chibi_command.centos import Yum
 from chibi_command.echo import cowsay
 from chibi_command.git import Git
+from chibi_command.centos import Dnf
+from chibi.file.snippets import cd
 
 
 basic_config()
@@ -18,14 +20,20 @@ version_to_check = "ponysay\n".format( file=__file__, )
 
 if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "Starting install for ponysay" )
-    Yum.install( 'texinfo' )
+    Dnf.config_manager( 'powertools' )
+    Dnf.install( 'texinfo' )
     cache_dir.mkdir()
     ponysay_dir = cache_dir + 'ponysay'
 
     if not ponysay_dir.exists:
         Git.clone( 'https://github.com/erkin/ponysay.git', ponysay_dir )
 
-    Command( 'python3' ).run(
-        ponysay_dir + 'setup.py', 'install', '--freedom=partial' )
+    cd( ponysay_dir )
+    result = Command( 'python3' ).run(
+        'setup.py', 'install', '--freedom=partial' )
+    if not result:
+        raise Exception( result.error )
 
+    print( '\033[0m' )
+    cowsay( 'termino de instalar ponysay' )
     file_check.append( version_to_check )
