@@ -11,6 +11,8 @@ from containers.nginx import Ikaros, Astraea, Caos, Nymph
 from containers.mariadb import Chii, Freya, Sumomo
 from containers.rabbitmq import Chino, Cocoa, Rize
 from containers.others.owncloud import Owncloud
+from containers.logstash import Tohru, Kanna, Elma
+from containers.kibana import Pochi, Tama
 
 from containers.django.corona_chan import Corona_chan
 
@@ -34,6 +36,13 @@ configuration.chibi_lxc.containers.add( Sumomo )
 configuration.chibi_lxc.containers.add( Chino )
 configuration.chibi_lxc.containers.add( Cocoa )
 configuration.chibi_lxc.containers.add( Rize )
+
+configuration.chibi_lxc.containers.add( Tohru )
+configuration.chibi_lxc.containers.add( Kanna )
+configuration.chibi_lxc.containers.add( Elma )
+
+configuration.chibi_lxc.containers.add( Pochi )
+configuration.chibi_lxc.containers.add( Tama )
 
 configuration.chibi_lxc.containers.add( Corona_chan )
 

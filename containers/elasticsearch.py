@@ -16,14 +16,7 @@ class Elasticsearch( Centos_7 ):
     )
 
 
-class Kibana( Centos_7 ):
-    scripts = (
-        'kibana/install.py',
-        'kibana/start.py',
-    )
-
-
-class Misuzu( Elasticsearch, Kibana ):
+class Misuzu( Elasticsearch ):
     is_master = True
     is_data = True
 

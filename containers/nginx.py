@@ -4,7 +4,13 @@ from .base import Centos_7
 class Nginx( Centos_7 ):
     scripts = (
         "nginx/install.py",
-        "nginx/start.py",
+        "nginx/provision.py",
+        ( "nginx/enable.py", 'enable', 'waifus', 'kibana' ),
+        ( "nginx/enable.py", 'enable', 'default' ),
+
+        ( "systemd/systemd.py", 'enable', 'nginx.service' ),
+        ( "systemd/systemd.py", 'restart', 'nginx.service' ),
+
         "elasticsearch/beat/filebeat_install.py",
         "elasticsearch/beat/filebeat_nginx.py",
         ( "systemd/systemd.py", 'start', 'filebeat.service' )
@@ -12,7 +18,7 @@ class Nginx( Centos_7 ):
 
 
 class Ikaros( Nginx ):
-    hosts = ( 'waifus', 'kibana' )
+    extra_hosts = ( 'waifus', 'kibana' )
 
 
 class Astraea( Nginx ):
