@@ -23,13 +23,6 @@ cowsay( "inicia de inicio de nginx" )
 
 Command( 'setsebool', '-P', 'httpd_can_network_connect', '1', ).run()
 
-folders = (
-    "/var/log/nginx", "/etc/nginx/sites_available",
-    "/etc/nginx/sites_enabled" )
-
-for folder in folders:
-    Chibi_path( folder ).mkdir( verbose=True )
-
 folders = ( 'conf.d', "sites_available" )
 
 nginx_folder = Chibi_path( '/etc/nginx/' )
