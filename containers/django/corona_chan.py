@@ -1,7 +1,7 @@
-from ..base import Centos_7
+from ..base import Rocky
 
 
-class Django( Centos_7 ):
+class Django( Rocky ):
     git_repo = None
     scripts = (
         "mariadb/install_client.py",

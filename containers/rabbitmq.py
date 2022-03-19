@@ -1,7 +1,7 @@
-from .base import Centos_7
+from .base import Rocky
 
 
-class Rabbit( Centos_7 ):
+class Rabbit( Rocky ):
     scripts = (
         "rabbitmq/install.py",
         "rabbitmq/add_user.py",

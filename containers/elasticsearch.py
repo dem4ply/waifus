@@ -1,7 +1,7 @@
-from .base import Centos_7
+from .base import Rocky
 
 
-class Elasticsearch( Centos_7 ):
+class Elasticsearch( Rocky ):
     is_master = False
     is_data = False
 

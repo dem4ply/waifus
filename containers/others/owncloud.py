@@ -1,7 +1,7 @@
-from ..base import Centos_7
+from ..base import Rocky
 
 
-class Owncloud( Centos_7 ):
+class Owncloud( Rocky ):
     scripts = (
         'php/install.py',
         'php/config_fpm.py',

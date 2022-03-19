@@ -1,9 +1,9 @@
 from chibi_lxc import Container
 
 
-class Centos_7( Container ):
-    name = 'centos_8'
-    distribution = 'centos'
+class Rocky( Container ):
+    name = 'rocky'
+    distribution = 'rockylinux'
     arch = 'amd64'
     version = '8'
     provision_folders = {

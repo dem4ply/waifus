@@ -1,7 +1,7 @@
-from .base import Centos_7
+from .base import Rocky
 
 
-class Kibana( Centos_7 ):
+class Kibana( Rocky ):
     scripts = (
         'kibana/install.py',
         'kibana/start.py',

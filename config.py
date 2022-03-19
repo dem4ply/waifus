@@ -5,7 +5,7 @@ from chibi.module import import_
 
 sys.path.append( Chibi_path( '.' ).inflate )
 
-from containers.base import Centos_7
+from containers.base import Rocky
 from containers.elasticsearch import Misuzu, Pitou, Rei, Rem, Sakura
 from containers.nginx import Ikaros, Astraea, Caos, Nymph
 from containers.mariadb import Chii, Freya, Sumomo
@@ -18,7 +18,7 @@ from containers.django import Shiro, Shionji, Victorique
 from containers.django.corona_chan import Corona_chan
 
 
-configuration.chibi_lxc.containers.add( Centos_7 )
+configuration.chibi_lxc.containers.add( Rocky )
 configuration.chibi_lxc.containers.add( Misuzu )
 configuration.chibi_lxc.containers.add( Pitou )
 configuration.chibi_lxc.containers.add( Rei )

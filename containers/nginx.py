@@ -1,7 +1,7 @@
-from .base import Centos_7
+from .base import Rocky
 
 
-class Nginx( Centos_7 ):
+class Nginx( Rocky ):
     scripts = (
         "nginx/install.py",
         "nginx/provision.py",

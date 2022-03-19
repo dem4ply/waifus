@@ -1,7 +1,7 @@
-from .base import Centos_7
+from .base import Rocky
 
 
-class Logstash( Centos_7 ):
+class Logstash( Rocky ):
     scripts = (
         "logstash/install.py",
         "logstash/provision.py",

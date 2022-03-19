@@ -1,7 +1,7 @@
-from .base import Centos_7
+from .base import Rocky
 
 
-class Maria( Centos_7 ):
+class Maria( Rocky ):
     scripts = (
         "mariadb/install.py",
         "mariadb/add_databases.py",
