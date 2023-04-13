@@ -43,6 +43,15 @@ def copy_all_configs():
     return sites_enabled, sites_available
 
 
+def add_default():
+    logger.info( 'agregando default' )
+    Chibi_path( '/var/www/default/' ).mkdir( is_ok_exists=True )
+    index = Chibi_path( "/var/www/default/index.html" ).open()
+    index.write( "<h1>{} - waifus lab</h1>".format( get_hostname() ) )
+    Command( 'chcon', '-Rt', 'httpd_sys_content_t', '/var/www/' ).run()
+    logger.info( 'termino de agregar el default' )
+
+
 if __name__ == "__main__":
     basic_config()
     parser = ArgumentParser(
@@ -80,6 +89,8 @@ if __name__ == "__main__":
                 ln( available + config, link )
             else:
                 logger.info( f'el archivo {config} existe' )
+            if config == 'default':
+                add_default()
 
     elif args.command == 'disable':
         cowsay( f"desabilitando configuracion {configs}" )

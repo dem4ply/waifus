@@ -33,7 +33,7 @@ Vagrant.configure(2) do |config|
 		".git/", "base_centos_7.box", "base_centos_8.box",
 		".ropeproject/", "backups/",
 		"src/", "weeaboo/", "cache/", "diagrams/", ".gitignore",
-		".gitmodules" ],
+		".gitmodules", 'resized.vmdk', 'cloned.vdi', 'log*' ],
 	rsync__verbose: true
 
 

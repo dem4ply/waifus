@@ -6,8 +6,10 @@ from chibi_command.echo import cowsay
 
 basic_config()
 databases = [
-    'notarius', 'reader_moe', 'test_reader_moe', 'quetzalcoatl',
-    'corona_chan', 'friends_on_demand', 'owncloud_db' ]
+    'reader_moe', 'test_reader_moe',
+    'corona_chan', 'friends_on_demand', 'owncloud_db',
+    'archivum', 'test_archivum',
+]
 
 
 if __name__ == "__main__":

@@ -48,7 +48,7 @@ def is_nginx( d ):
 inputs = list( itertools.filterfalse( is_nginx, inputs ) )
 
 
-for nginx_config in nginx_sites_enabled.ls():
+for nginx_config in nginx_sites_enabled.ls( dirs=False ):
     nginx_data = nginx_config.open( chibi_file_class=Chibi_nginx ).read()
     try:
         name = nginx_data.server.server_name
@@ -56,6 +56,9 @@ for nginx_config in nginx_sites_enabled.ls():
         access_log = access_log.split( ' ', 1 )[0]
         error_log = nginx_data.server.error_log
     except ( KeyError, AttributeError ):
+        continue
+    if 'waifus' in name:
+        print( f'ignorando {name} para evitar loginseption' )
         continue
     if '$hostname' in name:
         name = name.replace( '$hostname', hostname )
