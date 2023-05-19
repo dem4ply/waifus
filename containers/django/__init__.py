@@ -11,9 +11,5 @@ class Shiro( Django ):
     pass
 
 
-class Shionji( Django ):
-    pass
-
-
 class Victorique( Django ):
     pass

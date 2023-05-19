@@ -10,11 +10,14 @@ from containers.elasticsearch import Misuzu, Pitou, Rei, Rem, Sakura
 from containers.nginx import Ikaros, Astraea, Caos, Nymph
 from containers.mariadb import Chii, Freya, Sumomo
 from containers.rabbitmq import Chino, Cocoa, Rize
-from containers.others.owncloud import Owncloud
+from containers.others.owncloud import Fafnir
 from containers.logstash import Tohru, Kanna, Elma
 from containers.kibana import Pochi, Tama
-from containers.django import Shiro, Shionji, Victorique
+from containers.django import Shiro, Victorique
 from containers.stable_diffusion import Arte
+from containers.taskwarrior import Chiri
+from containers.dnsmasq import Shionji
+from containers.pyload import Tomoko
 
 from containers.django.corona_chan import Corona_chan
 
@@ -47,13 +50,18 @@ configuration.chibi_lxc.containers.add( Pochi )
 configuration.chibi_lxc.containers.add( Tama )
 
 configuration.chibi_lxc.containers.add( Shiro )
-configuration.chibi_lxc.containers.add( Shionji )
 configuration.chibi_lxc.containers.add( Victorique )
 
 configuration.chibi_lxc.containers.add( Corona_chan )
 
-configuration.chibi_lxc.containers.add( Owncloud )
+configuration.chibi_lxc.containers.add( Fafnir )
 
 configuration.chibi_lxc.containers.add( Arte )
+
+configuration.chibi_lxc.containers.add( Chiri )
+
+configuration.chibi_lxc.containers.add( Shionji )
+
+configuration.chibi_lxc.containers.add( Tomoko )
 
 configuration.chibi_lxc.hosts = Chibi_path( 'hosts' )
