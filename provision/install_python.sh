@@ -31,6 +31,7 @@ then
 
 	#yum update -y
 
+	pip3 install --upgrade pip
 	pip3 install python-hosts
 	pip3 install chibi
 	pip3 install chibi-requests

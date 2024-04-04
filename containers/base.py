@@ -15,6 +15,7 @@ class Rocky( Container ):
     scripts = (
         'install_python.sh',
         'update_python_lib.sh',
+        'stuff/install_epel.py',
         'stuff/install_cowsay.py',
         'set_basic_centos.py',
         'update_centos.py',
