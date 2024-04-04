@@ -28,6 +28,7 @@ FLUSH PRIVILEGES;
 
 if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "iniciando instalacion de mariadb" )
+    Yum( 'module', 'enable', 'mariadb:10.5' ).run()
     Yum.install( "mariadb-server" )
     Systemctl.enable( "mariadb" ).run()
     Systemctl.start( "mariadb" ).run()

@@ -12,6 +12,7 @@ class Maria( Rocky ):
         ( "mariadb/add_database.py", 'test_archivum', ),
         ( "mariadb/add_database.py", 'owncloud_db', ),
         ( "mariadb/add_database.py", 'cab_tracking', ),
+        ( "mariadb/add_database.py", 'cab_user', ),
         "mariadb/add_owncloud_user.py",
     )
 
