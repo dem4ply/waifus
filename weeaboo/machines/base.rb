@@ -16,6 +16,7 @@ class Base_centos < Machine
 		#@box = "base_centos_7"
 		@scripts = [
 			Script.new( "provision/install_python.sh" ),
+			Python.new( "provision/stuff/install_epel.py" ),
 			Python.new( "provision/stuff/install_cowsay.py" ),
 			Script.new( "provision/update_python_lib.sh" ),
 			Python.new( "provision/update_centos.py" ),
