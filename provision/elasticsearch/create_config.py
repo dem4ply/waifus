@@ -112,6 +112,7 @@ if __name__ == "__main__":
             pass
         result.service.TimeoutSec = '900'
         f.write( result )
+        Systemctl.daemon_reload().run()
 
     mem_options = Chibi_path( '/etc/elasticsearch/jvm.options.d/mem.options' )
     mem_options.open().write( "-Xms2g\n-Xmx2g\n" ) # 2GB

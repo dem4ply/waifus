@@ -20,7 +20,10 @@ version_to_check = "ponysay\n".format( file=__file__, )
 
 if __name__ == "__main__" and not version_to_check in file_check:
     cowsay( "Starting install for ponysay" )
-    Dnf.config_manager( 'powertools' )
+    # Dnf.config_manager.enable( 'powertools' )
+    # Dnf.config_manager( 'powertools' )
+    # el nombre de powertools cambio a crb en rockylinux 9
+    Dnf.config_manager( 'crb' )
     Dnf.install( 'texinfo' )
     cache_dir.mkdir()
     ponysay_dir = cache_dir + 'ponysay'

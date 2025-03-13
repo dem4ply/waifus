@@ -5,7 +5,7 @@ class Rocky( Container ):
     name = 'rocky'
     distribution = 'rockylinux'
     arch = 'amd64'
-    version = '8'
+    version = '9'
     provision_folders = {
         'scripts': 'provision'
     }

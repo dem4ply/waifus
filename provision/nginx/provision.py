@@ -1,13 +1,17 @@
 #!/usr/bin/env python3
+import logging
 import os
+
 from chibi.config import basic_config
 from chibi.file import Chibi_path
 from chibi_command.centos import Yum
 from chibi_command.echo import cowsay
 from chibi.net.hostname import get_hostname
 from chibi_command.nix import Systemctl
-from chibi_command import Command
+from chibi_command import Command, Result_error
 
+
+logger = logging.getLogger( 'waifus.provision.nginx.provision' )
 
 provision_folder = (
     Chibi_path( os.environ[ 'PROVISION_PATH' ] )
@@ -45,6 +49,9 @@ if __name__ == "__main__":
     Chibi_path( '/var/www/default/' ).mkdir( is_ok_exists=True )
     index = Chibi_path( "/var/www/default/index.html" ).open()
     index.write( "<h1>{} - waifus lab</h1>".format( get_hostname() ) )
-    Command( 'chcon', '-Rt', 'httpd_sys_content_t', '/var/www/' ).run()
+    try:
+        Command( 'chcon', '-Rt', 'httpd_sys_content_t', '/var/www/' ).run()
+    except Result_error:
+        logger.exception( "fallo chcon para '/var/www/'" )
 
     cowsay( "termino provisinando basico de nginx" )

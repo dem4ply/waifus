@@ -8,7 +8,7 @@ then
 	echo "Instalando python"
 	echo "================="
 
-	yum update -y
+	yum update --refresh -y
 	yum group install development -y
    yum install python3 python3-devel wget zlib-devel gcc openssl-devel bzip2-devel libffi-devel -y
 	# yum install -y install https://centos7.iuscommunity.org/ius-release.rpm
