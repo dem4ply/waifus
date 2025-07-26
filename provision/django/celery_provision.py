@@ -11,7 +11,7 @@ pid_folder = Chibi_path( '/var/run/celery' )
 if not pid_folder.exists:
     pid_folder.mkdir()
 
-log_folder.chown( user_name='celery', group_name='celery', recursive=True )
-pid_folder.chown( user_name='celery', group_name='celery', recursive=True )
+log_folder.chown( user_name='chibi', group_name='chibi', recursive=True )
+pid_folder.chown( user_name='chibi', group_name='chibi', recursive=True )
 
 cowsay( 'termino de provisionar a celery' )

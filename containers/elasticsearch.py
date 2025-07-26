@@ -15,8 +15,17 @@ class Elasticsearch( Rocky ):
         'elasticsearch/print_status.py',
     )
 
+    mounts = [
+        "/mnt/hdd/waifus/elasticsearch/ home/chibi/elasticsearch/ "
+        "none bind,create=dir 0 0",
+    ]
+
 
 class Misuzu( Elasticsearch ):
+    scripts = (
+        'elasticsearch/create_certs.py',
+    )
+
     is_master = True
     is_data = True
 

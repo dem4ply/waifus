@@ -20,6 +20,7 @@ from containers.dnsmasq import Shionji
 from containers.pyload import Tomoko
 
 from containers.django.corona_chan import Corona_chan
+from containers.django.chibi_datahouse import Chibi_datahouse
 
 
 configuration.chibi_lxc.containers.add( Rocky )
@@ -53,6 +54,7 @@ configuration.chibi_lxc.containers.add( Shiro )
 configuration.chibi_lxc.containers.add( Victorique )
 
 configuration.chibi_lxc.containers.add( Corona_chan )
+configuration.chibi_lxc.containers.add( Chibi_datahouse )
 
 configuration.chibi_lxc.containers.add( Fafnir )
 

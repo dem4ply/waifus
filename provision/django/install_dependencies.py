@@ -18,5 +18,7 @@ if not projects.exists:
 folder = git_repo_url.base_name.rsplit( '.git', 1 )[0]
 git_folder = projects + folder
 
-requirements = git_folder + 'requirements_dev.txt'
+requirements = git_folder + 'requirements_prod.txt'
+if not requirements.exists:
+    raise OSError( f'el archivo de requerimientos no existe "{requirements}"' )
 Command( 'pip3', 'install', '-r', requirements ).run()

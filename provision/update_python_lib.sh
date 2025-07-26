@@ -5,7 +5,7 @@ set -e
 echo "update global"
 pip3 install --upgrade pip
 pip3 install --upgrade python-hosts
-pip3 install --upgrade chibi chibi-requests chibi_command chibi-donkey chibi-nginx
+pip3 install --upgrade chibi chibi-requests chibi_command chibi-donkey chibi-nginx chibi_git
 
 set +e
 #set -v

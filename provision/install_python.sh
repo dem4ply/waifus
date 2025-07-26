@@ -36,6 +36,7 @@ then
 	pip3 install chibi
 	pip3 install chibi-requests
 	pip3 install chibi_command
+	pip3 install chibi_git
 	pip3 install chibi-donkey
 	pip3 install pyyaml
 

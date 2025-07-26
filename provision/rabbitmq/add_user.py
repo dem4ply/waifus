@@ -3,7 +3,7 @@ from chibi.config import basic_config
 from chibi_command.rabbitmq import Rabbitmqctl
 
 
-users = [ 'corona_chan', 'quetzalcoatl', 'goblin' ]
+users = [ 'corona_chan', 'quetzalcoatl', 'goblin', 'chibi_datahouse' ]
 
 
 basic_config()

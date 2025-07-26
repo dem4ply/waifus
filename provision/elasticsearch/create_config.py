@@ -16,6 +16,10 @@ from chibi.file.other import Chibi_systemd
 
 basic_config()
 masters = [ 'Misuzu' ]
+
+certs_path = Chibi_path( 'home/chibi/elasticsearch/certs' )
+elastic_path = Chibi_path( '/etc/elasticsearch/' )
+
 provision_folder = (
     Chibi_path( os.environ[ 'PROVISION_PATH' ] ) + 'elasticsearch/provision' )
 
@@ -77,7 +81,33 @@ if __name__ == "__main__":
         'cluster.initial_master_nodes': masters[:],
         'path.data': '/var/data/waifus',
         'path.logs': '/var/log/waifus',
+        #'xpack.security.enabled': True,
     }
+
+    # cambiar esta madre para automatizar los certificados
+    if False and certs_path.exists:
+        certs = elastic_path + 'certs'
+        if not certs.exists:
+            certs.mkdir()
+
+        for cert in certs_path.find( r'.*\.crt' ):
+            cert.copy( certs )
+        for cert in certs_path.find( r'.*\.key' ):
+            cert.copy( certs )
+
+        config[ 'xpack.security.enabled' ] = True
+        config[ 'xpack.security.http.ssl.enabled' ] = True
+        config[ 'xpack.security.transport.ssl.enabled' ] = True
+        config[ 'xpack.security.http.ssl.key' ] = f'certs/{name}.key'
+        config[ 'xpack.security.http.ssl.certificate' ] = f'certs/{name}.crt'
+        config[ 'xpack.security.http.ssl.certificate_authorities' ] = (
+            f'certs/ca.crt' )
+        config[ 'xpack.security.transport.ssl.key' ] = f'certs/{name}.key'
+        config[ 'xpack.security.transport.ssl.certificate' ] = (
+            f'certs/{name}.crt' )
+        config[ 'xpack.security.transport.ssl.certificate_authorities' ] = (
+            f'certs/ca.crt' )
+
 
     elastic_config = Chibi_file( '/etc/elasticsearch/elasticsearch.yml' )
     elastic_config.write( config, is_safe=True )
@@ -102,7 +132,7 @@ if __name__ == "__main__":
 
     service = Chibi_path( '/usr/lib/systemd/system/elasticsearch.service' )
     if not service.exists:
-        print( "no se encontro {service}" )
+        print( f"no se encontro {service}" )
     else:
         f = service.open( chibi_file_class=Chibi_systemd )
         result = f.read()

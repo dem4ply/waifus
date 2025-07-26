@@ -4,7 +4,7 @@ from chibi.file import Chibi_path
 from chibi_command import Command
 from chibi_command.centos import Yum
 from chibi_command.echo import cowsay
-from chibi_command.git import Git
+from chibi_git import Git
 from chibi_command.centos import Dnf
 from chibi.file.snippets import cd
 
@@ -29,7 +29,8 @@ if __name__ == "__main__" and not version_to_check in file_check:
     ponysay_dir = cache_dir + 'ponysay'
 
     if not ponysay_dir.exists:
-        Git.clone( 'https://github.com/erkin/ponysay.git', ponysay_dir )
+        repo = Git.clone( 'https://github.com/erkin/ponysay.git', cache_dir )
+        ponysay_dir = repo.path
 
     cd( ponysay_dir )
     result = Command( 'python3' ).run(

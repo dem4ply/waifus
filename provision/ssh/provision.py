@@ -24,17 +24,30 @@ cowsay( "inicia la provision de ssh" )
 users = [ 'vagrant', 'chibi' ]
 ssh_folder = Chibi_path( '~/.ssh' )
 ssh_config = provision_folder + 'config'
+
 if ssh_config.exists:
+    # root ssh config
     ssh_config += '*'
     if not ssh_folder.exists:
         ssh_folder.mkdir()
-    ssh_config.copy( ssh_folder )
+    result = ssh_config.copy( ssh_folder )
+    for r in result:
+        r.chmod( 0x600 )
 
     for user in users:
-        ssh_folder = Chibi_path( f'/home/{user}/.ssh' )
+        home = Chibi_path( f'/home/{user}' )
+        if not home.exists:
+            logger.info(
+                f"no se encontro el '{home}' se salta la configuracion "
+                f"de {user}" )
+            continue
+        ssh_folder = home + '.ssh'
         if not ssh_folder.exists:
             ssh_folder.mkdir()
-        ssh_config.copy( ssh_folder )
+        result = ssh_config.copy( ssh_folder )
+        for r in result:
+            r.chmod( 0x600 )
+            r.chown( user_name=user, group_name=user )
 
 else:
     logger.warn( 'no se encontro el config ssh' )

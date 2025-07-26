@@ -9,7 +9,7 @@ from chibi.file.snippets import cd
 from chibi_command import Command
 from chibi_command.centos import Yum
 from chibi_command.echo import cowsay
-from chibi_command.git import Git
+from chibi_git import Git
 from git.exc import NoSuchPathError, InvalidGitRepositoryError
 
 
@@ -48,14 +48,20 @@ if git_repo_branch:
 cowsay( f"clonando {git_repo_url} en {git_folder}" )
 if git_folder.exists:
     logger.info( f"repo en {git_folder}" )
-    Git.checkout( branch='.', src=git_folder )
-    Git.checkout_track( branch=git_repo_branch, src=git_folder )
-    Git.pull( src=git_folder )
+    git = Git( git_folder )
+    git.checkout()
+    git.pull()
+    #Git.checkout( branch='.', src=git_folder )
+    #Git.checkout_track( branch=git_repo_branch, src=git_folder )
+    #Git.pull( src=git_folder )
     logger.info( f"pull repo {git_folder}" )
 else:
     logger.info( f"clonando {git_folder}" )
-    Git.clone( git_repo_url, git_folder )
-    Git.checkout_track( branch=git_repo_branch, src=git_folder )
+    git = Git.clone( git_repo_url, git_folder )
+    git.checkout()
+    git.branches[ git_repo_branch ].checkout()
+    #Git.clone( git_repo_url, git_folder )
+    #Git.checkout_track( branch=git_repo_branch, src=git_folder )
 
 git_folder.chown(
     user_name='chibi', group_name='chibi', recursive=True, verbose=False )

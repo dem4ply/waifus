@@ -3,7 +3,7 @@ from ..base import Rocky
 
 class Django( Rocky ):
     scripts = (
-        "provision/mariadb/install_client.py",
+        "mariadb/install_client.py",
     )
 
 

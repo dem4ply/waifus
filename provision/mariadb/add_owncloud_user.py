@@ -9,7 +9,7 @@ if __name__ == "__main__":
     cowsay( "agregando usuario de owncloud" )
     mysql = Mysql.user( "root" ).password( 'password' )
     mysql.run_script(
-        "create user ownclouduser@localhost identified by 'ownclouduser@';" )
+        "CREATE USER IF NOT EXISTS ownclouduser@localhost identified by 'ownclouduser@';" )
     mysql.run_script(
         "grant all privileges on owncloud_db.* to ownclouduser@localhost "
         "identified by 'ownclouduser@';" )
