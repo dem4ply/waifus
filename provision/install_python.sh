@@ -39,6 +39,7 @@ then
 	pip3 install chibi_git
 	pip3 install chibi-donkey
 	pip3 install pyyaml
+	pip3 install Jinja2
 
 	echo "python 3.7" >> $FILE_CHECK
 

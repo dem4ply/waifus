@@ -1,17 +1,17 @@
 [Unit]
 Description=datahouse migration oneshot
-
 After=network.target
+Conflicts=gunicorn.service celery_beat.service celery.service
 
 [Service]
-type=oneshot
+Type=oneshot
 User=chibi
 Group=chibi
 
 EnvironmentFile=/etc/systemd/system/gunicorn.env
 WorkingDirectory=/home/chibi/projects/chibi_datahouse
 
-ExecStart=/bin/sh/ -c '/bin/python3 manage.py migrate'
+ExecStart=/bin/sh -c '/bin/python3 manage.py migrate'
 
 [Install]
 WantedBy=multi-user.target

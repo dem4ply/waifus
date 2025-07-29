@@ -15,6 +15,8 @@ class Chibi_datahouse( Django ):
         ( 'django/celery_provision.py', ),
         ( 'systemd/cp.py', 'chibi_datahouse/gunicorn.service' ),
 
+        ( 'systemd/cp.py', 'chibi_datahouse/migrate_django.service' ),
+
         ( 'systemd/systemd.py', 'restart', 'gunicorn.service' ),
         ( 'systemd/systemd.py', 'enable', 'gunicorn.service' ),
 
@@ -25,4 +27,25 @@ class Chibi_datahouse( Django ):
         ( 'systemd/cp.py', 'chibi_datahouse/celery_beat.service' ),
         ( 'systemd/systemd.py', 'restart', 'celery_beat.service' ),
         ( 'systemd/systemd.py', 'enable', 'celery_beat.service' ),
+
+        (
+            'systemd/provision/celery.py',
+            '--name', 'celery__network__download',
+            '--project_name', 'chibi_datahouse',
+            '-e', 'celery',
+            'danbooru.tasks.download_post_image',
+        ),
+        (
+            'systemd/provision/celery.py',
+            '--name', 'celery__network__post',
+            '--project_name', 'chibi_datahouse',
+            '-e', 'celery',
+            'chibi_datahouse.danbooru.post',
+        ),
+
+        ( 'systemd/systemd.py', 'restart', 'celery__network__download.service' ),
+        ( 'systemd/systemd.py', 'enable', 'celery__network__download.service' ),
+
+        ( 'systemd/systemd.py', 'restart', 'celery__network__post.service' ),
+        ( 'systemd/systemd.py', 'enable', 'celery__network__post.service' ),
     )
