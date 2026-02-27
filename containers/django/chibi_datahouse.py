@@ -42,10 +42,26 @@ class Chibi_datahouse( Django ):
             '-e', 'celery',
             'chibi_datahouse.danbooru.post',
         ),
+        (
+            'systemd/provision/celery.py',
+            '--name', 'celery__rss',
+            '--project_name', 'chibi_datahouse',
+            '-e', 'celery',
+            'chibi_datahouse.rss',
+        ),
+        (
+            'systemd/provision/celery.py',
+            '--name', 'celery__all',
+            '--project_name', 'chibi_datahouse',
+            '-e', 'celery',
+        ),
 
         ( 'systemd/systemd.py', 'restart', 'celery__network__download.service' ),
         ( 'systemd/systemd.py', 'enable', 'celery__network__download.service' ),
 
         ( 'systemd/systemd.py', 'restart', 'celery__network__post.service' ),
         ( 'systemd/systemd.py', 'enable', 'celery__network__post.service' ),
+
+        ( 'systemd/systemd.py', 'restart', 'celery__rss.service' ),
+        ( 'systemd/systemd.py', 'enable', 'celery__rss.service' ),
     )
