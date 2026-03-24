@@ -20,6 +20,7 @@ config = {
     'discovery.zen.ping.unicast.hosts': [ "Pitou", "Sakura", "Misuzu" ],
     'path.data': '/var/data/waifus',
     'path.logs': '/var/log/waifus',
+    'xpack.security.enabled': False,
 }
 
 config_node = {

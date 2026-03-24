@@ -7,6 +7,7 @@ class Nginx( Rocky ):
         "nginx/provision.py",
         ( "nginx/enable.py", 'enable', 'waifus', 'kibana' ),
         ( "nginx/enable.py", 'enable', 'default' ),
+        ( "nginx/enable.py", 'enable', 'owncloud' ),
 
         ( "systemd/systemd.py", 'enable', 'nginx.service' ),
         ( "systemd/systemd.py", 'restart', 'nginx.service' ),

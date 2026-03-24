@@ -81,6 +81,7 @@ if __name__ == "__main__":
         'cluster.initial_master_nodes': masters[:],
         'path.data': '/var/data/waifus',
         'path.logs': '/var/log/waifus',
+        'xpack.security.enabled': False,
         #'xpack.security.enabled': True,
     }
 
