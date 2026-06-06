@@ -5,7 +5,7 @@ from chibi.module import import_
 
 sys.path.append( Chibi_path( '.' ).inflate )
 
-from containers.base import Rocky
+from containers.base import Rocky, Archlinux
 from containers.elasticsearch import Misuzu, Pitou, Rei, Rem, Sakura
 from containers.nginx import Ikaros, Astraea, Caos, Nymph
 from containers.mariadb import Chii, Freya, Sumomo
@@ -19,12 +19,19 @@ from containers.taskwarrior import Chiri
 from containers.dnsmasq import Shionji
 from containers.pyload import Tomoko
 
+from containers.lxc import Koko, Valmet
+from containers.docker import Jelly
+
 from containers.django.corona_chan import Corona_chan
 from containers.django.chibi_datahouse import Chibi_datahouse
 from containers.django.test_django import Test_django
 
 
+from containers.ollama import Melchor, Baltasar, Gaspar
+
+
 configuration.chibi_lxc.containers.add( Rocky )
+configuration.chibi_lxc.containers.add( Archlinux )
 configuration.chibi_lxc.containers.add( Misuzu )
 configuration.chibi_lxc.containers.add( Pitou )
 configuration.chibi_lxc.containers.add( Rei )
@@ -67,5 +74,13 @@ configuration.chibi_lxc.containers.add( Chiri )
 configuration.chibi_lxc.containers.add( Shionji )
 
 configuration.chibi_lxc.containers.add( Tomoko )
+
+configuration.chibi_lxc.containers.add( Melchor )
+configuration.chibi_lxc.containers.add( Baltasar )
+configuration.chibi_lxc.containers.add( Gaspar )
+
+configuration.chibi_lxc.containers.add( Jelly )
+configuration.chibi_lxc.containers.add( Koko )
+configuration.chibi_lxc.containers.add( Valmet )
 
 configuration.chibi_lxc.hosts = Chibi_path( 'hosts' )

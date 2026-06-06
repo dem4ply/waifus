@@ -6,6 +6,7 @@ class Nginx( Rocky ):
         "nginx/install.py",
         "nginx/provision.py",
         ( "nginx/enable.py", 'enable', 'waifus', 'kibana' ),
+        ( "nginx/enable.py", 'enable', 'magi' ),
         ( "nginx/enable.py", 'enable', 'default' ),
         ( "nginx/enable.py", 'enable', 'owncloud' ),
 
@@ -20,7 +21,7 @@ class Nginx( Rocky ):
 
 
 class Ikaros( Nginx ):
-    extra_hosts = ( 'waifus', 'kibana' )
+    extra_hosts = ( 'waifus', 'kibana', 'magi' )
 
 
 class Astraea( Nginx ):

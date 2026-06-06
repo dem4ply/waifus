@@ -25,3 +25,23 @@ class Rocky( Container ):
         'repos/cp_all_repos.py',
         ( 'add_user.py', 'chibi', )
     )
+
+
+class Archlinux( Container ):
+    name = 'archlinux'
+    distribution = 'archlinux'
+    arch = 'amd64'
+    version = 'current'
+    provision_folders = {
+        'scripts': 'provision_archlinux'
+    }
+    env_vars = {
+        'LC_ALL': 'es_MX.utf8',
+        'HOME': '/root/',
+    }
+    scripts = (
+        'init_install.sh',
+        'update_chibi.sh',
+        ( 'user.py', 'chibi', 'create' ),
+        ( 'pacman.py', 'cowsay', 'install' ),
+    )
