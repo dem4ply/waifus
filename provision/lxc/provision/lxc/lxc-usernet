@@ -1,1 +1,1 @@
-vagrant veth virbr0 10
+root veth lxcbr0 10

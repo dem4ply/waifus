@@ -44,14 +44,20 @@ if __name__ == "__main__" and not version_to_check in file_check:
     #snap.run( 'install', 'lxd' )
     #ln( '/var/lib/snapd/snap', '/snap' )
 
+    # libcgroup fue eliminado de rocky linux 9
+    # Yum.install(
+    #     'epel-release', 'debootstrap', 'perl', 'libvirt', 'lxc',
+    #     'lxc-templates', 'lxc-extra', 'libcgroup-pam',
+    #     'libcgroup-tools', 'libcgroup', 'lxc-doc',
+    # )
     Yum.install(
         'epel-release', 'debootstrap', 'perl', 'libvirt', 'lxc',
-        'lxc-templates', 'lxc-extra', 'libcgroup-pam',
-        'libcgroup-tools', 'libcgroup', 'lxc-doc',
+        'lxc-templates', 'lxc-extra', 'lxc-doc', 'nftables',
     )
     sysconf_d = provision_folder + 'sysctl.d/*'
     sysconf_d.copy( '/etc/sysctl.d/' )
-    Sysctl.write( 'user.max_user_namespaces', 10000 ).run()
+    # esto no funciona porque esta dentro de un contenedor
+    # Sysctl.write( 'user.max_user_namespaces', 10000 ).run()
 
     lxc_provision = provision_folder + 'lxc/*'
     lxc_provision.copy( '/etc/lxc/' )
@@ -61,7 +67,7 @@ if __name__ == "__main__" and not version_to_check in file_check:
 
     lxc_default_config = provision_folder + 'lxc' + 'default.conf'
 
-    vagrant_lxc = Chibi_path( '/home/vagrant/.config/lxc' )
+    vagrant_lxc = Chibi_path( '/home/chibi/.config/lxc' )
     vagrant_lxc.mkdir()
 
     lxc_default_config.copy( vagrant_lxc )
@@ -72,16 +78,21 @@ if __name__ == "__main__" and not version_to_check in file_check:
     lxc_subuid_config = provision_folder + 'subuid'
     lxc_subuid_config.copy( '/etc/subuid' )
 
-    config = Chibi_path( '/home/vagrant/.config' )
+    config = Chibi_path( '/home/chibi/.config' )
     config.chown(
-        user_name='vagrant', group_name='vagrant', recursive=True )
-    cache = Chibi_path( '/home/vagrant/.cache' )
+        user_name='chibi', group_name='chibi', recursive=True )
+    cache = Chibi_path( '/home/chibi/.cache' )
     cache.mkdir()
-    local = Chibi_path( '/home/vagrant/.local' )
+    local = Chibi_path( '/home/chibi/.local' )
 
-    Chibi_path( '/home/vagrant/.cache' ).mkdir()
-    Chibi_path( '/home/vagrant/.cache' ).chown(
-        user_name='vagrant', group_name='vagrant', recursive=True )
+    Chibi_path( '/home/chibi/.cache' ).mkdir()
+    Chibi_path( '/home/chibi/.cache' ).chown(
+        user_name='chibi', group_name='chibi', recursive=True )
+
+    sysconf_path = provision_folder + 'sysconfig'
+    root_sysconf_path = Chibi_path( '/etc/sysconfig/' )
+    lxc_net_path = sysconf_path + 'lxc-net'
+    lxc_net_path.copy( root_sysconf_path )
 
     Systemctl.start( 'lxc.service', 'libvirtd', 'lxc-net' ).run()
     Systemctl.enable( 'lxc.service', 'libvirtd', 'lxc-net' ).run()
